@@ -1,0 +1,107 @@
+body{
+    background: url(tutor_authorization_pictures/BACKGROUND.png);
+    background-size: 100% 100%;  
+    background-repeat: no-repeat; 
+    -ms-background-size: cover;   
+    -o-background-size: cover;   
+    -moz-background-size: cover;   
+    -webkit-background-size: cover; 
+    background-attachment: fixed;
+    -webkit-text-fill-color: black;
+    font-family: Jost;
+}
+
+.box{
+    justify-items: center;
+    font-family: Jost;
+    max-width: 35vw;
+    max-height: 55vh;
+    min-width:45vw;
+    min-height: 15vh;
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: black;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.29);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    text-align: center;
+    font-size: 1em;
+    font-weight: 700;
+}
+
+.box p{
+    font-size: 2em;
+}
+
+.box input[type  = "text"], .box input[type = "password"]{
+    font-family: Jost;
+    border: 0;
+    background: none;
+    display: block;
+    margin: 4vh auto;
+    text-align: center;
+    border: 2px;
+    width: 10vw;
+    height: 5vh;
+    border-radius: 33px;
+    transition: 0.5s;
+}
+
+.box input[type  = "text"]:focus, .box input[type = "password"]:focus{
+    font-family: Jost;
+    border: 0;
+    background: none;
+    display: block;
+    margin: 4vh auto;
+    text-align: center;
+    border: 2px;
+    width: 20vw;
+    height: 5vh;
+    border-radius: 33px;
+}
+
+.box input[type  = "submit"]{
+    font-family: Jost;
+    border: 0;
+    background: none;
+    display: block;
+    margin: 4vh auto;
+    text-align: center;
+    border: 2px;
+    width: 10vw;
+    height: 5vh;
+    background-color: #FF6363;
+    border-radius: 33px;
+    transition: 0.5s;
+}
+
+.box input[type  = "submit"]:hover{
+    font-family: Jost;
+    border: 0;
+    background: none;
+    display: block;
+    margin: 4vh auto;
+    text-align: center;
+    border: 2px;
+    width: 15vw;
+    height: 5vh;
+    background-color: #63ff8a;
+    border-radius: 33px;
+    transition: 0.5s;
+}
+
+
+
+
+
+
+
+
+
+
