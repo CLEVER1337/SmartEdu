@@ -1,5 +1,3 @@
-using SmartEdu.Modules.ErrorHandling.Middleware;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.RegisterModules();
@@ -8,7 +6,7 @@ builder.Services.RegisterModules();
 
 var app = builder.Build();
 
-app.UseMiddleware<ErrorHandlingMiddleware>();
+app.UseStatusCodePagesWithReExecute("/error/{0}");
 
 app.MapEndpoints();
 

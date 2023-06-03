@@ -9,6 +9,11 @@
 
         public IEndpointRouteBuilder MapEndpoints(IEndpointRouteBuilder endpoints)
         {
+            endpoints.Map("error/{statusCode}", (int statusCode) => 
+            {
+                return $"Error occured. Status code is: {statusCode}";
+            });
+
             return endpoints;
         }
     }
