@@ -10,4 +10,4 @@ app.UseStatusCodePagesWithReExecute("/error/{0}");
 
 app.MapEndpoints();
 
-app.Run();
+app.Run("http://localhost:228");
