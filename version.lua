@@ -124,6 +124,7 @@ function main()
 				version.version_data.util = file:read("*a")
 				
 				io.close(file)
+				os.remove("util_tmp.txt")
 			elseif switch == "d" then
 				version.version_data.util = ""
 			end
