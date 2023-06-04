@@ -839,3 +839,83 @@ footer button{
     
 }
 
+
+@media screen and (width:320px){
+    
+    .First{
+        margin-left: 0.5vw;
+    }
+    
+    .Second{
+        margin-left: 25vw;
+    }
+    
+    .Third{
+        margin-left: 6vw;
+    }
+    
+    .Fourth{
+        margin-left: 8vw;
+    }
+    
+    .Fifth{
+        margin-left: 18vw;
+        margin-top: 10px;
+    }
+    
+
+}
+
+@media screen and (width:360px){
+    
+    .First{
+        margin-left: 0.5vw;
+    }
+    
+    .Second{
+        margin-left: 25vw;
+    }
+    
+    .Third{
+        margin-left: 6vw;
+    }
+    
+    .Fourth{
+        margin-left: 8vw;
+    }
+    
+    .Fifth{
+        margin-left: 23vw;
+        margin-top: 10px;
+    }
+    
+
+
+    .tag_1{
+        margin-top: 8vh;
+        font-size:6vw;
+        font-weight: bold;
+        position: relative;
+    
+    }
+    
+    .tag_2{
+        position: relative;
+        min-width: 1vw;
+        max-width: 35vw;
+        margin-left: 30vw;
+        margin-top: 20vh;
+        font-size: 2vw;
+        font-weight: bolder;
+    }
+
+    .tag_3{
+        font-size: 3vw;
+        font-weight: bold;
+        margin-top: 100vh;
+        justify-content: center;
+    }
+    
+    
+}
+
