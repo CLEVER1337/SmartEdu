@@ -1,4 +1,5 @@
-﻿using SmartEdu.Modules.UserModule.Endpoints;
+﻿using SmartEdu.Modules.UserModule.Core;
+using SmartEdu.Modules.UserModule.Endpoints;
 
 namespace SmartEdu.Modules.UserModule
 {
