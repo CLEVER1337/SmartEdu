@@ -1,12 +1,14 @@
 using SmartEdu.FileLogger;
 
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.RegisterModules();
 
 builder.Configuration.AddJsonFile("Config/appsettings.json");
 
-builder.Logging.AddFile(builder.Configuration["Logging:LoggerFileName"]);
+builder.Logging.AddFile(builder.Configuration["Logging:LoggerFileName"]!);
 
 
 
