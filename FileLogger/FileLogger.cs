@@ -1,4 +1,4 @@
-﻿namespace SmartEdu
+﻿namespace SmartEdu.FileLogger
 {
     public class FileLogger : ILogger, IDisposable
     {

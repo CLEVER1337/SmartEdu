@@ -1,6 +1,4 @@
-using SmartEdu;
-
-
+using SmartEdu.FileLogger;
 
 var builder = WebApplication.CreateBuilder(args);
 
