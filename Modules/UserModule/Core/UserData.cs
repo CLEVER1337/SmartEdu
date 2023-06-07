@@ -1,49 +1,56 @@
-﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
-using System.Security.Cryptography;
-
-namespace SmartEdu.Modules.UserModule.Core
+﻿namespace SmartEdu.Modules.UserModule.Core
 {
-    public class UserData
+    public class UserData : BaseEntity
     {
-        public UserData(string login, string password)
+        public UserData(string login, string salt, string hashedPassword)
         {
-            Login = login;
-            Password = password;
+            _login = login;
+            _salt = salt;
+            _hashedPassword = hashedPassword;
         }
 
         private string _login = null!;
-        private byte[] _salt = null!;
+        private string _salt = null!;
         private string _hashedPassword = null!;
+
+        public User? User { get; set; }
+
+        public int UserId { get; set; }
 
         public string Login
         {
-            get { return _login; }
-            set { _login = value; }
+            get 
+            { 
+                return _login; 
+            }
+            set 
+            { 
+                _login = value;
+            }
         }
 
-        public string Password
+        public string Salt
         {
             get
             {
-                return _hashedPassword;
+                return _salt;
             }
-            set
+            set 
             {
-                HashPassword(value);
+                _salt = value;
             }
         }
 
-        private void HashPassword(string password)
+        public string HashedPassword 
         {
-            // generate a 128-bit salt using a sequence of cryptographically strong random bytes.
-            _salt = RandomNumberGenerator.GetBytes(128 / 8);
-
-            // hash password
-            _hashedPassword = Convert.ToBase64String(KeyDerivation.Pbkdf2(password,
-                _salt,
-                KeyDerivationPrf.HMACSHA256,
-                100000,
-                256 / 8));
+            get 
+            { 
+                return _hashedPassword; 
+            }
+            set
+            {
+                _hashedPassword = value;
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace SmartEdu.Modules.ErrorHandling
+﻿namespace SmartEdu.Modules.ErrorHandlingModule
 {
     public class ErrorHandlingModule : IModule
     {

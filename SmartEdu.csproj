@@ -7,10 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Modules\UserModule\Core\" />
     <Folder Include="Logs\" />
     <Folder Include="wwwroot\documents\" />
     <Folder Include="wwwroot\images\" />
+    <Folder Include="wwwroot\styles\" />
+    <Folder Include="wwwroot\scripts\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
   </ItemGroup>
 
 </Project>
