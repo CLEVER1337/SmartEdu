@@ -1,13 +1,13 @@
-using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Rewrite;
-using Microsoft.EntityFrameworkCore;
 using SmartEdu;
 using SmartEdu.FileLogger;
-using SmartEdu.Modules.UserModule.Core;
-using SmartEdu.Modules.HashingModule.Adapters;
-using SmartEdu.Modules.HashingModule.Ports;
-using System.Security.Cryptography;
-using System.Text;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,14 +15,44 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddJsonFile("Config/appsettings.json");
 
 // file logger
-builder.Logging.AddFile(builder.Configuration["Logging:LoggerFileName"]!);
+builder.Logging.AddFile(builder.Configuration["LoggerFileName"]!);
+
+// database connection string
+ApplicationContext.connectionString = builder.Configuration["ConnectionStrings:SmartEduConnection"]!;
 
 // modules services
 builder.Services.RegisterModules();
 
+// authentication
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters 
+        {
+            ValidateIssuer = true,
+            ValidIssuer = builder.Configuration["Authentication:Issuer"],
+            ValidateAudience = true,
+            ValidAudience = builder.Configuration["Authentication:Audience"],
+            ValidateLifetime = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Authentication:Key"]!)),
+            ValidateIssuerSigningKey = true
+        };
+    });
+
+// authorization
+// claims policy
+builder.Services.AddAuthorization(options =>
+{
+
+});
+
 
 
 var app = builder.Build();
+
+// auth
+app.UseAuthentication();
+app.UseAuthorization();
 
 // connect URL-rewriter
 var options = new RewriteOptions()
@@ -38,36 +68,5 @@ app.UseStatusCodePagesWithReExecute("/error/{0}");
 
 // static files
 app.UseStaticFiles();
-
-app.Map("/hello", (IHashService hashService) =>
-{
-    using(var context = new ApplicationContext(builder.Configuration["ConnectionStrings:SmartEduConnection"]!))
-    {
-        hashService.HashFunction("gavno");
-
-        var user = new Tutor("Oleg", hashService.Salt, hashService.Hash);
-
-        context.Users.Add(user);
-
-        context.SaveChanges();
-
-        user.UserData.UserId = user.Id;
-
-        context.SaveChanges();
-    }
-});
-
-
-app.Map("/main", (HttpContext httpContext, IHashService hashService) =>
-{
-    using (var context = new ApplicationContext(builder.Configuration["ConnectionStrings:SmartEduConnection"]!))
-    {
-        var user = context.Users.Include(u => u.UserData).FirstOrDefault();
-
-        hashService.HashFunction("gavno", user?.UserData?.Salt!);
-
-        httpContext.Response.WriteAsync(user.UserData.HashedPassword + "\n" + hashService.Hash);
-    }
-});
 
 app.Run("https://localhost:228");

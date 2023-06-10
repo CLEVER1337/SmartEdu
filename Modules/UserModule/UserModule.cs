@@ -1,4 +1,5 @@
-﻿using SmartEdu.Modules.UserModule.Core;
+﻿using SmartEdu.Modules.HashingModule.Ports;
+using SmartEdu.Modules.RegistrationModule.Ports;
 using SmartEdu.Modules.UserModule.Endpoints;
 
 namespace SmartEdu.Modules.UserModule
@@ -14,7 +15,10 @@ namespace SmartEdu.Modules.UserModule
         {
             //endpoints.MapDelete();
             //endpoints.MapGet();
-            //endpoints.MapPost();
+            endpoints.MapPost("/registration/{userType}", 
+                (HttpContext httpContext, IRegistrationService registrationService, IHashService hashService, string userType) 
+                => UserEndpoints.PostUser(httpContext, registrationService, hashService, userType));
+            //endpoints.MapPost("/login", () => UserEndpoints.PostUser());
             //endpoints.MapPut();
             return endpoints;
         }

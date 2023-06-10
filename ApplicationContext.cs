@@ -1,19 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SmartEdu.Modules.UserModule.Core;
-using System.Runtime.CompilerServices;
 
 namespace SmartEdu
 {
+    /// <summary>
+    /// EFCore db context
+    /// </summary>
     public class ApplicationContext : DbContext
     {
-        public ApplicationContext(string connectionString) 
+        public ApplicationContext() 
         {
-            _connectionString = connectionString;
-            //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 
-        private string _connectionString;
+        public static string? connectionString;
 
         public DbSet<User> Users { get; set; } = null!;
         public DbSet<Tutor> Tutors { get; set; } = null!;
@@ -22,8 +22,8 @@ namespace SmartEdu
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySql(_connectionString,
-                ServerVersion.AutoDetect(_connectionString));
+            optionsBuilder.UseMySql(connectionString,
+                ServerVersion.AutoDetect(connectionString));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

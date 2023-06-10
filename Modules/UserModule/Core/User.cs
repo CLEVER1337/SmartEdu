@@ -2,22 +2,14 @@
 {
     public abstract class User : BaseEntity
     {
-        public User() 
-        {
-
-        }
-
         public User(string login, string salt, string hashedPassword)
         {
             _userData = new UserData(login, salt, hashedPassword);
         }
 
-        private UserData _userData = null!;
+        private UserData _userData;
 
-        private string _name;
-        private int _age;
-        private DateTime _birthDay;
-        private string _school;
+        // Here will be user's common data
 
         public UserData UserData
         {

@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
-using System.Security.Cryptography;
-using SmartEdu.Modules.HashingModule.Ports;
+﻿using System.Security.Cryptography;
 using System.Text;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using SmartEdu.Modules.HashingModule.Ports;
 
 namespace SmartEdu.Modules.HashingModule.Adapters
 {
@@ -12,14 +12,14 @@ namespace SmartEdu.Modules.HashingModule.Adapters
 
         public string Salt 
         { 
-            get { return _salt; } 
+            get { return _salt; }
         }
 
         public string Hash
         {
             get 
             { 
-                return _hash; 
+                return _hash;
             }
             set 
             { 

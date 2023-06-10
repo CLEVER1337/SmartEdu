@@ -9,9 +9,9 @@ namespace SmartEdu.Modules.UserModule.Factory
 
         }
 
-        public override User CreateUser()
+        protected override User CreateUser(string login, string salt, string hashedPassword)
         {
-            return new Tutor();
+            return new Tutor(login, salt, hashedPassword);
         }
     }
 }

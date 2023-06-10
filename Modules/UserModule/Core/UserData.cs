@@ -1,5 +1,8 @@
 ﻿namespace SmartEdu.Modules.UserModule.Core
 {
+    /// <summary>
+    /// User identity data
+    /// </summary>
     public class UserData : BaseEntity
     {
         public UserData(string login, string salt, string hashedPassword)
@@ -9,9 +12,9 @@
             _hashedPassword = hashedPassword;
         }
 
-        private string _login = null!;
-        private string _salt = null!;
-        private string _hashedPassword = null!;
+        private string _login;
+        private string _salt;
+        private string _hashedPassword;
 
         public User? User { get; set; }
 

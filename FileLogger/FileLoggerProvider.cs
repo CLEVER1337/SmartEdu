@@ -14,6 +14,9 @@
             return new FileLogger(_path);
         }
 
-        public void Dispose() { }
+        public void Dispose() 
+        {
+
+        }
     }
 }

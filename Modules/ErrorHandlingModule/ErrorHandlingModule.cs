@@ -11,7 +11,7 @@
         {
             endpoints.Map("error/{statusCode}", (int statusCode) => 
             {
-                return $"Error occured. Status code is: {statusCode}";
+                return $"Http error occured. Status code is: {statusCode}";
             });
 
             return endpoints;
