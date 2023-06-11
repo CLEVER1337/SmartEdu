@@ -56,7 +56,8 @@ app.UseAuthorization();
 
 // connect URL-rewriter
 var options = new RewriteOptions()
-            .AddRewrite("^$", "documents/Main_page.html", false);
+            .AddRewrite("^$", "documents/Main_page.html", false)
+            .AddRewrite("registration", "documents/Tutor_Authorization.html", false);
 
 app.UseRewriter(options);
 
