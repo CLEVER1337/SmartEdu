@@ -40,7 +40,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 // claims policy
 builder.Services.AddAuthorization(options =>
 {
-
+    
 });
 
 // modules services
@@ -50,21 +50,20 @@ builder.Services.RegisterModules();
 
 var app = builder.Build();
 
+// connect URL-rewriter
+var options = new RewriteOptions()
+            .AddRewrite("registration", "/documents/Tutor_registration_hyper.html", false);
+app.UseRewriter(options);
+
+// static files + default file
+var staticFilesOptions = new FileServerOptions();
+staticFilesOptions.DefaultFilesOptions.DefaultFileNames.Clear();
+staticFilesOptions.DefaultFilesOptions.DefaultFileNames.Add("/documents/Main_page.html");
+app.UseFileServer(staticFilesOptions);
+
 // auth
 app.UseAuthentication();
 app.UseAuthorization();
-
-// static files + default file(index.html)
-var staticFilesOptions = new FileServerOptions();
-staticFilesOptions.DefaultFilesOptions.DefaultFileNames.Clear();
-staticFilesOptions.DefaultFilesOptions.DefaultFileNames.Add("Main_page.html");
-app.UseFileServer(staticFilesOptions);
-
-// connect URL-rewriter
-var options = new RewriteOptions();
-            //.AddRewrite("registration", "documents/Tutor_registration.html", false);
-
-app.UseRewriter(options);
 
 // error handling
 app.UseStatusCodePagesWithReExecute("/error/{0}");

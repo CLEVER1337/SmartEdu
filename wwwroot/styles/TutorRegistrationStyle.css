@@ -1,6 +1,6 @@
 body{
     font-family: Jost;
-    background: url("../documents/Tutor_registration_pictures/BACKGROUND.png");
+    background: url(../images/BACKGROUND.png);
     background-size: 100% 100%;  
     background-repeat: no-repeat; 
     -ms-background-size: cover;   
