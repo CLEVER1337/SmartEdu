@@ -4,7 +4,7 @@ html{
 }
 
 body{
-    background: url(main_pictures/BACK_2.svg);
+    background: url(main_pictures/MainBackground.svg);
     background-size: 100% auto;
     background-repeat: no-repeat;
     height: 100vh;
