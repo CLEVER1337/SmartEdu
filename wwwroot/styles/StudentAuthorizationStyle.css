@@ -1,6 +1,5 @@
 body{
-    font-family: Jost;
-    background: url(../images/TutorRegistrationBackground.png);
+    background: url(../images/StudentAuthorizationBackground.png);
     background-size: 100% 100%;  
     background-repeat: no-repeat; 
     -ms-background-size: cover;   
@@ -11,7 +10,6 @@ body{
     -webkit-text-fill-color: black;
     font-family: Jost;
 }
-
 
 .box{
     justify-items: center;

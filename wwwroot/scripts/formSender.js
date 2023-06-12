@@ -41,13 +41,13 @@
 
 
 async function sendDataToServer(data){
-  return await fetch("user/tutor/register", {
+  return await fetch("../user/tutor/register", {
     method: "POST",
     headers: {"Accept": "application/json", "Content-Type": "application/json"},
-      body: JSON.stringify({
-          login: data[0].value,
-          password: data[1].value
-      })
+    body: JSON.stringify({
+      login: data[0].value,
+      password: data[1].value
+    })
   })
 
 }

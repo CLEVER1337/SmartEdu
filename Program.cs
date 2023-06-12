@@ -52,13 +52,15 @@ var app = builder.Build();
 
 // connect URL-rewriter
 var options = new RewriteOptions()
-            .AddRewrite("registration", "/documents/Tutor_registration_hyper.html", false);
+            .AddRewrite("tutor/registration", "documents/TutorRegistration.html", false)
+            .AddRewrite("student/registration", "documents/StudentRegistration.html", false);
+            //.AddRewrite("")
 app.UseRewriter(options);
 
 // static files + default file
 var staticFilesOptions = new FileServerOptions();
 staticFilesOptions.DefaultFilesOptions.DefaultFileNames.Clear();
-staticFilesOptions.DefaultFilesOptions.DefaultFileNames.Add("/documents/Main_page.html");
+staticFilesOptions.DefaultFilesOptions.DefaultFileNames.Add("/documents/MainPage.html");
 app.UseFileServer(staticFilesOptions);
 
 // auth
