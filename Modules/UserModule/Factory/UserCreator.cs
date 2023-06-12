@@ -31,9 +31,14 @@ namespace SmartEdu.Modules.UserModule.Factory
         /// <param name="user"></param>
         public static void SaveUser(User user)
         {
-            using(ApplicationContext context = new ApplicationContext())
+            using(var context = new ApplicationContext())
             {
                 context.Users.Add(user);
+                context.SaveChanges();
+            }
+            using(var context = new ApplicationContext())
+            {
+                context.Users.Include(u => u.UserData).ToList().FirstOrDefault(u => u.UserData.Login == user.UserData.Login)!.UserData.UserId = user.Id;
                 context.SaveChanges();
             }
         }
@@ -43,16 +48,16 @@ namespace SmartEdu.Modules.UserModule.Factory
         /// </summary>
         /// <param name="login"></param>
         /// <returns></returns>
-        public static User GetUser(string login)
+        public static User? GetUser(string login)
         {
             User user;
 
             using (var context = new ApplicationContext())
             {
-                user = context.Users.Include(u => u.UserData).FirstOrDefault(u => u.UserData.Login == login)!;
+                user = context.Users.Include(u => u.UserData).ToList().FirstOrDefault(u => u.UserData.Login == login)!;
             }
 
-            return user!;
+            return user;
         }
     }
 }

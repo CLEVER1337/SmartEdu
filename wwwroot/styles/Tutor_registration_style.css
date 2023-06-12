@@ -1,5 +1,6 @@
 body{
-    background: url(tutor_authorization_pictures/BACKGROUND.png);
+    font-family: Jost;
+    background: url("../documents/Tutor_registration_pictures/BACKGROUND.png");
     background-size: 100% 100%;  
     background-repeat: no-repeat; 
     -ms-background-size: cover;   
@@ -10,6 +11,7 @@ body{
     -webkit-text-fill-color: black;
     font-family: Jost;
 }
+
 
 .box{
     justify-items: center;

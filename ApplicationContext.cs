@@ -10,6 +10,7 @@ namespace SmartEdu
     {
         public ApplicationContext() 
         {
+            //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 

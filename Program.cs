@@ -20,9 +20,6 @@ builder.Logging.AddFile(builder.Configuration["LoggerFileName"]!);
 // database connection string
 ApplicationContext.connectionString = builder.Configuration["ConnectionStrings:SmartEduConnection"]!;
 
-// modules services
-builder.Services.RegisterModules();
-
 // authentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -46,6 +43,9 @@ builder.Services.AddAuthorization(options =>
 
 });
 
+// modules services
+builder.Services.RegisterModules();
+
 
 
 var app = builder.Build();
@@ -54,20 +54,22 @@ var app = builder.Build();
 app.UseAuthentication();
 app.UseAuthorization();
 
+// static files + default file(index.html)
+var staticFilesOptions = new FileServerOptions();
+staticFilesOptions.DefaultFilesOptions.DefaultFileNames.Clear();
+staticFilesOptions.DefaultFilesOptions.DefaultFileNames.Add("Main_page.html");
+app.UseFileServer(staticFilesOptions);
+
 // connect URL-rewriter
-var options = new RewriteOptions()
-            .AddRewrite("^$", "documents/Main_page.html", false)
-            .AddRewrite("registration", "documents/Tutor_Authorization.html", false);
+var options = new RewriteOptions();
+            //.AddRewrite("registration", "documents/Tutor_registration.html", false);
 
 app.UseRewriter(options);
-
-// modules endpoints
-app.MapEndpoints();
 
 // error handling
 app.UseStatusCodePagesWithReExecute("/error/{0}");
 
-// static files
-app.UseStaticFiles();
+// modules endpoints
+app.MapEndpoints();
 
 app.Run("https://localhost:228");

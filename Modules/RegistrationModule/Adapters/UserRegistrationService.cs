@@ -12,7 +12,7 @@ namespace SmartEdu.Modules.RegistrationModule.Adapters
             using(var context = new ApplicationContext())
             {
                 // Check is this login already in db
-                var user = context.Users.Include(u => u.UserData).FirstOrDefault(u => u!.UserData.Login == login, null);
+                var user = context.Users.Include(u => u.UserData).ToList().FirstOrDefault(u => u!.UserData.Login == login, null);
 
                 // If login isn't in use then create user and add him in db
                 if (user == null)
