@@ -44,7 +44,10 @@ async function sendDataToServer(data){
   return await fetch('https://localhost:228/', {
     method: 'POST',
     headers: {"Accept": "application/json", "Content-Type": "application/json"},
-    body: new FormData(Form)
+    body: JSON.stringify({
+      login: data[0].value,
+      password: data[1].value
+    })
   })
 
 }
