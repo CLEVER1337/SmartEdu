@@ -919,3 +919,67 @@ footer button{
     
 }
 
+
+@media screen and (width: 2000px) and (height:1200px){
+    
+    .tag_1{
+        margin-top: 35vh;
+        font-size:6vw;
+        font-weight: bold;
+        position: relative;
+    
+    }
+    
+    .tag_2{
+        position: relative;
+        min-width: 1vw;
+        max-width: 35vw;
+        margin-left: 30vw;
+        margin-top: 55vh;
+        font-size: 2vw;
+        font-weight: bolder;
+    }
+    
+    .main_main{
+        margin-top: -10vh;
+    }
+
+    .tag__2{
+        font-size: 1.5vw;
+        font-weight:400;
+    
+    }
+    
+}
+
+@media screen and (width: 1920px) and (height:1200px){
+    
+    .tag_1{
+        margin-top: 35vh;
+        font-size:6vw;
+        font-weight: bold;
+        position: relative;
+    
+    }
+    
+    .tag_2{
+        position: relative;
+        min-width: 1vw;
+        max-width: 35vw;
+        margin-left: 30vw;
+        margin-top: 55vh;
+        font-size: 2vw;
+        font-weight: bolder;
+    }
+    
+    .main_main{
+        margin-top: -10vh;
+    }
+
+    .tag__2{
+        font-size: 1.5vw;
+        font-weight:400;
+    
+    }
+    
+}
