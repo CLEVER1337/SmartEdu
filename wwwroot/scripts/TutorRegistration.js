@@ -61,5 +61,15 @@ Form.onsubmit = async (e) => {
   sendDataToServer(Form)
 }
 
+function pass_alert() {
+  if (Form[1].value != "" && Form[2].value != "" && Form[2].value == Form[1].value) {
+      alert("Вы успешно зарегистрировались!");
+  } else if (Form[1].value == "" || Form[2].value == "") {
+      alert("Заполните все поля");
+  } else {
+      alert("Пароли должны быть одинаковыми!")
+  }
+}
+
 // Form.addEventListener('submit', handleFormSubmit)
 
