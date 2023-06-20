@@ -1,0 +1,24 @@
+Information 12.06.2023 18:09:22 Now listening on: https://localhost:228
+Information 12.06.2023 18:09:22 Application started. Press Ctrl+C to shut down.
+Information 12.06.2023 18:09:22 Hosting environment: Development
+Information 12.06.2023 18:09:22 Content root path: D:\Programming\MyProjects\C#\SmartEdu
+Information 12.06.2023 18:09:38 Application is shutting down...
+Information 12.06.2023 18:12:18 Now listening on: https://localhost:228
+Information 12.06.2023 18:12:18 Application started. Press Ctrl+C to shut down.
+Information 12.06.2023 18:12:18 Hosting environment: Development
+Information 12.06.2023 18:12:18 Content root path: D:\Programming\MyProjects\C#\SmartEdu
+Information 12.06.2023 18:13:06 Now listening on: https://localhost:228
+Information 12.06.2023 18:13:06 Application started. Press Ctrl+C to shut down.
+Information 12.06.2023 18:13:06 Hosting environment: Development
+Information 12.06.2023 18:13:06 Content root path: D:\Programming\MyProjects\C#\SmartEdu
+Information 12.06.2023 18:20:26 Application is shutting down...
+Information 12.06.2023 18:39:04 Now listening on: https://localhost:228
+Information 12.06.2023 18:39:04 Application started. Press Ctrl+C to shut down.
+Information 12.06.2023 18:39:04 Hosting environment: Development
+Information 12.06.2023 18:39:04 Content root path: D:\Programming\MyProjects\C#\SmartEdu
+Information 12.06.2023 18:39:06 Application is shutting down...
+Information 13.06.2023 15:30:42 Now listening on: https://localhost:228
+Information 13.06.2023 15:30:42 Application started. Press Ctrl+C to shut down.
+Information 13.06.2023 15:30:42 Hosting environment: Development
+Information 13.06.2023 15:30:42 Content root path: D:\Programming\MyProjects\C#\SmartEdu
+Information 13.06.2023 15:36:19 Application is shutting down...

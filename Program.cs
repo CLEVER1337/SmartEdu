@@ -7,7 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Rewrite;
 using SmartEdu;
 using SmartEdu.FileLogger;
-
+using SmartEdu.Modules.SessionModule.Adapters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,17 +21,21 @@ builder.Logging.AddFile(builder.Configuration["LoggerFileName"]!);
 ApplicationContext.connectionString = builder.Configuration["ConnectionStrings:SmartEduConnection"]!;
 
 // authentication
+var tokenOptions = new AuthenticationTokenOptions{issuer = builder.Configuration["Authentication:Issuer"],
+                                                  audience = builder.Configuration["Authentication:Audience"],
+                                                  key = builder.Configuration["Authentication:Key"] };
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
         options.TokenValidationParameters = new TokenValidationParameters 
         {
             ValidateIssuer = true,
-            ValidIssuer = builder.Configuration["Authentication:Issuer"],
+            ValidIssuer = tokenOptions.issuer,
             ValidateAudience = true,
-            ValidAudience = builder.Configuration["Authentication:Audience"],
+            ValidAudience = tokenOptions.audience,
             ValidateLifetime = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Authentication:Key"]!)),
+            IssuerSigningKey = tokenOptions.GetSymmetricSecurityKey(),
             ValidateIssuerSigningKey = true
         };
     });
@@ -41,6 +45,13 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddAuthorization(options =>
 {
     
+});
+
+// redis cache
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = builder.Configuration["RedisCache:Configuration"];
+    options.InstanceName = builder.Configuration["RedisCache:InstanceName"];
 });
 
 // modules services
@@ -66,6 +77,9 @@ app.UseFileServer(staticFilesOptions);
 // auth
 app.UseAuthentication();
 app.UseAuthorization();
+
+// set user's session service's options
+SessionService.tokenOptions = tokenOptions;
 
 // error handling
 app.UseStatusCodePagesWithReExecute("/error/{0}");
