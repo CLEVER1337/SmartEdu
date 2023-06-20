@@ -15,8 +15,9 @@
             <p>Регистрация</p>
             <input type="text" name = "Имя пользователя"  placeholder="Email или имя пользователя">
             <input id="pass" type="password" name = "Пароль" placeholder="Пароль">
-            <input id="pass_confirm" type="password" name = "Повторный пароль" placeholder="Повторите пароль">
-            <input type="submit"  name = "" value="Зарегистрироваться" onclick="pass_alert()">
+            <input id="pass_confirm" type="password" name = "Повторный пароль" placeholder="Повторите пароль" required onkeyup="validate_password()">
+            <span id="wrongPassAlert"></span>
+            <input type="submit"  id="register" name = "Регистрация" value="Зарегистрироваться" onclick="pass_alert()">
         </form>
 
         <script src="../scripts/TutorRegistration.js"></script>

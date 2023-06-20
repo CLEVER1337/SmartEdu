@@ -61,13 +61,28 @@ Form.onsubmit = async (e) => {
   sendDataToServer(Form)
 }
 
+function validate_password() {
+  var pass = document.getElementById('pass').value;
+  var confirm_pass = document.getElementById('pass_confirm').value;
+
+  if (pass != confirm_pass) {
+      document.getElementById('wrongPassAlert').innerHTML = 'Пароли должны быть одинаковыми';
+      document.getElementById('register').disabled = true;
+      document.getElementById('register').style.opacity = (0.4);
+  } else if(pass == "" || confirm_pass == ""){
+      document.getElementById('wrongPassAlert').innerHTML = 'Заполните все поля';
+      document.getElementById('register').disabled = true;
+      document.getElementById('register').style.opacity = (0.4);
+  } else {
+    document.getElementById('wrongPassAlert').innerHTML = 'Пароли одинаковы';
+    document.getElementById('register').disabled = false;
+    document.getElementById('register').style.opacity = (1);
+  }
+}
+
 function pass_alert() {
   if (Form[1].value != "" && Form[2].value != "" && Form[2].value == Form[1].value) {
       alert("Вы успешно зарегистрировались!");
-  } else if (Form[1].value == "" || Form[2].value == "") {
-      alert("Заполните все поля");
-  } else {
-      alert("Пароли должны быть одинаковыми!")
   }
 }
 
