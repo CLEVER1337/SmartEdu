@@ -1,4 +1,4 @@
-import "CheckTokenValidation.js"
+//import "CheckTokenValidation.js"
 
 
 var accessToken = "accessToken"
@@ -6,7 +6,7 @@ var accessToken = "accessToken"
 document.getElementById("submitLogin").addEventListener("click", async e =>{
     e.preventDefault()
 
-    const response = await fetch( "вставить адрес",{
+    const response = await fetch( "session/create",{
         method: "POST",
         headers: {"Accept": "application/json", "Content-Type":"application/json"},
         body: JSON.stringify({

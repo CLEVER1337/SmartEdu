@@ -64,7 +64,8 @@ var app = builder.Build();
 // connect URL-rewriter
 var options = new RewriteOptions()
             .AddRewrite("tutor/registration", "documents/TutorRegistration.html", false)
-            .AddRewrite("student/registration", "documents/StudentRegistration.html", false);
+            .AddRewrite("student/registration", "documents/StudentRegistration.html", false)
+            .AddRewrite("tutor/authorization", "documents/TutorAuthorization.html", false);
             //.AddRewrite("")
 app.UseRewriter(options);
 
