@@ -69,20 +69,10 @@ function validate_password() {
       document.getElementById('wrongPassAlert').innerHTML = 'Пароли должны быть одинаковыми';
       document.getElementById('register').disabled = true;
       document.getElementById('register').style.opacity = (0.4);
-  } else if(pass == "" || confirm_pass == ""){
-      document.getElementById('wrongPassAlert').innerHTML = 'Заполните все поля';
-      document.getElementById('register').disabled = true;
-      document.getElementById('register').style.opacity = (0.4);
   } else {
     document.getElementById('wrongPassAlert').innerHTML = 'Пароли одинаковы';
     document.getElementById('register').disabled = false;
     document.getElementById('register').style.opacity = (1);
-  }
-}
-
-function pass_alert() {
-  if (Form[1].value != "" && Form[2].value != "" && Form[2].value == Form[1].value) {
-      alert("Вы успешно зарегистрировались!");
   }
 }
 
