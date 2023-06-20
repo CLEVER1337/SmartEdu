@@ -1,17 +1,19 @@
 //import "CheckTokenValidation.js"
 
 
-var accessToken = "accessToken"
 
-document.getElementById("submitLogin").addEventListener("click", async e =>{
+var accessToken = "accessToken"
+const Form = document.getElementById("Form")
+
+async function sendDataToServer(data){
     e.preventDefault()
 
     const response = await fetch( "session/create",{
         method: "POST",
         headers: {"Accept": "application/json", "Content-Type":"application/json"},
         body: JSON.stringify({
-            login:document.getElementById("Email").value,
-            password:document.getElementById("Password").value
+            login:data[0],
+            password:data[1]
         })
     })
 
@@ -24,4 +26,11 @@ document.getElementById("submitLogin").addEventListener("click", async e =>{
     else{
         console.log("Status: ", response.status)
     }
-});
+
+
+};
+
+Form.onsubmit = async (e) => {
+    e.preventDefault()
+    sendDataToServer(Form)
+  }
