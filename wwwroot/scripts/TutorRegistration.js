@@ -1,3 +1,6 @@
+import "wwwroot/scripts/CheckTokenValidation.js"
+
+
 // function serializeForm(formNode) {
 //     const { elements } = formNode
   

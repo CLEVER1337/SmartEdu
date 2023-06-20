@@ -1,3 +1,6 @@
+import "CheckTokenValidation.js"
+
+
 var accessToken = "accessToken"
 
 document.getElementById("submitLogin").addEventListener("click", async e =>{
