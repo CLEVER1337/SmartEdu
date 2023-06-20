@@ -1,4 +1,4 @@
-import "CheckTokenValidation.js"
+//import "CheckTokenValidation.js"
 
 
 
@@ -8,7 +8,7 @@ const Form = document.getElementById("Form")
 async function sendDataToServer(data){
     e.preventDefault()
 
-    const response = await fetch( "вставить адрес",{
+    const response = await fetch( "session/create",{
         method: "POST",
         headers: {"Accept": "application/json", "Content-Type":"application/json"},
         body: JSON.stringify({
