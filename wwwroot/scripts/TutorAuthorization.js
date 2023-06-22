@@ -19,7 +19,7 @@ async function sendDataToServer(data){
 
 
     if (response.ok){
-        const data = await response.JSON()
+        const data = await response.json()
         sessionStorage.setItem(tokenKey, data.access_token)
     }
 
