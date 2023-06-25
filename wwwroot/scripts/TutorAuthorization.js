@@ -6,23 +6,24 @@ var accessToken = "accessToken"
 const Form = document.getElementById("Form")
 
 async function sendDataToServer(data){
-    e.preventDefault()
+    //e.preventDefault()
 
-    const response = await fetch( "session/create",{
+    return await fetch( "../session/create",{
         method: "POST",
         headers: {"Accept": "application/json", "Content-Type":"application/json"},
         body: JSON.stringify({
-            login:data[0],
-            password:data[1]
+            login:data[0].value,
+            password:data[1].value
         })
     })
 
+    if (response.status == 404)
+    alert("404")
 
     if (response.ok){
-        const data = await response.JSON()
-        sessionStorage.setItem(tokenKey, data.access_token)
+        const data = await response.json()
+        sessionStorage.setItem("accessToken", data.access_token)
     }
-
     else{
         console.log("Status: ", response.status)
     }
@@ -32,5 +33,7 @@ async function sendDataToServer(data){
 
 Form.onsubmit = async (e) => {
     e.preventDefault()
-    sendDataToServer(Form)
+    var a = await sendDataToServer(Form)
+    var text = await a.json()
+    console.log(text)
   }

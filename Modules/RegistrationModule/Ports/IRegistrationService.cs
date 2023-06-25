@@ -13,6 +13,6 @@ namespace SmartEdu.Modules.RegistrationModule.Ports
         /// <param name="hashedPassword"></param>
         /// <param name="userCreator"></param>
         /// <returns></returns>
-        public User? Register(string login, string salt, string hashedPassword, UserCreator userCreator);
+        public Task<User?> Register(string login, string salt, string hashedPassword, UserCreator userCreator);
     }
 }

@@ -1,13 +1,10 @@
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Rewrite;
 using SmartEdu;
 using SmartEdu.FileLogger;
 using SmartEdu.Modules.SessionModule.Adapters;
+using SmartEdu.Modules.SessionModule.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -65,8 +62,8 @@ var app = builder.Build();
 var options = new RewriteOptions()
             .AddRewrite("tutor/registration", "documents/TutorRegistration.html", false)
             .AddRewrite("student/registration", "documents/StudentRegistration.html", false)
-            .AddRewrite("tutor/authorization", "documents/TutorAuthorization.html", false);
-            //.AddRewrite("")
+            .AddRewrite("tutor/authorization", "documents/TutorAuthorization.html", false)
+            .AddRewrite("student/authorization", "documents/StudentAuthorization.html", false);
 app.UseRewriter(options);
 
 // static files + default file
@@ -78,6 +75,9 @@ app.UseFileServer(staticFilesOptions);
 // auth
 app.UseAuthentication();
 app.UseAuthorization();
+
+// tokens checking before use
+app.UseTokenValidationChecking();
 
 // set user's session service's options
 SessionService.tokenOptions = tokenOptions;

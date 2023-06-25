@@ -4,11 +4,15 @@ using SmartEdu.Modules.SessionModule.Core;
 
 namespace SmartEdu.Modules.SessionModule.Converters
 {
+    /// <summary>
+    /// Json converter for tokens data
+    /// </summary>
     public class TokensJsonConverter : JsonConverter<TokensData>
     {
         public override TokensData? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             string? accessToken = null;
+            string? refreshToken = null;
 
             while (reader.Read())
             {
@@ -21,12 +25,15 @@ namespace SmartEdu.Modules.SessionModule.Converters
                         case "AccesToken":
                             accessToken = reader.GetString()!;
                             break;
+                        case "RefreshToken":
+                            refreshToken = reader.GetString()!;
+                            break;
                     }
                 }
             }
 
             if (accessToken != null)
-                return new TokensData(null, accessToken);
+                return new TokensData(refreshToken, accessToken);
             else
                 return null;
         }
@@ -35,7 +42,7 @@ namespace SmartEdu.Modules.SessionModule.Converters
         {
             writer.WriteStartObject();
 
-            writer.WriteString("RefreshTokens", tokensData.refreshToken);
+            writer.WriteString("RefreshToken", tokensData.refreshToken);
             writer.WriteString("AccessToken", tokensData.accessToken);
 
             writer.WriteEndObject();

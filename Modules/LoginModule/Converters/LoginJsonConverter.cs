@@ -5,6 +5,9 @@ using SmartEdu.Modules.RegistrationModule.Core;
 
 namespace SmartEdu.Modules.LoginModule.Converters
 {
+    /// <summary>
+    /// Json converter for login data
+    /// </summary>
     public class LoginJsonConverter : JsonConverter<LoginData>
     {
         public override LoginData? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
