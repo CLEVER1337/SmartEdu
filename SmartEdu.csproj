@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Folder Include="Logs\" />
+    <Folder Include="Modules\CourseModule\Core\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
