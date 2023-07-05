@@ -17,8 +17,8 @@ namespace SmartEdu.Modules.UserModule
             //endpoints.MapGet();
             endpoints.MapPost("user/{userType}/register", 
                 (HttpContext httpContext, IRegistrationService registrationService, IHashService hashService, string userType) 
-                => UserEndpoints.PostUser(httpContext, registrationService, hashService, userType));
-            //endpoints.MapPost("/login", () => UserEndpoints.PostUser());
+                => UserEndpoints.RegisterUser(httpContext, registrationService, hashService, userType));
+            //endpoints.MapPost("/login", () => UserEndpoints.RegisterUser());
             //endpoints.MapPut();
             return endpoints;
         }

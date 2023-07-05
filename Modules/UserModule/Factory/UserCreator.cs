@@ -23,6 +23,12 @@ namespace SmartEdu.Modules.UserModule.Factory
             var user = CreateUser(login, salt, hashedPassword);
 
             SaveUser(user);
+
+            using(var context = new ApplicationContext())
+            {
+                context.Users.Include(u => u.UserData).ToList().FirstOrDefault(u => u.UserData.Login == user.UserData.Login)!.UserData.UserId = user.Id;
+                context.SaveChanges();
+            }
         }
 
         /// <summary>
@@ -36,25 +42,21 @@ namespace SmartEdu.Modules.UserModule.Factory
                 context.Users.Add(user);
                 context.SaveChanges();
             }
-            using(var context = new ApplicationContext())
-            {
-                context.Users.Include(u => u.UserData).ToList().FirstOrDefault(u => u.UserData.Login == user.UserData.Login)!.UserData.UserId = user.Id;
-                context.SaveChanges();
-            }
         }
 
         /// <summary>
         /// Return user from db by login
+        /// DON'T FORGET TO UPDATE DATA
         /// </summary>
         /// <param name="login"></param>
         /// <returns></returns>
         public static User? GetUser(string login)
         {
-            User user;
+            User? user = null;
 
             using (var context = new ApplicationContext())
             {
-                user = context.Users.Include(u => u.UserData).ToList().FirstOrDefault(u => u.UserData.Login == login)!;
+                user = context.Users.Include(u => u.UserData).ToList().FirstOrDefault(u => u.UserData.Login == login);
             }
 
             return user;
