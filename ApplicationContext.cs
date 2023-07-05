@@ -32,8 +32,10 @@ namespace SmartEdu
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySql(connectionString,
-                ServerVersion.AutoDetect(connectionString));
+            /*optionsBuilder.UseMySql(connectionString,
+                ServerVersion.AutoDetect(connectionString));    MySQL*/
+
+            optionsBuilder.UseSqlServer(connectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
