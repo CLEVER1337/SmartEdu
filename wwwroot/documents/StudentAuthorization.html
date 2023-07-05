@@ -11,16 +11,17 @@
 <body>
     <div class="back">
         
-        <form action="http://smartedu.somee.com/student/registration" class="box">
+        <form class="box">
             <p>Авторизация</p>
             <input type="text" name = ""  id = "Email" placeholder="Email или имя пользователя">
             <input type="password" name = "" id = "Password" placeholder="Пароль">
-            <input type="submit" id = "enter" name="Вход" value="Вход">
+            <input type="submit" id = "enter" value="Вход">
             ИЛИ
-            <input type="submit" id = "submitLogin" value="Регистрация">
+            <input type="button" id = "submitLogin" value="Регистрация" onclick="window.location.href='http://smartedu.somee.com/student/registration'">
         </form>
     </div>
     
-    <script src="../scripts/StudentAuthorization.js"></script>  
+    <script src="../scripts/StudentAuthorization.js"></script>
+    <script>document</script>
 </body>
 </html>
