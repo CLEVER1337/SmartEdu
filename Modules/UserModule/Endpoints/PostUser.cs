@@ -9,7 +9,15 @@ namespace SmartEdu.Modules.UserModule.Endpoints
 {
     public static partial class UserEndpoints
     {
-        public async static Task PostUser(HttpContext httpContext, IRegistrationService registrationService, IHashService hashService, string userType)
+        /// <summary>
+        /// Registration POST request
+        /// </summary>
+        /// <param name="httpContext"></param>
+        /// <param name="registrationService"></param>
+        /// <param name="hashService"></param>
+        /// <param name="userType"></param>
+        /// <returns></returns>
+        public async static Task RegisterUser(HttpContext httpContext, IRegistrationService registrationService, IHashService hashService, string userType)
         {
             UserCreator userCreator = null!;
 
