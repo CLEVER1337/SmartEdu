@@ -18,29 +18,17 @@ namespace SmartEdu.Modules.UserModule.Factory
         /// <param name="login"></param>
         /// <param name="salt"></param>
         /// <param name="hashedPassword"></param>
-        public async void RegisterUser(string login, string salt, string hashedPassword)
+        public async Task RegisterUser(string login, string salt, string hashedPassword)
         {
             var user = CreateUser(login, salt, hashedPassword);
 
-            SaveUser(user);
+            await User.Save(user);
 
             using(var context = new ApplicationContext())
             {
-                (await GetUser(login))!.UserData.UserId = user.Id;
-                //context.Users.Include(u => u.UserData).ToList().FirstOrDefault(u => u.UserData.Login == user.UserData.Login)!.UserData.UserId = user.Id;
-                await context.SaveChangesAsync();
-            }
-        }
-
-        /// <summary>
-        /// Save user in db
-        /// </summary>
-        /// <param name="user"></param>
-        public async static void SaveUser(User user)
-        {
-            using(var context = new ApplicationContext())
-            {
-                await context.Users.AddAsync(user);
+                user = await GetUser(login);
+                context.Update(user!);
+                user!.UserData.UserId = user.Id;
                 await context.SaveChangesAsync();
             }
         }

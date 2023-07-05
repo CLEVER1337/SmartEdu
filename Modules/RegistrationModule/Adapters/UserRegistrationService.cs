@@ -17,7 +17,7 @@ namespace SmartEdu.Modules.RegistrationModule.Adapters
                 // If login isn't in use then create user and add him in db
                 if (user == null)
                 {
-                    userCreator.RegisterUser(login, salt, hashedPassword);
+                    await userCreator.RegisterUser(login, salt, hashedPassword);
                     // Return created user
                     return await UserCreator.GetUser(login);
                 }
