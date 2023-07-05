@@ -88,4 +88,4 @@ app.UseStatusCodePagesWithReExecute("/error/{0}");
 // modules endpoints
 app.MapEndpoints();
 
-app.Run("https://localhost:228");
+app.Run();

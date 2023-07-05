@@ -323,3 +323,43 @@ Information 05.07.2023 14:48:53 Application started. Press Ctrl+C to shut down.
 Information 05.07.2023 14:48:53 Hosting environment: Development
 Information 05.07.2023 14:48:53 Content root path: D:\Programming\MyProjects\C#\SmartEdu
 Information 05.07.2023 14:49:24 Application is shutting down...
+Information 05.07.2023 16:20:44 Now listening on: https://localhost:7216
+Information 05.07.2023 16:20:44 Now listening on: http://localhost:5145
+Information 05.07.2023 16:20:44 Application started. Press Ctrl+C to shut down.
+Information 05.07.2023 16:20:44 Hosting environment: Development
+Information 05.07.2023 16:20:44 Content root path: D:\Programming\MyProjects\C#\SmartEdu
+Error 05.07.2023 16:21:04 An unhandled exception has occurred while executing the request.
+Information 05.07.2023 16:23:38 Application is shutting down...
+Information 05.07.2023 16:24:43 Now listening on: https://localhost:7216
+Information 05.07.2023 16:24:43 Now listening on: http://localhost:5145
+Information 05.07.2023 16:24:43 Application started. Press Ctrl+C to shut down.
+Information 05.07.2023 16:24:43 Hosting environment: Development
+Information 05.07.2023 16:24:43 Content root path: D:\Programming\MyProjects\C#\SmartEdu
+Error 05.07.2023 16:25:02 An unhandled exception has occurred while executing the request.
+Information 05.07.2023 16:25:07 Application is shutting down...
+Information 05.07.2023 16:31:14 Now listening on: https://localhost:7216
+Information 05.07.2023 16:31:14 Now listening on: http://localhost:5145
+Information 05.07.2023 16:31:14 Application started. Press Ctrl+C to shut down.
+Information 05.07.2023 16:31:14 Hosting environment: Development
+Information 05.07.2023 16:31:14 Content root path: D:\Programming\MyProjects\C#\SmartEdu
+Error 05.07.2023 16:31:28 An unhandled exception has occurred while executing the request.
+Information 05.07.2023 16:43:50 Application is shutting down...
+Information 05.07.2023 16:43:53 Now listening on: https://localhost:7216
+Information 05.07.2023 16:43:53 Now listening on: http://localhost:5145
+Information 05.07.2023 16:43:53 Application started. Press Ctrl+C to shut down.
+Information 05.07.2023 16:43:53 Hosting environment: Development
+Information 05.07.2023 16:43:53 Content root path: D:\Programming\MyProjects\C#\SmartEdu
+Error 05.07.2023 16:44:18 An unhandled exception has occurred while executing the request.
+Information 05.07.2023 16:45:03 Application is shutting down...
+Information 05.07.2023 16:45:07 Now listening on: https://localhost:7216
+Information 05.07.2023 16:45:07 Now listening on: http://localhost:5145
+Information 05.07.2023 16:45:07 Application started. Press Ctrl+C to shut down.
+Information 05.07.2023 16:45:07 Hosting environment: Development
+Information 05.07.2023 16:45:07 Content root path: D:\Programming\MyProjects\C#\SmartEdu
+Error 05.07.2023 16:45:31 An unhandled exception has occurred while executing the request.
+Information 05.07.2023 16:47:29 Now listening on: https://localhost:7216
+Information 05.07.2023 16:47:29 Now listening on: http://localhost:5145
+Information 05.07.2023 16:47:29 Application started. Press Ctrl+C to shut down.
+Information 05.07.2023 16:47:29 Hosting environment: Development
+Information 05.07.2023 16:47:29 Content root path: D:\Programming\MyProjects\C#\SmartEdu
+Information 05.07.2023 16:50:44 Application is shutting down...
