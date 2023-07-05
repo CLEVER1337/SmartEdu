@@ -21,6 +21,7 @@ async function sendDataToServer(data){
     if (response.ok){
         const data = await response.json()
         sessionStorage.setItem(tokenKey, data.access_token)
+        // window.location.href='http://smartedu.somee.com/tutor/registration'
     }
 
     else{

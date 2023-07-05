@@ -17,8 +17,7 @@ async function sendDataToServer(data){
     if (response.ok){
         const data = await response.json()
         sessionStorage.setItem(tokenKey, data.access_token)
-        // document.getElementById("submitLogin").addEventListener("onsubmit", function() {
-        //     document.location.href="http://smartedu.somee.com/student/registration"})
+        // window.location.href='http://smartedu.somee.com/student/registration'
     }
 
     else{
