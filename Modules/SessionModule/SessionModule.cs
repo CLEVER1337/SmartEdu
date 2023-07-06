@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Builder;
 using SmartEdu.Modules.HashingModule.Ports;
 using SmartEdu.Modules.SessionModule.Adapters;
 using SmartEdu.Modules.SessionModule.Endpoints;
@@ -17,6 +16,9 @@ namespace SmartEdu.Modules.SessionModule
 
         public IEndpointRouteBuilder MapEndpoints(IEndpointRouteBuilder endpoints)
         {
+            endpoints.MapDelete("session/delete", 
+                (HttpContext httpContext, SessionService sessionService)
+                => SessionEndpoints.DeleteSession(httpContext, sessionService));
             endpoints.MapPost("session/create", 
                 (HttpContext httpContext, SessionService sessionService, IHashService hashService) 
                 => SessionEndpoints.CreateSession(httpContext, sessionService, hashService));

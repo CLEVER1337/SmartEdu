@@ -26,14 +26,18 @@ namespace SmartEdu.Modules.SessionModule.Endpoints
 
                 if (loginData != null)
                 {
-                    var user = UserCreator.GetUser(loginData.login!);
+                    // check does this user exist
+                    var user = await UserCreator.GetUser(loginData.login!);
 
                     if (user != null)
                     {
+                        // hash gotten password
                         hashService.HashFunction(loginData.password!, user.UserData.Salt);
 
+                        //check hashs
                         if (hashService.Hash == user.UserData.HashedPassword)
                         {
+                            // create access and refresh tokens
                             var refreshTokenClaims = new List<Claim> 
                             {
                                 new Claim("userId", user.Id.ToString())
@@ -43,7 +47,7 @@ namespace SmartEdu.Modules.SessionModule.Endpoints
                                 new Claim("userId", user.Id.ToString())
                             };
 
-                            var tokensData = new TokensData(sessionService.CreateRefreshToken(refreshTokenClaims), sessionService.CreateAccessToken(accessTokenClaims, TimeSpan.FromDays(3)));
+                            var tokensData = new TokensData(await sessionService.CreateRefreshToken(refreshTokenClaims), sessionService.CreateAccessToken(accessTokenClaims, TimeSpan.FromDays(3)));
 
                             await httpContext.Response.WriteAsJsonAsync<TokensData>(tokensData);
                         }

@@ -16,13 +16,29 @@ namespace SmartEdu.Modules.SessionModule.Endpoints
 
                 jsonOptions.Converters.Add(new TokensJsonConverter());
 
+                // get old tokens
                 var tokens = await httpContext.Request.ReadFromJsonAsync<TokensData>(jsonOptions);
 
                 if(tokens != null)
                 {
-                    var refreshedTokens = sessionService.RefreshTokens(httpContext.Request.Headers["Authorization"]!, tokens.accessToken!);
+                    if (await sessionService.CheckRefreshTokenValidation(httpContext.Request.Headers["Authorization"]!))
+                    {
+                        if (await sessionService.CheckAccessTokenValidation(tokens.accessToken!))
+                        {
+                            // refresh tokens
+                            var refreshedTokens = await sessionService.RefreshTokens(httpContext.Request.Headers["Authorization"]!, tokens.accessToken!);
 
-                    await httpContext.Response.WriteAsJsonAsync<TokensData>(refreshedTokens);
+                            await httpContext.Response.WriteAsJsonAsync<TokensData>(refreshedTokens);
+                        }
+                        else
+                        {
+                            await Results.Unauthorized().ExecuteAsync(httpContext);
+                        }
+                    }
+                    else
+                    {
+                        await Results.Unauthorized().ExecuteAsync(httpContext);
+                    }
                 }
                 else
                 {

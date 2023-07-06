@@ -45,20 +45,21 @@ namespace SmartEdu.Modules.UserModule.Endpoints
                 // Get registration data from request
                 var registrationData = await httpContext.Request.ReadFromJsonAsync<RegistrationData>(jsonOptions);
 
-                if (registrationData == null)
-                {
-                    await Results.UnprocessableEntity(new {message = "Request hasn't login or password"}).ExecuteAsync(httpContext);
-                }
-                else
+                if (registrationData != null)
                 {
                     hashService.HashFunction(registrationData.password!);
 
-                    var user = registrationService.Register(registrationData.login!, hashService.Salt, hashService.Hash, userCreator);
+                    var user = await registrationService.Register(registrationData.login!, hashService.Salt, hashService.Hash, userCreator);
 
                     if (user == null)
                         await Results.BadRequest(new { message = "This login is already in use of another user" }).ExecuteAsync(httpContext);
                     else
                         await Results.Ok(user.Id).ExecuteAsync(httpContext);
+                }
+                else
+                {
+
+                    await Results.UnprocessableEntity(new {message = "Request hasn't login or password"}).ExecuteAsync(httpContext);
                 }
             }
             else
