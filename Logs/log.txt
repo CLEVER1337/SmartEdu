@@ -363,3 +363,9 @@ Information 05.07.2023 16:47:29 Application started. Press Ctrl+C to shut down.
 Information 05.07.2023 16:47:29 Hosting environment: Development
 Information 05.07.2023 16:47:29 Content root path: D:\Programming\MyProjects\C#\SmartEdu
 Information 05.07.2023 16:50:44 Application is shutting down...
+Information 07.07.2023 0:07:00 Now listening on: https://localhost:7216
+Information 07.07.2023 0:07:00 Now listening on: http://localhost:5145
+Information 07.07.2023 0:07:00 Application started. Press Ctrl+C to shut down.
+Information 07.07.2023 0:07:00 Hosting environment: Development
+Information 07.07.2023 0:07:00 Content root path: D:\Programming\MyProjects\C#\SmartEdu
+Information 07.07.2023 0:15:18 Application is shutting down...
