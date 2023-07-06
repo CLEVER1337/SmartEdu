@@ -1,0 +1,1 @@
+document.getElementById("submitLogin").addEventListener("click", window.location.href="http://smartedu.somee.com/student/registration")

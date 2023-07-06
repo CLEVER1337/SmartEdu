@@ -18,29 +18,18 @@ namespace SmartEdu.Modules.UserModule.Factory
         /// <param name="login"></param>
         /// <param name="salt"></param>
         /// <param name="hashedPassword"></param>
-        public void RegisterUser(string login, string salt, string hashedPassword)
+        public async Task RegisterUser(string login, string salt, string hashedPassword)
         {
             var user = CreateUser(login, salt, hashedPassword);
 
-            SaveUser(user);
+            await User.Save(user);
 
             using(var context = new ApplicationContext())
             {
-                context.Users.Include(u => u.UserData).ToList().FirstOrDefault(u => u.UserData.Login == user.UserData.Login)!.UserData.UserId = user.Id;
-                context.SaveChanges();
-            }
-        }
-
-        /// <summary>
-        /// Save user in db
-        /// </summary>
-        /// <param name="user"></param>
-        public static void SaveUser(User user)
-        {
-            using(var context = new ApplicationContext())
-            {
-                context.Users.Add(user);
-                context.SaveChanges();
+                user = await GetUser(login);
+                context.Update(user!);
+                user!.UserData.UserId = user.Id;
+                await context.SaveChangesAsync();
             }
         }
 
@@ -50,13 +39,13 @@ namespace SmartEdu.Modules.UserModule.Factory
         /// </summary>
         /// <param name="login"></param>
         /// <returns></returns>
-        public static User? GetUser(string login)
+        public async static Task<User?> GetUser(string login)
         {
-            User? user = null;
+            User? user;
 
             using (var context = new ApplicationContext())
             {
-                user = context.Users.Include(u => u.UserData).ToList().FirstOrDefault(u => u.UserData.Login == login);
+                user = await context.Users.Include(u => u.UserData).FirstOrDefaultAsync(u => u.UserData.Login == login);
             }
 
             return user;

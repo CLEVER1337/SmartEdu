@@ -7,19 +7,19 @@ namespace SmartEdu.Modules.RegistrationModule.Adapters
 {
     public class UserRegistrationService : IRegistrationService
     {
-        public User? Register(string login, string salt, string hashedPassword, UserCreator userCreator)
+        public async Task<User?> Register(string login, string salt, string hashedPassword, UserCreator userCreator)
         {
             using(var context = new ApplicationContext())
             {
                 // Check is this login already in db
-                var user = context.Users.Include(u => u.UserData).ToList().FirstOrDefault(u => u!.UserData.Login == login, null);
+                var user = await UserCreator.GetUser(login);
 
                 // If login isn't in use then create user and add him in db
                 if (user == null)
                 {
-                    userCreator.RegisterUser(login, salt, hashedPassword);
+                    await userCreator.RegisterUser(login, salt, hashedPassword);
                     // Return created user
-                    return UserCreator.GetUser(login);
+                    return await UserCreator.GetUser(login);
                 }
                 else
                 {

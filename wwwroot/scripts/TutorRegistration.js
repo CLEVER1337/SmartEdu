@@ -58,7 +58,8 @@ const Form = document.getElementById('Form')
 
 Form.onsubmit = async (e) => {
   e.preventDefault()
-  sendDataToServer(Form)
+    var a = sendDataToServer(Form)
+  //console.log((await a).json())
 }
 
 function validate_password() {

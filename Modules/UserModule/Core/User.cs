@@ -28,5 +28,18 @@
             }
         }
         public int UserDataId { get; set; }
+
+        /// <summary>
+        /// Save user in db
+        /// </summary>
+        /// <param name="user"></param>
+        public async static Task Save(User user)
+        {
+            using (var context = new ApplicationContext())
+            {
+                await context.Users.AddAsync(user);
+                await context.SaveChangesAsync();
+            }
+        }
     }
 }
