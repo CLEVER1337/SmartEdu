@@ -13,10 +13,11 @@
         
         <form action="Tutor_registration.html" class="box" id = "Form" action="/apply/" method="POST" >
             <p>Регистрация</p>
-            <input type="text" name = "Имя пользователя"  placeholder="Email или имя пользователя">
-            <input type="password" name = "Пароль" placeholder="Пароль">
-            <input type="password" name = "Повторный пароль" placeholder="Повторите пароль">
-            <input type="submit"  name = "" value="Зарегистрироваться">
+            <input type="text" name = "Имя пользователя"  placeholder="Email или имя пользователя" required>
+            <input id="pass" type="password" name = "Пароль" placeholder="Пароль" required>
+            <input id="pass_confirm" type="password" name = "Повторный пароль" placeholder="Повторите пароль" required onkeyup="validate_password()">
+            <span id="wrongPassAlert"></span>
+            <input type="submit"  id="register" name = "Регистрация" value="Зарегистрироваться">
         </form>
 
         <script src="../scripts/TutorRegistration.js"></script>

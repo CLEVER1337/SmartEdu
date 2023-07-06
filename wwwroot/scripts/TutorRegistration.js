@@ -62,5 +62,20 @@ Form.onsubmit = async (e) => {
   //console.log((await a).json())
 }
 
+function validate_password() {
+  var pass = document.getElementById('pass').value;
+  var confirm_pass = document.getElementById('pass_confirm').value;
+
+  if (pass != confirm_pass) {
+      document.getElementById('wrongPassAlert').innerHTML = 'Пароли должны быть одинаковыми';
+      document.getElementById('register').disabled = true;
+      document.getElementById('register').style.opacity = (0.4);
+  } else {
+    document.getElementById('wrongPassAlert').innerHTML = 'Пароли одинаковы';
+    document.getElementById('register').disabled = false;
+    document.getElementById('register').style.opacity = (1);
+  }
+}
+
 // Form.addEventListener('submit', handleFormSubmit)
 
