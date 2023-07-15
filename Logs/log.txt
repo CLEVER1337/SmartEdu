@@ -369,3 +369,73 @@ Information 07.07.2023 0:07:00 Application started. Press Ctrl+C to shut down.
 Information 07.07.2023 0:07:00 Hosting environment: Development
 Information 07.07.2023 0:07:00 Content root path: D:\Programming\MyProjects\C#\SmartEdu
 Information 07.07.2023 0:15:18 Application is shutting down...
+Information 07.07.2023 12:20:13 Now listening on: https://localhost:7216
+Information 07.07.2023 12:20:13 Now listening on: http://localhost:5145
+Information 07.07.2023 12:20:13 Application started. Press Ctrl+C to shut down.
+Information 07.07.2023 12:20:13 Hosting environment: Development
+Information 07.07.2023 12:20:13 Content root path: C:\Users\mrlib\SmartEdu
+Information 07.07.2023 12:27:27 Now listening on: https://localhost:7216
+Information 07.07.2023 12:27:27 Now listening on: http://localhost:5145
+Information 07.07.2023 12:27:27 Application started. Press Ctrl+C to shut down.
+Information 07.07.2023 12:27:27 Hosting environment: Development
+Information 07.07.2023 12:27:27 Content root path: C:\Users\mrlib\SmartEdu
+Information 07.07.2023 12:30:21 Now listening on: https://localhost:7216
+Information 07.07.2023 12:30:21 Now listening on: http://localhost:5145
+Information 07.07.2023 12:30:21 Application started. Press Ctrl+C to shut down.
+Information 07.07.2023 12:30:21 Hosting environment: Development
+Information 07.07.2023 12:30:21 Content root path: C:\Users\mrlib\SmartEdu
+Information 07.07.2023 12:30:33 Now listening on: https://localhost:7216
+Information 07.07.2023 12:30:33 Now listening on: http://localhost:5145
+Information 07.07.2023 12:30:33 Application started. Press Ctrl+C to shut down.
+Information 07.07.2023 12:30:33 Hosting environment: Development
+Information 07.07.2023 12:30:33 Content root path: C:\Users\mrlib\SmartEdu
+Information 07.07.2023 12:31:09 Now listening on: https://localhost:7216
+Information 07.07.2023 12:31:09 Now listening on: http://localhost:5145
+Information 07.07.2023 12:31:09 Application started. Press Ctrl+C to shut down.
+Information 07.07.2023 12:31:09 Hosting environment: Development
+Information 07.07.2023 12:31:09 Content root path: C:\Users\mrlib\SmartEdu
+Information 07.07.2023 12:32:54 Now listening on: https://localhost:7216
+Information 07.07.2023 12:32:54 Now listening on: http://localhost:5145
+Information 07.07.2023 12:32:54 Application started. Press Ctrl+C to shut down.
+Information 07.07.2023 12:32:54 Hosting environment: Development
+Information 07.07.2023 12:32:54 Content root path: C:\Users\mrlib\SmartEdu
+Information 07.07.2023 12:34:17 Now listening on: https://localhost:7216
+Information 07.07.2023 12:34:17 Now listening on: http://localhost:5145
+Information 07.07.2023 12:34:17 Application started. Press Ctrl+C to shut down.
+Information 07.07.2023 12:34:17 Hosting environment: Development
+Information 07.07.2023 12:34:17 Content root path: C:\Users\mrlib\SmartEdu
+Information 07.07.2023 12:35:13 Now listening on: https://localhost:7216
+Information 07.07.2023 12:35:13 Now listening on: http://localhost:5145
+Information 07.07.2023 12:35:13 Application started. Press Ctrl+C to shut down.
+Information 07.07.2023 12:35:13 Hosting environment: Development
+Information 07.07.2023 12:35:13 Content root path: C:\Users\mrlib\SmartEdu
+Information 07.07.2023 12:36:30 Now listening on: https://localhost:7216
+Information 07.07.2023 12:36:30 Now listening on: http://localhost:5145
+Information 07.07.2023 12:36:30 Application started. Press Ctrl+C to shut down.
+Information 07.07.2023 12:36:30 Hosting environment: Development
+Information 07.07.2023 12:36:30 Content root path: C:\Users\mrlib\SmartEdu
+Information 07.07.2023 12:36:35 Now listening on: https://localhost:7216
+Information 07.07.2023 12:36:35 Now listening on: http://localhost:5145
+Information 07.07.2023 12:36:35 Application started. Press Ctrl+C to shut down.
+Information 07.07.2023 12:36:35 Hosting environment: Development
+Information 07.07.2023 12:36:35 Content root path: C:\Users\mrlib\SmartEdu
+Information 07.07.2023 12:36:47 Now listening on: https://localhost:7216
+Information 07.07.2023 12:36:47 Now listening on: http://localhost:5145
+Information 07.07.2023 12:36:47 Application started. Press Ctrl+C to shut down.
+Information 07.07.2023 12:36:47 Hosting environment: Development
+Information 07.07.2023 12:36:47 Content root path: C:\Users\mrlib\SmartEdu
+Information 07.07.2023 12:37:47 Now listening on: https://localhost:7216
+Information 07.07.2023 12:37:47 Now listening on: http://localhost:5145
+Information 07.07.2023 12:37:47 Application started. Press Ctrl+C to shut down.
+Information 07.07.2023 12:37:47 Hosting environment: Development
+Information 07.07.2023 12:37:47 Content root path: C:\Users\mrlib\SmartEdu
+Information 07.07.2023 12:40:20 Now listening on: https://localhost:7216
+Information 07.07.2023 12:40:20 Now listening on: http://localhost:5145
+Information 07.07.2023 12:40:20 Application started. Press Ctrl+C to shut down.
+Information 07.07.2023 12:40:20 Hosting environment: Development
+Information 07.07.2023 12:40:20 Content root path: C:\Users\mrlib\SmartEdu
+Information 07.07.2023 12:40:46 Now listening on: https://localhost:7216
+Information 07.07.2023 12:40:46 Now listening on: http://localhost:5145
+Information 07.07.2023 12:40:46 Application started. Press Ctrl+C to shut down.
+Information 07.07.2023 12:40:46 Hosting environment: Development
+Information 07.07.2023 12:40:46 Content root path: C:\Users\mrlib\SmartEdu
