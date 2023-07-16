@@ -6,6 +6,9 @@
 # Log
 Logs/
 
+# Temp
+Temp/
+
 # User-specific files
 *.rsuser
 *.suo

@@ -5,8 +5,19 @@ using SmartEdu;
 using SmartEdu.FileLogger;
 using SmartEdu.Modules.SessionModule.Adapters;
 using SmartEdu.Modules.SessionModule.Core;
+using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel;
+using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption;
+using Microsoft.AspNetCore.DataProtection;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// data crypt
+builder.Services.AddDataProtection().PersistKeysToFileSystem(new DirectoryInfo(@"Temp/Keys"))
+        .UseCryptographicAlgorithms(new AuthenticatedEncryptorConfiguration()
+        {
+            EncryptionAlgorithm = EncryptionAlgorithm.AES_256_CBC,
+            ValidationAlgorithm = ValidationAlgorithm.HMACSHA256
+        });
 
 // json config
 builder.Configuration.AddJsonFile("Config/appsettings.json");
@@ -47,12 +58,7 @@ builder.Services.AddAuthorization(options =>
 // redis cache
 builder.Services.AddStackExchangeRedisCache(options =>
 {
-    options.Configuration = builder.Configuration["RedisCache:Configuration"];
-    options.InstanceName = builder.Configuration["RedisCache:InstanceName"];
-    options.ConfigurationOptions = new StackExchange.Redis.ConfigurationOptions 
-    { 
-        AbortOnConnectFail = false 
-    };
+    options.Configuration = builder.Configuration["ConnectionStrings:RedisConnection"];
 });
 
 // modules services
