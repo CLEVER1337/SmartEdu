@@ -49,6 +49,10 @@ builder.Services.AddStackExchangeRedisCache(options =>
 {
     options.Configuration = builder.Configuration["RedisCache:Configuration"];
     options.InstanceName = builder.Configuration["RedisCache:InstanceName"];
+    options.ConfigurationOptions = new StackExchange.Redis.ConfigurationOptions 
+    { 
+        AbortOnConnectFail = false 
+    };
 });
 
 // modules services
