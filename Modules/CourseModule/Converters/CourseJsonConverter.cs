@@ -1,5 +1,4 @@
 ﻿using SmartEdu.Modules.CourseModule.Core;
-using SmartEdu.Modules.RegistrationModule.Core;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 

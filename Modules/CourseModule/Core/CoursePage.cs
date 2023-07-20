@@ -4,8 +4,13 @@ namespace SmartEdu.Modules.CourseModule.Core
 {
     public class CoursePage : CoursePageElement
     {
-        public Course OwningCourse { get; set; }
+        public CoursePage() 
+        {
+            elements = new List<CoursePageElement>();
+        }
 
-        private List<CoursePageElement> elements;
+        public List<CoursePageElement> elements;
+
+        public string? TemplateName;
     }
 }
