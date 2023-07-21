@@ -6,11 +6,9 @@ namespace SmartEdu.Modules.CourseModule.Core
     {
         public CoursePage() 
         {
-            elements = new List<CoursePageElement>();
+            Elements = new List<CoursePageElement>();
         }
 
-        public List<CoursePageElement> elements;
-
-        public string? TemplateName;
+        public List<CoursePageElement> Elements { get; set; }
     }
 }

@@ -11,7 +11,9 @@ namespace SmartEdu.Modules.CourseModule.Converters
             string? discriminator = null;
             int? coursePageId = null;
             int? courseId = null;
+            int? elementId = null;
             string? coords = null;
+            string? value = null;
 
             while (reader.Read())
             {
@@ -30,17 +32,27 @@ namespace SmartEdu.Modules.CourseModule.Converters
                         case "CourseId":
                             courseId = reader.GetInt32();
                             break;
+                        case "ElementId":
+                            elementId = reader.GetInt32();
+                            break;
                         case "Coords":
                             coords = reader.GetString();
+                            break;
+                        case "Value":
+                            value = reader.GetString();
                             break;
                     }
                 }
             }
 
-            if (discriminator == null || courseId == null)
+            if (discriminator == null 
+                && coursePageId == null 
+                && courseId == null 
+                && coords == null 
+                && value == null)
                 return null;
             else
-                return new CourseElementData(discriminator, courseId, coursePageId, coords);
+                return new CourseElementData(discriminator, courseId, coursePageId, elementId, coords, value);
         }
 
         public override void Write(Utf8JsonWriter writer, CourseElementData registrationData, JsonSerializerOptions options)

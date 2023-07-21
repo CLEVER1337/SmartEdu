@@ -2,6 +2,6 @@
 {
     public class CoursePageImageElement : CoursePageElement
     {
-        public string? ImageName;
+        public string? ImageName { get; set; }
     }
 }

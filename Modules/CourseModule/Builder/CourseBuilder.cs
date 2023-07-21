@@ -25,7 +25,7 @@ namespace SmartEdu.Modules.CourseModule.Builder
             {
                 context.Courses.Update(_result!);
 
-                _result?.Pages[coursePageId].elements.Add(new T());
+                _result?.Pages[coursePageId].Elements.Add(new T());
 
                 await context.SaveChangesAsync();
             }
@@ -53,6 +53,30 @@ namespace SmartEdu.Modules.CourseModule.Builder
             }
 
             return course;
+        }
+
+        public async static Task<CoursePageElement?> GetPageElement(int id)
+        {
+            CoursePageElement? element;
+
+            using (var context = new ApplicationContext())
+            {
+                element = await context.CoursePageElements.FirstOrDefaultAsync(c => c.Id == id);
+            }
+
+            return element;
+        }
+
+        public async static Task<T?> GetPageElement<T>(int id) where T : CoursePageElement
+        {
+            T? element;
+
+            using (var context = new ApplicationContext())
+            {
+                element = (T?)await context.CoursePageElements.FirstOrDefaultAsync(c => c.Id == id);
+            }
+
+            return element;
         }
     }
 }

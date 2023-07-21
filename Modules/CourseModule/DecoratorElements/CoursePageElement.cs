@@ -1,4 +1,6 @@
-﻿namespace SmartEdu.Modules.CourseModule.DecoratorElements
+﻿using SmartEdu.Modules.CourseModule.Core;
+
+namespace SmartEdu.Modules.CourseModule.DecoratorElements
 {
     public struct Coord
     {
@@ -48,6 +50,15 @@
             set
             {
                 _coord.SetCoords(value);
+            }
+        }
+
+        public async static Task Save(CoursePageElement element)
+        {
+            using (var context = new ApplicationContext())
+            {
+                await context.CoursePageElements.AddAsync(element);
+                await context.SaveChangesAsync();
             }
         }
     }

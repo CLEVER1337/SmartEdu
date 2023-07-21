@@ -55,26 +55,26 @@ namespace SmartEdu.Modules.CourseModule.Endpoints
 
                 jsonOptions.Converters.Add(new CourseElementJsonConverter());
 
-                // Get course data
+                // Get course element data
                 var courseElementData = await httpContext.Request.ReadFromJsonAsync<CourseElementData>(jsonOptions);
 
                 if (courseElementData != null)
                 {
-                    var elementBuilder = new CourseBuilder(courseElementData.CourseId!.Value);
+                    var courseBuilder = new CourseBuilder(courseElementData.courseId!.Value);
 
                     switch (courseElementData.discriminator)
                     {
                         case "CoursePage":
-                            elementBuilder.BuildPage(); 
+                            courseBuilder.BuildPage(); 
                             break;
                         case "CoursePageTextElement":
-                            elementBuilder.BuildElement<CoursePageTextElement>(courseElementData.coursePageId!.Value, new Coord(courseElementData.coords!));
+                            courseBuilder.BuildElement<CoursePageTextElement>(courseElementData.coursePageId!.Value, new Coord(courseElementData.coords!));
                             break;
                         case "CoursePageImageElement":
-                            elementBuilder.BuildElement<CoursePageImageElement>(courseElementData.coursePageId!.Value, new Coord(courseElementData.coords!));
+                            courseBuilder.BuildElement<CoursePageImageElement>(courseElementData.coursePageId!.Value, new Coord(courseElementData.coords!));
                             break;
                         case "CoursePageAnswerFieldElement":
-                            elementBuilder.BuildElement<CoursePageAnswerFieldElement>(courseElementData.coursePageId!.Value, new Coord(courseElementData.coords!));
+                            courseBuilder.BuildElement<CoursePageAnswerFieldElement>(courseElementData.coursePageId!.Value, new Coord(courseElementData.coords!));
                             break;
                     }
                 }
