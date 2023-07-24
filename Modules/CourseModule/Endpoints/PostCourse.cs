@@ -2,6 +2,7 @@
 using SmartEdu.Modules.CourseModule.Converters;
 using SmartEdu.Modules.CourseModule.Core;
 using SmartEdu.Modules.CourseModule.DecoratorElements;
+using SmartEdu.Modules.CourseModule.DTO;
 using SmartEdu.Modules.SessionModule.Adapters;
 using SmartEdu.Modules.UserModule.Factory;
 using System.Text.Json;
@@ -17,10 +18,10 @@ namespace SmartEdu.Modules.CourseModule.Endpoints
                 // Set json converter
                 var jsonOptions = new JsonSerializerOptions();
 
-                jsonOptions.Converters.Add(new CourseJsonConverter());
+                jsonOptions.Converters.Add(new CreateCourseJsonConverter());
 
                 // Get course data
-                var courseData = await httpContext.Request.ReadFromJsonAsync<CourseData>(jsonOptions);
+                var courseData = await httpContext.Request.ReadFromJsonAsync<CreateCourseDTO>(jsonOptions);
 
                 if(courseData != null)
                 {
@@ -53,10 +54,10 @@ namespace SmartEdu.Modules.CourseModule.Endpoints
                 // Set json converter
                 var jsonOptions = new JsonSerializerOptions();
 
-                jsonOptions.Converters.Add(new CourseElementJsonConverter());
+                jsonOptions.Converters.Add(new CreateCourseElementJsonConverter());
 
                 // Get course element data
-                var courseElementData = await httpContext.Request.ReadFromJsonAsync<CourseElementData>(jsonOptions);
+                var courseElementData = await httpContext.Request.ReadFromJsonAsync<CreateCourseElementDTO>(jsonOptions);
 
                 if (courseElementData != null)
                 {

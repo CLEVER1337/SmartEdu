@@ -10,7 +10,7 @@ services:
             - "redis"
         ports:
             - "32222:80"
-            - "32222:443"
+            - "32223:443"
         links:
             - "redis"
     redis:
