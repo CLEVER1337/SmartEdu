@@ -24,6 +24,13 @@
         {
             lock (_lock)
             {
+                if (!File.Exists(_filePath))
+                {
+                    Directory.CreateDirectory(Path.GetDirectoryName(_filePath)!);
+                    var file = File.Create(Path.Combine("", _filePath));
+                    file.Close();
+                }
+
                 File.AppendAllText(_filePath, logLevel.ToString() + " " + DateTime.Now.ToString() + " ");
                 File.AppendAllText(_filePath, formatter(state, exception) + Environment.NewLine);
             }
