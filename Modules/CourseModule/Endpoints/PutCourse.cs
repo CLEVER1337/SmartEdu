@@ -163,7 +163,7 @@ namespace SmartEdu.Modules.CourseModule.Endpoints
 
         public async static Task SetTheme(HttpContext httpContext)
         {
-
+            Results.BadRequest();
         }
     }
 }
