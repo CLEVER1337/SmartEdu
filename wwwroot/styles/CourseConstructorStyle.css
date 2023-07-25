@@ -38,12 +38,17 @@ body{
 }
 
 .ContainerSlides{
+    --widthcontainer: 16vw;
     z-index: 2;
     padding-top: 1vh;
-    width: 16vw;
+    width: var(--widthcontainer);
     height: 86.22vh;
     border-right: 2px solid rgb(158, 158, 158);
     border-bottom: 2px solid rgb(158, 158, 158);
+}
+
+.Wrapper{
+    display: flex;
 }
 
 .Slide{
@@ -127,3 +132,25 @@ nav ul li ul li .button2{
     width: 5vw;
     height: 6vh;  
 }
+
+.slide{
+    background: url(SlideTemplateFirst.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 87vw;
+    height: 87vh;
+}
+
+.inputfield{
+    background: transparent;
+    border: 2px dashed #535353;
+    width: 10vw;
+    height: 3vh;
+    display: none;
+    transition: 0.25s;
+}
+
+.radiobutton{
+    display: none;
+}
+
