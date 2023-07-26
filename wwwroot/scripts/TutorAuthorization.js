@@ -23,7 +23,7 @@ async function sendDataToServer(data){
     if (response.ok){
         const data = await response.json()
         sessionStorage.setItem("accessToken", data.access_token)
-        // window.location.href='http://smartedu.somee.com/tutor/registration'
+        window.location.pathname ='/profile'
     }
     else{
         console.log("Status: ", response.status)

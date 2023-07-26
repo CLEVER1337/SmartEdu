@@ -1,8 +1,8 @@
-document.getElementById('ID блока').onclick = async function(e) {
+document.getElementById('slideMain').onclick = async function(e) {
     var rect = e.target.getBoundingClientRect();
     var x = e.clientX - rect.left;
     var y = e.clientY - rect.top;
-    if(x >= 0 && y >= 0) {
+    if(x >= 0 && y >= 0 && selectedDisc !== "") {
         await fetch("../course/element/create", {
             method: "POST",
             headers: {"Accept": "application/json", "Content-Type": "application/json"},
@@ -14,15 +14,23 @@ document.getElementById('ID блока').onclick = async function(e) {
             })
         })
     }
-} 
+    selectedDisc = ""
+}
 
 var form = document.querySelector("form")
 
 var discriminators = [1,"CoursePageAnswerFieldElement","CoursePageImageElement",4,"CoursePageTextElement"]
 
-var selectedDisc
+var selectedDisc = ""
 
-form.onclick = function(e) {
-    selectedDisc = discriminators[e.target.id]
-}
+var backGrounds = ["1","2","3"]
+
+form.addEventListener("click", function(e) {
+    if(e.target.id < 5) {
+        selectedDisc = discriminators[e.target.id]
+    } else {
+        e.preventDefault()
+        document.getElementById("slideBackG").src = backGrounds[e.target.id-5]
+    }
+})
 
