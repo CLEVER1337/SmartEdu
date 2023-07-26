@@ -4,7 +4,10 @@
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
 # Log
-#Logs/
+Logs/
+
+# Temp
+Temp/
 
 # User-specific files
 *.rsuser
