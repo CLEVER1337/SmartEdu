@@ -52,6 +52,9 @@ body{
 }
 
 .Slide{
+  
+.SlidePreview{
+    z-index: 3;
     margin: 0 auto;
     box-shadow: 0px 5px 5px rgb(177, 172, 172);
     border-radius: 15px;
@@ -59,6 +62,14 @@ body{
     width: 14.4vw;
     background-color: rgb(255, 255, 255);
     border: 1px solid; 
+}
+
+.SlideMain{
+    z-index: 1;
+    width: 83.75vw;
+    height: 87.22vh;
+    float: right;
+    border-bottom: 2px solid rgb(158, 158, 158);
 }
 
 /* убираем отступы и поля, а также list-style для "ul", 
@@ -123,7 +134,7 @@ nav ul li ul li .button3{
     background: url('SlideTemplateThird.png');
     background-size: 100% 100%;
     width: 5vw;
-    height: 6vh;  
+    height: 6vh; 
 }
 
 nav ul li ul li .button2{
@@ -154,3 +165,4 @@ nav ul li ul li .button2{
     display: none;
 }
 
+}
