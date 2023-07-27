@@ -31,13 +31,13 @@ namespace SmartEdu.Modules.CourseModule.DecoratorElements
         }
     }
 
-    public class CoursePageElement : BaseEntity
+    public class CourseElement : BaseEntity
     {
         private Coord _coord;
 
-        public int CourseId { get; set; }
+        public int ExerciseId { get; set; }
 
-        public int CoursePageId { get; set; }
+        public int ExercisePageId { get; set; }
 
         public string? Discriminator { get; set; }
 
@@ -53,7 +53,7 @@ namespace SmartEdu.Modules.CourseModule.DecoratorElements
             }
         }
 
-        public async static Task Save(CoursePageElement element)
+        public async static Task Save(CourseElement element)
         {
             using (var context = new ApplicationContext())
             {

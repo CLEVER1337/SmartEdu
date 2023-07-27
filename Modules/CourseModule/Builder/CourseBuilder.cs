@@ -19,25 +19,37 @@ namespace SmartEdu.Modules.CourseModule.Builder
             get => _result;
         }
 
-        public async void BuildElement<T>(int coursePageId, Coord coords) where T : CoursePageElement, new()
+        public async void BuiildExercise(string name)
         {
             using (var context = new ApplicationContext())
             {
                 context.Courses.Update(_result!);
 
-                _result?.Pages[coursePageId].Elements.Add(new T());
+                _result?.Exercises.Add(new CourseExercise(name));
 
                 await context.SaveChangesAsync();
             }
         }
 
-        public async void BuildPage()
+        public async void BuildElement<T>(int courseExereciseId, int exercisePageId, Coord coords) where T : CourseElement, new()
         {
             using (var context = new ApplicationContext())
             {
                 context.Courses.Update(_result!);
 
-                _result?.Pages.Add(new CoursePage());
+                _result?.Exercises[courseExereciseId].Pages[exercisePageId].Elements.Add(new T());
+
+                await context.SaveChangesAsync();
+            }
+        }
+
+        public async void BuildPage(int courseExereciseId)
+        {
+            using (var context = new ApplicationContext())
+            {
+                context.Courses.Update(_result!);
+
+                _result?.Exercises[courseExereciseId].Pages.Add(new CourseExercisePage());
 
                 await context.SaveChangesAsync();
             }
@@ -49,15 +61,15 @@ namespace SmartEdu.Modules.CourseModule.Builder
 
             using (var context = new ApplicationContext())
             {
-                course = await context.Courses.Include(c => c.Author).Include(c => c.Pages).FirstOrDefaultAsync(c => c.Id == id);
+                course = await context.Courses.Include(c => c.Author).Include(c => c.Exercises).FirstOrDefaultAsync(c => c.Id == id);
             }
 
             return course;
         }
 
-        public async static Task<CoursePageElement?> GetPageElement(int id)
+        public async static Task<CourseElement?> GetPageElement(int id)
         {
-            CoursePageElement? element;
+            CourseElement? element;
 
             using (var context = new ApplicationContext())
             {
@@ -67,7 +79,7 @@ namespace SmartEdu.Modules.CourseModule.Builder
             return element;
         }
 
-        public async static Task<T?> GetPageElement<T>(int id) where T : CoursePageElement
+        public async static Task<T?> GetPageElement<T>(int id) where T : CourseElement
         {
             T? element;
 

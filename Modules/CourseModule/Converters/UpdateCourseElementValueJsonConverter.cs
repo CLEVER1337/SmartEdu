@@ -1,15 +1,15 @@
-﻿using SmartEdu.Modules.CourseModule.DTO;
-using System.Text.Json;
+﻿using System.Text.Json;
 using System.Text.Json.Serialization;
+using SmartEdu.Modules.CourseModule.DTO;
 
 namespace SmartEdu.Modules.CourseModule.Converters
 {
-    public class UpdateCoordsCourseElementJsonConverter : JsonConverter<UpdateCoordsCourseElementDTO>
+    public class UpdateCourseElementValueJsonConverter : JsonConverter<UpdateCourseElementValueDTO>
     {
-        public override UpdateCoordsCourseElementDTO? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override UpdateCourseElementValueDTO? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             int? elementId = null;
-            string? coords = null;
+            string? value = null;
 
             while (reader.Read())
             {
@@ -22,8 +22,8 @@ namespace SmartEdu.Modules.CourseModule.Converters
                         case "ElementId":
                             elementId = reader.GetInt32();
                             break;
-                        case "Coords":
-                            coords = reader.GetString();
+                        case "Value":
+                            value = reader.GetString();
                             break;
                     }
                 }
@@ -32,10 +32,10 @@ namespace SmartEdu.Modules.CourseModule.Converters
             if (elementId == null)
                 return null;
             else
-                return new UpdateCoordsCourseElementDTO(elementId, coords);
+                return new UpdateCourseElementValueDTO(elementId, value);
         }
 
-        public override void Write(Utf8JsonWriter writer, UpdateCoordsCourseElementDTO registrationData, JsonSerializerOptions options)
+        public override void Write(Utf8JsonWriter writer, UpdateCourseElementValueDTO registrationData, JsonSerializerOptions options)
         {
         }
     }

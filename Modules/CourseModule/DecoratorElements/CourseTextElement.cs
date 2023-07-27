@@ -1,6 +1,6 @@
 ﻿namespace SmartEdu.Modules.CourseModule.DecoratorElements
 {
-    public class CoursePageTextElement : CoursePageElement
+    public class CourseTextElement : CourseElement
     {
         public string? Text { get; set; }
     }

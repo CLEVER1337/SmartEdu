@@ -15,10 +15,10 @@ namespace SmartEdu.Modules.CourseModule.Endpoints
                 // Set json converter
                 var jsonOptions = new JsonSerializerOptions();
 
-                jsonOptions.Converters.Add(new UpdateCoordsCourseElementJsonConverter());
+                jsonOptions.Converters.Add(new UpdateCourseElementCoordsJsonConverter());
 
                 // Get course element data
-                var courseElementData = await httpContext.Request.ReadFromJsonAsync<UpdateCoordsCourseElementDTO>(jsonOptions);
+                var courseElementData = await httpContext.Request.ReadFromJsonAsync<UpdateCourseElementCoordsDTO>(jsonOptions);
 
                 if (courseElementData != null)
                 {
@@ -35,7 +35,7 @@ namespace SmartEdu.Modules.CourseModule.Endpoints
 
                                 element.Coords = courseElementData.coords;
 
-                                await CoursePageElement.Save(element);
+                                await CourseElement.Save(element);
                             }
                         }
                         else
@@ -66,17 +66,17 @@ namespace SmartEdu.Modules.CourseModule.Endpoints
                 // Set json converter
                 var jsonOptions = new JsonSerializerOptions();
 
-                jsonOptions.Converters.Add(new UpdateValueCourseElementJsonConverter());
+                jsonOptions.Converters.Add(new UpdateCourseElementValueJsonConverter());
 
                 // Get course element data
-                var courseElementData = await httpContext.Request.ReadFromJsonAsync<UpdateValueCourseElementDTO>(jsonOptions);
+                var courseElementData = await httpContext.Request.ReadFromJsonAsync<UpdateCourseElementValueDTO>(jsonOptions);
 
                 if (courseElementData != null)
                 {
                     if (courseElementData.elementId != null
                        && courseElementData.value != null)
                     {
-                        var element = await CourseBuilder.GetPageElement<CoursePageTextElement>(courseElementData.elementId.Value);
+                        var element = await CourseBuilder.GetPageElement<CourseTextElement>(courseElementData.elementId.Value);
 
                         if (element != null)
                         {
@@ -86,7 +86,7 @@ namespace SmartEdu.Modules.CourseModule.Endpoints
 
                                 element.Text = courseElementData.value;
 
-                                await CoursePageElement.Save(element);
+                                await CourseElement.Save(element);
                             }
                         }
                         else
@@ -117,17 +117,17 @@ namespace SmartEdu.Modules.CourseModule.Endpoints
                 // Set json converter
                 var jsonOptions = new JsonSerializerOptions();
 
-                jsonOptions.Converters.Add(new UpdateValueCourseElementJsonConverter());
+                jsonOptions.Converters.Add(new UpdateCourseElementValueJsonConverter());
 
                 // Get course element data
-                var courseElementData = await httpContext.Request.ReadFromJsonAsync<UpdateValueCourseElementDTO>(jsonOptions);
+                var courseElementData = await httpContext.Request.ReadFromJsonAsync<UpdateCourseElementValueDTO>(jsonOptions);
 
                 if (courseElementData != null)
                 {
                     if (courseElementData.elementId != null
                        && courseElementData.value != null)
                     {
-                        var element = await CourseBuilder.GetPageElement<CoursePageImageElement>(courseElementData.elementId.Value);
+                        var element = await CourseBuilder.GetPageElement<CourseImageElement>(courseElementData.elementId.Value);
 
                         if (element != null)
                         {
@@ -137,7 +137,7 @@ namespace SmartEdu.Modules.CourseModule.Endpoints
 
                                 element.ImageName = courseElementData.value;
 
-                                await CoursePageElement.Save(element);
+                                await CourseElement.Save(element);
                             }
                         }
                         else

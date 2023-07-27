@@ -1,6 +1,6 @@
 ﻿namespace SmartEdu.Modules.CourseModule.DecoratorElements
 {
-    public class CoursePageAnswerFieldElement : CoursePageElement
+    public class CourseAnswerFieldElement : CourseElement
     {
     }
 }

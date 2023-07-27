@@ -6,12 +6,12 @@ namespace SmartEdu.Modules.CourseModule.Core
     {
         public Course(string name) 
         {
-            Pages = new List<CoursePage>();
-
             Name = name;
+
+            Exercises = new List<CourseExercise>();
         }
 
-        public List<CoursePage> Pages { get; set; }
+        public List<CourseExercise> Exercises { get; set; }
 
         public Tutor? Author { get; set; }
 
