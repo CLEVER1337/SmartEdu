@@ -1,13 +1,12 @@
-﻿using SmartEdu.Modules.CourseModule.Core;
-using SmartEdu.Modules.RegistrationModule.Core;
+﻿using SmartEdu.Modules.CourseModule.DTO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace SmartEdu.Modules.CourseModule.Converters
 {
-    public class CourseJsonConverter : JsonConverter<CourseData>
+    public class CreateCourseJsonConverter : JsonConverter<CreateCourseDTO>
     {
-        public override CourseData? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override CreateCourseDTO? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             string? name = null;
 
@@ -29,10 +28,10 @@ namespace SmartEdu.Modules.CourseModule.Converters
             if (name == null)
                 return null;
             else
-                return new CourseData(name);
+                return new CreateCourseDTO(name);
         }
 
-        public override void Write(Utf8JsonWriter writer, CourseData registrationData, JsonSerializerOptions options)
+        public override void Write(Utf8JsonWriter writer, CreateCourseDTO registrationData, JsonSerializerOptions options)
         {
         }
     }

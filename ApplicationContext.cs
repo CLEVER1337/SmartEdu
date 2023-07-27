@@ -30,6 +30,14 @@ namespace SmartEdu
 
         public DbSet<CoursePageElement> CoursePageElements { get; set; } = null!;
 
+        public DbSet<CoursePage> CoursePages { get; set; } = null!;
+
+        public DbSet<CoursePageTextElement> CoursePageTextElements { get; set; } = null!;
+
+        public DbSet<CoursePageImageElement> CoursePageImageElements { get; set; } = null!;
+
+        public DbSet<CoursePageAnswerFieldElement> CoursePageAnswerFieldElements { get; set; } = null!;
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             /*optionsBuilder.UseMySql(connectionString,
