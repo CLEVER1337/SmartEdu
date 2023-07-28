@@ -27,47 +27,47 @@ var backGrounds = ["1","2","3"]
 
 var checkMouseHold = false
 
-var newID = ""
+var newID = 0
+
+var currentId = "-1"
 
 form.addEventListener("click", function(e) {
     if(e.target.id < 5) {
         selectedDisc = discriminators[e.target.id]
     } if (e.target.id == 4) {
-        var newTextField = document.getElementById("TextField").cloneNode()
-        newTextField.id = "TextField" + newID
+        var copy = document.getElementById("textfield").cloneNode(true)
+        var copyField = document.getElementById("inputfield").cloneNode(true)
 
-        var newInputField = document.getElementById("inputfield").cloneNode()
-        newInputField.id = "inputfield" + newID
+        copy.id = "textfield." + newID
+        copyField.id = "inputfield." + newID
 
-        document.getElementById("inputfield" + newID).style.cssText = "display: block;"
 
-        // newInputField.style.cssText = "display: block;"
+        copy.style.cssText = "display: block;"
+        copyField.style.cssText = "display: block;"
+        
+        copy.appendChild(copyField)
 
-        document.getElementById("TextField" + newID).onmousedown = function() {
+        document.getElementById("textfield").after(copy)
+
+        document.getElementById(copy.id).onmousedown = function() {
             checkMouseHold = true
+            let id = "" + copy.id
+            currentId = id.split(".")[1]
         }
-        newTextField.onmousedown = function() {
-            checkMouseHold = true
-        }
-        document.getElementById("slideMain").onmousemove = function(e) {
-            if (checkMouseHold) {
-                document.getElementById("inputfield" + newID).style.cssText = "display: block; left: " + e.pageX + "px; top: " + e.pageY + "px;"
-            }
-        }
-        window.onmouseup = function() {
-            checkMouseHold = false
-            // newID += 1
-        }
-    } if (e.target.id == 0) {
-        var parent = document.querySelector("#containerSlides")
-        var div = document.createElement("div")
-        div.className = "SlidePreview"
-        parent.appendChild(div)
+
+        newID += 1
     } else {
         e.preventDefault()
         document.getElementById("slideBackG").src = backGrounds[e.target.id-5]
     }
 })
+document.getElementById("slideMain").onmousemove = function(e) {
+    if (checkMouseHold) {
+        document.getElementById("inputfield." + currentId).style.cssText = "display: block; left: " + e.pageX + "px; top: " + e.pageY + "px;"
+        document.getElementById("textfield." + currentId).style.cssText = "display: block; left: " + e.pageX + "px; top: " + e.pageY + "px;"
+    }
+}
 
-
-
+document.getElementById("slideMain").onmouseup = function() {
+    checkMouseHold = false
+}
