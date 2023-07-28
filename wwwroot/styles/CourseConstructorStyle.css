@@ -50,8 +50,6 @@ body{
 .Wrapper{
     display: flex;
 }
-
-.Slide{
   
 .SlidePreview{
     z-index: 3;
@@ -66,7 +64,7 @@ body{
 
 .SlideMain{
     z-index: 1;
-    width: 83.75vw;
+    width: 83.85vw;
     height: 87.22vh;
     float: right;
     border-bottom: 2px solid rgb(158, 158, 158);
@@ -159,10 +157,12 @@ nav ul li ul li .button2{
     height: 3vh;
     display: none;
     transition: 0.25s;
+    position: absolute;
+    top: 7vw;
+    left: 49.3vw;
 }
 
 .radiobutton{
     display: none;
 }
 
-}
