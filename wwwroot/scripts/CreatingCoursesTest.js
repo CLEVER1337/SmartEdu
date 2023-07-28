@@ -35,10 +35,14 @@ form.addEventListener("click", function(e) {
     } if (e.target.id == 4) {
         var newTextField = document.getElementById("TextField").cloneNode()
         newTextField.id = "TextField" + newID
+
         var newInputField = document.getElementById("inputfield").cloneNode()
         newInputField.id = "inputfield" + newID
+
         document.getElementById("inputfield" + newID).style.cssText = "display: block;"
+
         newInputField.style.cssText = "display: block;"
+        
         document.getElementById("TextField" + newID).onmousedown = function() {
             checkMouseHold = true
         }
