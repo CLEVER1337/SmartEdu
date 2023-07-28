@@ -41,8 +41,8 @@ form.addEventListener("click", function(e) {
 
         document.getElementById("inputfield" + newID).style.cssText = "display: block;"
 
-        newInputField.style.cssText = "display: block;"
-        
+        // newInputField.style.cssText = "display: block;"
+
         document.getElementById("TextField" + newID).onmousedown = function() {
             checkMouseHold = true
         }
@@ -54,13 +54,20 @@ form.addEventListener("click", function(e) {
                 document.getElementById("inputfield" + newID).style.cssText = "display: block; left: " + e.pageX + "px; top: " + e.pageY + "px;"
             }
         }
-        document.getElementById("slideMain").onmouseup = function() {
+        window.onmouseup = function() {
             checkMouseHold = false
-            newID += 1
+            // newID += 1
         }
+    } if (e.target.id == 0) {
+        var parent = document.querySelector("#containerSlides")
+        var div = document.createElement("div")
+        div.className = "SlidePreview"
+        parent.appendChild(div)
     } else {
         e.preventDefault()
         document.getElementById("slideBackG").src = backGrounds[e.target.id-5]
     }
 })
+
+
 
