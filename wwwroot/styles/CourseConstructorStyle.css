@@ -57,19 +57,11 @@ body{
     margin: 0 auto;
     box-shadow: 0px 5px 5px rgb(177, 172, 172);
     border-radius: 15px;
-    height: 12vh;
-    width: 14.4vw;
+    height: 15vh;
+    width: 13.5vw;
     background-color: rgb(255, 255, 255);
     border: 1px solid; 
     margin-top: 15px;
-}
-
-.SlideMain{
-    z-index: 1;
-    width: 83.85vw;
-    height: 87.22vh;
-    float: right;
-    border-bottom: 2px solid rgb(158, 158, 158);
 }
 
 /* убираем отступы и поля, а также list-style для "ul", 
@@ -117,54 +109,44 @@ nav ul ul li {
 }
 
 nav ul li ul li .button{
-    background: url('SlideTemplateFirst.png');
+    background: url('../images/SlideTemplateFirst.png');
     background-size: 100% 100%;
     width: 5vw;
     height: 6vh;  
 }
 
 nav ul li ul li .button2{
-    background: url('SlideTemplateSecond.png');
+    background: url('../images/SlideTemplateSecond.png');
     background-size: 100% 100%;
     width: 5vw;
     height: 6vh;  
 }
 
 nav ul li ul li .button3{
-    background: url('SlideTemplateThird.png');
+    background: url('../images/SlideTemplateThird.png');
     background-size: 100% 100%;
     width: 5vw;
     height: 6vh; 
 }
 
-nav ul li ul li .button2{
-    background: url('SlideTemplateSecond.png');
-    background-size: 100% 100%;
-    width: 5vw;
-    height: 6vh;  
-}
-
-.slide{
-    background: url(SlideTemplateFirst.png);
-    background-size: contain;
-    background-repeat: no-repeat;
+.SlideMain{
     width: 87vw;
-    height: 87vh;
+    height: 87.4vh;
 }
 
 .inputfield{
     background: transparent;
     border: 2px dashed #535353;
-    width: 10vw;
-    height: 3vh;
+    width: 20vw;
+    height: 10vh;
     display: none;
     transition: 0.25s;
     position: absolute;
     top: 7vw;
     left: 49.3vw;
+    border-radius: 15px;
 }
 
-.radiobutton{
+.Image{
     display: none;
 }
-
