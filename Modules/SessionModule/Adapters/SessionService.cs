@@ -2,7 +2,7 @@
 using System.Security.Claims;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.IdentityModel.Tokens;
-using SmartEdu.Modules.SessionModule.Core;
+using SmartEdu.Modules.SessionModule.DTO;
 
 namespace SmartEdu.Modules.SessionModule.Adapters
 {
@@ -71,7 +71,7 @@ namespace SmartEdu.Modules.SessionModule.Adapters
         /// <param name="refreshToken"></param>
         /// <param name="accessToken"></param>
         /// <returns></returns>
-        public async Task<TokensData> RefreshTokens(string refreshToken, string accessToken)
+        public async Task<RefreshTokensDTO> RefreshTokens(string refreshToken, string accessToken)
         {
             // decode tokens
             var decodedRefreshToken = DecodeToken(refreshToken);
@@ -86,7 +86,7 @@ namespace SmartEdu.Modules.SessionModule.Adapters
             foreach (var claim in decodedAccessToken)
                 accessTokenClaims.Add(new Claim(claim.Key, claim.Value));
 
-            return new TokensData(await CreateRefreshToken(refreshTokenClaims), CreateAccessToken(accessTokenClaims, deltaExpire));
+            return new RefreshTokensDTO(await CreateRefreshToken(refreshTokenClaims), CreateAccessToken(accessTokenClaims, deltaExpire));
         }
 
         /// <summary>

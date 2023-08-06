@@ -1,15 +1,12 @@
-﻿using System.Text.Json;
+﻿using SmartEdu.Modules.SessionModule.DTO;
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using SmartEdu.Modules.SessionModule.Core;
 
 namespace SmartEdu.Modules.SessionModule.Converters
 {
-    /// <summary>
-    /// Json converter for tokens data
-    /// </summary>
-    public class TokensJsonConverter : JsonConverter<TokensData>
+    public class RefreshTokensJsonConverter : JsonConverter<RefreshTokensDTO>
     {
-        public override TokensData? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override RefreshTokensDTO? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             string? accessToken = null;
             string? refreshToken = null;
@@ -33,12 +30,12 @@ namespace SmartEdu.Modules.SessionModule.Converters
             }
 
             if (accessToken != null)
-                return new TokensData(refreshToken, accessToken);
+                return new RefreshTokensDTO(refreshToken, accessToken);
             else
                 return null;
         }
 
-        public override void Write(Utf8JsonWriter writer, TokensData tokensData, JsonSerializerOptions options)
+        public override void Write(Utf8JsonWriter writer, RefreshTokensDTO tokensData, JsonSerializerOptions options)
         {
             writer.WriteStartObject();
 

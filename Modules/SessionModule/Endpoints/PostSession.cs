@@ -2,7 +2,7 @@
 using SmartEdu.Modules.LoginModule.Converters;
 using SmartEdu.Modules.LoginModule.Core;
 using SmartEdu.Modules.SessionModule.Adapters;
-using SmartEdu.Modules.SessionModule.Core;
+using SmartEdu.Modules.SessionModule.DTO;
 using SmartEdu.Modules.UserModule.Factory;
 using System.Security.Claims;
 using System.Text.Json;
@@ -19,10 +19,10 @@ namespace SmartEdu.Modules.SessionModule.Endpoints
                 // Set json converter
                 var jsonOptions = new JsonSerializerOptions();
 
-                jsonOptions.Converters.Add(new LoginJsonConverter());
+                jsonOptions.Converters.Add(new CreateSessionJsonConverter());
 
                 // Get login data from request
-                var loginData = await httpContext.Request.ReadFromJsonAsync<LoginData>(jsonOptions);
+                var loginData = await httpContext.Request.ReadFromJsonAsync<LoginModule.Core.CreateSessionDTO>(jsonOptions);
 
                 if (loginData != null)
                 {
@@ -47,9 +47,9 @@ namespace SmartEdu.Modules.SessionModule.Endpoints
                                 new Claim("userId", user.Id.ToString())
                             };
 
-                            var tokensData = new TokensData(await sessionService.CreateRefreshToken(refreshTokenClaims), sessionService.CreateAccessToken(accessTokenClaims, TimeSpan.FromDays(3)));
+                            var tokensData = new DTO.CreateSessionDTO(await sessionService.CreateRefreshToken(refreshTokenClaims), sessionService.CreateAccessToken(accessTokenClaims, TimeSpan.FromDays(3)));
 
-                            await httpContext.Response.WriteAsJsonAsync<TokensData>(tokensData);
+                            await httpContext.Response.WriteAsJsonAsync(tokensData);
                         }
                         else
                         {

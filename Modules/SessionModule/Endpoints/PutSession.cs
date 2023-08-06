@@ -1,6 +1,6 @@
 ﻿using SmartEdu.Modules.SessionModule.Adapters;
 using SmartEdu.Modules.SessionModule.Converters;
-using SmartEdu.Modules.SessionModule.Core;
+using SmartEdu.Modules.SessionModule.DTO;
 using System.Text.Json;
 
 namespace SmartEdu.Modules.SessionModule.Endpoints
@@ -14,10 +14,10 @@ namespace SmartEdu.Modules.SessionModule.Endpoints
                 // Set json converter
                 var jsonOptions = new JsonSerializerOptions();
 
-                jsonOptions.Converters.Add(new TokensJsonConverter());
+                jsonOptions.Converters.Add(new RefreshTokensJsonConverter());
 
                 // get old tokens
-                var tokens = await httpContext.Request.ReadFromJsonAsync<TokensData>(jsonOptions);
+                var tokens = await httpContext.Request.ReadFromJsonAsync<RefreshTokensDTO>(jsonOptions);
 
                 if(tokens != null)
                 {
@@ -28,7 +28,7 @@ namespace SmartEdu.Modules.SessionModule.Endpoints
                             // refresh tokens
                             var refreshedTokens = await sessionService.RefreshTokens(httpContext.Request.Headers["Authorization"]!, tokens.accessToken!);
 
-                            await httpContext.Response.WriteAsJsonAsync<TokensData>(refreshedTokens);
+                            await httpContext.Response.WriteAsJsonAsync<RefreshTokensDTO>(refreshedTokens);
                         }
                         else
                         {

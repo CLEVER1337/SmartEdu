@@ -7,14 +7,7 @@ namespace SmartEdu.Modules.UserModule.Endpoints
     {
         public async static Task GetUser(HttpContext httpContext, SessionService sessionService) 
         {
-            if (httpContext.Request.Headers["Authorization"] != StringValues.Empty)
-            {
-
-            }
-            else
-            {
-                await Results.Unauthorized().ExecuteAsync(httpContext);
-            }
+            
         }
     }
 }

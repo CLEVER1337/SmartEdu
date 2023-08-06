@@ -1,15 +1,16 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
+using SmartEdu.Modules.LoginModule.Core;
 using SmartEdu.Modules.RegistrationModule.Core;
 
-namespace SmartEdu.Modules.RegistrationModule.Converters
+namespace SmartEdu.Modules.LoginModule.Converters
 {
     /// <summary>
-    /// Json converter for registration data
+    /// Json converter for login data
     /// </summary>
-    public class RegistrationJsonConverter : JsonConverter<RegistrationData>
+    public class CreateSessionJsonConverter : JsonConverter<CreateSessionDTO>
     {
-        public override RegistrationData? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override CreateSessionDTO? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             string? login = null;
             string? password = null;
@@ -35,10 +36,10 @@ namespace SmartEdu.Modules.RegistrationModule.Converters
             if (login == null || password == null)
                 return null;
             else
-                return new RegistrationData(login, password);
+                return new CreateSessionDTO(login, password);
         }
 
-        public override void Write(Utf8JsonWriter writer, RegistrationData registrationData, JsonSerializerOptions options)
+        public override void Write(Utf8JsonWriter writer, CreateSessionDTO user, JsonSerializerOptions options)
         {
         }
     }

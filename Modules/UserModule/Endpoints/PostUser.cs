@@ -40,10 +40,10 @@ namespace SmartEdu.Modules.UserModule.Endpoints
                 // Set json converter
                 var jsonOptions = new JsonSerializerOptions();
 
-                jsonOptions.Converters.Add(new RegistrationJsonConverter());
+                jsonOptions.Converters.Add(new RegisterUserJsonConverter());
 
                 // Get registration data from request
-                var registrationData = await httpContext.Request.ReadFromJsonAsync<RegistrationData>(jsonOptions);
+                var registrationData = await httpContext.Request.ReadFromJsonAsync<RegisterUserDTO>(jsonOptions);
 
                 if (registrationData != null)
                 {
