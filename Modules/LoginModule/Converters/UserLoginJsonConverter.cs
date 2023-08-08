@@ -8,9 +8,9 @@ namespace SmartEdu.Modules.LoginModule.Converters
     /// <summary>
     /// Json converter for login data
     /// </summary>
-    public class CreateSessionJsonConverter : JsonConverter<CreateSessionDTO>
+    public class UserLoginJsonConverter : JsonConverter<UserLoginDTO>
     {
-        public override CreateSessionDTO? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override UserLoginDTO? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             string? login = null;
             string? password = null;
@@ -36,10 +36,10 @@ namespace SmartEdu.Modules.LoginModule.Converters
             if (login == null || password == null)
                 return null;
             else
-                return new CreateSessionDTO(login, password);
+                return new UserLoginDTO(login, password);
         }
 
-        public override void Write(Utf8JsonWriter writer, CreateSessionDTO user, JsonSerializerOptions options)
+        public override void Write(Utf8JsonWriter writer, UserLoginDTO user, JsonSerializerOptions options)
         {
         }
     }

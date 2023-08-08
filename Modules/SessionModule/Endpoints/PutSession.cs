@@ -28,7 +28,7 @@ namespace SmartEdu.Modules.SessionModule.Endpoints
                             // refresh tokens
                             var refreshedTokens = await sessionService.RefreshTokens(httpContext.Request.Headers["Authorization"]!, tokens.accessToken!);
 
-                            await httpContext.Response.WriteAsJsonAsync<RefreshTokensDTO>(refreshedTokens);
+                            await httpContext.Response.WriteAsJsonAsync<RefreshTokensDTO>(refreshedTokens, jsonOptions);
                         }
                         else
                         {

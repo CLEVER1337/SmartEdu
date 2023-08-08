@@ -1,5 +1,4 @@
-﻿using SmartEdu.Modules.CourseModule.DTO;
-using SmartEdu.Modules.UserModule.DTO;
+﻿using SmartEdu.Modules.UserModule.DTO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -9,23 +8,16 @@ namespace SmartEdu.Modules.UserModule.Converters
     {
         public override GetUserDTO? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            while (reader.Read())
-            {
-                if (reader.TokenType == JsonTokenType.PropertyName)
-                {
-                    string propertyName = reader.GetString()!;
-                    reader.Read();
-                    switch (propertyName?.ToLower())
-                    {
-                    }
-                }
-            }
-
-            return new GetUserDTO();
+            return null;
         }
 
         public override void Write(Utf8JsonWriter writer, GetUserDTO registrationData, JsonSerializerOptions options)
         {
+            writer.WriteStartObject();
+
+            writer.WriteString("login", registrationData.login);
+            
+            writer.WriteEndObject();
         }
     }
 }

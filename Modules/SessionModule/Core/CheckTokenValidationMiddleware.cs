@@ -14,6 +14,7 @@ namespace SmartEdu.Modules.SessionModule.Core
 
         public async Task InvokeAsync(HttpContext httpContext, SessionService sessionService)
         {
+            // automatic check of access token validation
             if (httpContext.Request.Path != "/session/refresh")
             {
                 if (httpContext.Request.Headers["Authorization"] != StringValues.Empty)

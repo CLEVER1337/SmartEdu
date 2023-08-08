@@ -51,11 +51,22 @@ namespace SmartEdu.Modules.SessionModule.Adapters
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
+        /// <summary>
+        /// Create access JWT
+        /// </summary>
+        /// <param name="claims"></param>
+        /// <param name="deltaExpire"></param>
+        /// <returns></returns>
         public string CreateAccessToken(List<Claim> claims, TimeSpan? deltaExpire)
         {
             return CreateToken(claims, deltaExpire);
         }
 
+        /// <summary>
+        /// Create refresh JWT
+        /// </summary>
+        /// <param name="claims"></param>
+        /// <returns></returns>
         public async Task<string> CreateRefreshToken(List<Claim> claims)
         {
             var token = CreateToken(claims, null);
@@ -77,6 +88,9 @@ namespace SmartEdu.Modules.SessionModule.Adapters
             var decodedRefreshToken = DecodeToken(refreshToken);
             var decodedAccessToken = DecodeToken(accessToken);
 
+            // invalidate old tokens
+            InvalidateTokens(refreshToken, accessToken);
+
             // set the same claims
             var refreshTokenClaims = new List<Claim>();
             var accessTokenClaims = new List<Claim>();
@@ -91,6 +105,7 @@ namespace SmartEdu.Modules.SessionModule.Adapters
 
         /// <summary>
         /// Check if access token is in black list
+        /// Return true if token still validate
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
@@ -103,6 +118,7 @@ namespace SmartEdu.Modules.SessionModule.Adapters
 
         /// <summary>
         /// Check if refresh token isn't in white list
+        /// Return true if token still validate
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>

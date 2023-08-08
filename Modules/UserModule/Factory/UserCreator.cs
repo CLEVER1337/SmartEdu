@@ -50,5 +50,23 @@ namespace SmartEdu.Modules.UserModule.Factory
 
             return user;
         }
+
+        /// <summary>
+        /// Return user from db by id
+        /// DON'T FORGET TO UPDATE DATA
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async static Task<User?> GetUser(int id)
+        {
+            User? user;
+
+            using (var context = new ApplicationContext())
+            {
+                user = await context.Users.Include(u => u.UserData).FirstOrDefaultAsync(u => u.Id == id);
+            }
+
+            return user;
+        }
     }
 }

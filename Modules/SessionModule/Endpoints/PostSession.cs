@@ -1,11 +1,12 @@
 ﻿using SmartEdu.Modules.HashingModule.Ports;
-using SmartEdu.Modules.LoginModule.Converters;
-using SmartEdu.Modules.LoginModule.Core;
 using SmartEdu.Modules.SessionModule.Adapters;
 using SmartEdu.Modules.SessionModule.DTO;
 using SmartEdu.Modules.UserModule.Factory;
 using System.Security.Claims;
 using System.Text.Json;
+using SmartEdu.Modules.LoginModule.Converters;
+using SmartEdu.Modules.LoginModule.Core;
+using SmartEdu.Modules.SessionModule.Converters;
 
 namespace SmartEdu.Modules.SessionModule.Endpoints
 {
@@ -19,10 +20,11 @@ namespace SmartEdu.Modules.SessionModule.Endpoints
                 // Set json converter
                 var jsonOptions = new JsonSerializerOptions();
 
+                jsonOptions.Converters.Add(new UserLoginJsonConverter());
                 jsonOptions.Converters.Add(new CreateSessionJsonConverter());
 
                 // Get login data from request
-                var loginData = await httpContext.Request.ReadFromJsonAsync<LoginModule.Core.CreateSessionDTO>(jsonOptions);
+                var loginData = await httpContext.Request.ReadFromJsonAsync<UserLoginDTO>(jsonOptions);
 
                 if (loginData != null)
                 {
@@ -44,12 +46,13 @@ namespace SmartEdu.Modules.SessionModule.Endpoints
                             };
                             var accessTokenClaims = new List<Claim> 
                             {
-                                new Claim("userId", user.Id.ToString())
+                                new Claim("userId", user.Id.ToString()),
+                                new Claim("discriminator", user.Discriminator)
                             };
 
-                            var tokensData = new DTO.CreateSessionDTO(await sessionService.CreateRefreshToken(refreshTokenClaims), sessionService.CreateAccessToken(accessTokenClaims, TimeSpan.FromDays(3)));
+                            var tokensData = new CreateSessionDTO(await sessionService.CreateRefreshToken(refreshTokenClaims), sessionService.CreateAccessToken(accessTokenClaims, TimeSpan.FromDays(3)));
 
-                            await httpContext.Response.WriteAsJsonAsync(tokensData);
+                            await httpContext.Response.WriteAsJsonAsync<CreateSessionDTO>(tokensData, jsonOptions);
                         }
                         else
                         {

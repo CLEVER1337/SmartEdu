@@ -6,14 +6,14 @@ namespace SmartEdu.Modules.UserModule.Core
     {
         public Tutor() 
         {
-            OwnedCourses = new List<CourseExercise>();
+            OwnedCourses = new List<Course>();
         }
 
         public Tutor(string login, string salt, string hashedPassword) : base(login, salt, hashedPassword)
         {
-            OwnedCourses = new List<CourseExercise>();
+            OwnedCourses = new List<Course>();
         }
 
-        public List<CourseExercise> OwnedCourses { get; set; }
+        public List<Course> OwnedCourses { get; set; }
     }
 }

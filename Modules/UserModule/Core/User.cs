@@ -29,6 +29,8 @@
         }
         public int UserDataId { get; set; }
 
+        public string Discriminator { get; set; }
+
         /// <summary>
         /// Save user in db
         /// </summary>

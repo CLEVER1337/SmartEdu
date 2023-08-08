@@ -39,7 +39,7 @@ namespace SmartEdu.Modules.SessionModule.Endpoints
                 }
                 else
                 {
-                    await Results.BadRequest(new { message = "Request hasn't tokens" }).ExecuteAsync(httpContext);
+                    await Results.BadRequest(new { message = "Request hasn't access token" }).ExecuteAsync(httpContext);
                 }
             }
             else

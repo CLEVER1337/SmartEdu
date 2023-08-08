@@ -5,5 +5,5 @@
     /// </summary>
     /// <param name="login"></param>
     /// <param name="password"></param>
-    public record CreateSessionDTO(string? login, string? password);
+    public record UserLoginDTO(string? login, string? password);
 }
