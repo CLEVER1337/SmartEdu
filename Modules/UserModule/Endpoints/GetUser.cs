@@ -8,6 +8,12 @@ namespace SmartEdu.Modules.UserModule.Endpoints
 {
     public static partial class UserEndpoints
     {
+        /// <summary>
+        /// Get user request
+        /// </summary>
+        /// <param name="httpContext"></param>
+        /// <param name="sessionService"></param>
+        /// <returns></returns>
         public async static Task GetUser(HttpContext httpContext, SessionService sessionService) 
         {
             // get user with JWT's id

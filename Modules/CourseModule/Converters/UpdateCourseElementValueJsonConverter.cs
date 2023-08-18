@@ -4,6 +4,9 @@ using SmartEdu.Modules.CourseModule.DTO;
 
 namespace SmartEdu.Modules.CourseModule.Converters
 {
+    /// <summary>
+    /// Set element's image's path or text converter
+    /// </summary>
     public class UpdateCourseElementValueJsonConverter : JsonConverter<UpdateCourseElementValueDTO>
     {
         public override UpdateCourseElementValueDTO? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)

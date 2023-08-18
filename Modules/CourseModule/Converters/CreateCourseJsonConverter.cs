@@ -4,6 +4,9 @@ using System.Text.Json.Serialization;
 
 namespace SmartEdu.Modules.CourseModule.Converters
 {
+    /// <summary>
+    /// Create course converter
+    /// </summary>
     public class CreateCourseJsonConverter : JsonConverter<CreateCourseDTO>
     {
         public override CreateCourseDTO? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)

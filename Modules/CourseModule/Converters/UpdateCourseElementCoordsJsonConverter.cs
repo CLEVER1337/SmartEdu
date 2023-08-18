@@ -4,6 +4,9 @@ using System.Text.Json.Serialization;
 
 namespace SmartEdu.Modules.CourseModule.Converters
 {
+    /// <summary>
+    /// Set coords convetrer
+    /// </summary>
     public class UpdateCourseElementCoordsJsonConverter : JsonConverter<UpdateCourseElementCoordsDTO>
     {
         public override UpdateCourseElementCoordsDTO? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)

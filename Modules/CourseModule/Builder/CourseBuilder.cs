@@ -19,7 +19,11 @@ namespace SmartEdu.Modules.CourseModule.Builder
             get => _result;
         }
 
-        public async void BuiildExercise(string name)
+        /// <summary>
+        /// Create exercise and add it to course
+        /// </summary>
+        /// <param name="name"></param>
+        public async void BuildExercise(string name)
         {
             using (var context = new ApplicationContext())
             {
@@ -31,6 +35,13 @@ namespace SmartEdu.Modules.CourseModule.Builder
             }
         }
 
+        /// <summary>
+        /// Create element with any type and add it to course
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="courseExereciseId"></param>
+        /// <param name="exercisePageId"></param>
+        /// <param name="coords"></param>
         public async void BuildElement<T>(int courseExereciseId, int exercisePageId, Coord coords) where T : CourseElement, new()
         {
             using (var context = new ApplicationContext())
@@ -43,6 +54,10 @@ namespace SmartEdu.Modules.CourseModule.Builder
             }
         }
 
+        /// <summary>
+        /// Create page and add it to course
+        /// </summary>
+        /// <param name="courseExereciseId"></param>
         public async void BuildPage(int courseExereciseId)
         {
             using (var context = new ApplicationContext())
@@ -55,6 +70,11 @@ namespace SmartEdu.Modules.CourseModule.Builder
             }
         }
 
+        /// <summary>
+        /// Get course from db
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async static Task<Course?> GetCourse(int id)
         {
             Course? course;
@@ -67,6 +87,28 @@ namespace SmartEdu.Modules.CourseModule.Builder
             return course;
         }
 
+        /// <summary>
+        /// Get exercise from db
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async static Task<CourseExercise?> GetExercise(int id)
+        {
+            CourseExercise? exercise;
+
+            using(var context = new ApplicationContext())
+            {
+                exercise = await context.CourseExercises.Include(e => e.Pages).FirstOrDefaultAsync(e => e.Id == id);
+            }
+
+            return exercise;
+        }
+
+        /// <summary>
+        /// Get element of page
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async static Task<CourseElement?> GetPageElement(int id)
         {
             CourseElement? element;
@@ -79,6 +121,12 @@ namespace SmartEdu.Modules.CourseModule.Builder
             return element;
         }
 
+        /// <summary>
+        /// Get element of page with any type besides page
+        /// </summary>
+        /// <typeparam name="T">Element type</typeparam>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async static Task<T?> GetPageElement<T>(int id) where T : CourseElement
         {
             T? element;

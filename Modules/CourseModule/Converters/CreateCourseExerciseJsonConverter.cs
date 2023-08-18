@@ -4,11 +4,15 @@ using System.Text.Json.Serialization;
 
 namespace SmartEdu.Modules.CourseModule.Converters
 {
+    /// <summary>
+    /// Create exercise converter
+    /// </summary>
     public class CreateCourseExerciseJsonConverter : JsonConverter<CreateCourseExerciseDTO>
     {
         public override CreateCourseExerciseDTO? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             string? name = null;
+            int? courseId = null;
 
             while (reader.Read())
             {
@@ -21,6 +25,9 @@ namespace SmartEdu.Modules.CourseModule.Converters
                         case "Name":
                             name = reader.GetString()!;
                             break;
+                        case "CourseId":
+                            courseId = reader.GetInt32();
+                            break;
                     }
                 }
             }
@@ -28,7 +35,7 @@ namespace SmartEdu.Modules.CourseModule.Converters
             if (name == null)
                 return null;
             else
-                return new CreateCourseExerciseDTO(name);
+                return new CreateCourseExerciseDTO(name, courseId);
         }
 
         public override void Write(Utf8JsonWriter writer, CreateCourseExerciseDTO registrationData, JsonSerializerOptions options)

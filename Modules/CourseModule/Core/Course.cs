@@ -19,6 +19,11 @@ namespace SmartEdu.Modules.CourseModule.Core
 
         public string Name { get; set; }
 
+        /// <summary>
+        /// Save course in db
+        /// </summary>
+        /// <param name="course"></param>
+        /// <returns></returns>
         public async static Task Save(Course course)
         {
             using (var context = new ApplicationContext())

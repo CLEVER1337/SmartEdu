@@ -11,6 +11,12 @@ namespace SmartEdu.Modules.CourseModule.Endpoints
 {
     public static partial class CourseEndpoints
     {
+        /// <summary>
+        /// Create course
+        /// </summary>
+        /// <param name="httpContext"></param>
+        /// <param name="sessionService"></param>
+        /// <returns></returns>
         public async static Task CreateCourse(HttpContext httpContext, SessionService sessionService)
         {
             if (httpContext.Request.HasJsonContentType())
@@ -47,6 +53,11 @@ namespace SmartEdu.Modules.CourseModule.Endpoints
             }
         }
 
+        /// <summary>
+        /// Create exercise of course
+        /// </summary>
+        /// <param name="httpContext"></param>
+        /// <returns></returns>
         public async static Task CreateExercise(HttpContext httpContext)
         {
             if (httpContext.Request.HasJsonContentType())
@@ -61,9 +72,13 @@ namespace SmartEdu.Modules.CourseModule.Endpoints
 
                 if (exerciseData != null)
                 {
-                    var exercise = new CourseExercise(exerciseData.name!);
+                    var builder = new CourseBuilder(exerciseData.courseId!.Value);
 
-                    await CourseExercise.Save(exercise);
+                    builder.BuildExercise(exerciseData.name!);
+
+                    //var exercise = new CourseExercise(exerciseData.name!);
+
+                    //await CourseExercise.Save(exercise);
                 }
                 else
                 {
@@ -76,6 +91,11 @@ namespace SmartEdu.Modules.CourseModule.Endpoints
             }
         }
 
+        /// <summary>
+        /// Create element or page in exercise of course
+        /// </summary>
+        /// <param name="httpContext"></param>
+        /// <returns></returns>
         public async static Task CreateElement(HttpContext httpContext)
         {
             if (httpContext.Request.HasJsonContentType())

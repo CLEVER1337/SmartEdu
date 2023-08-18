@@ -29,7 +29,7 @@
         }
         public int UserDataId { get; set; }
 
-        public string Discriminator { get; set; }
+        public string Discriminator { get; set; } = null!;
 
         /// <summary>
         /// Save user in db

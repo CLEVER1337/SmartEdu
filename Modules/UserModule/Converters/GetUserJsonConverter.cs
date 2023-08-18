@@ -4,6 +4,9 @@ using System.Text.Json.Serialization;
 
 namespace SmartEdu.Modules.UserModule.Converters
 {
+    /// <summary>
+    /// Json converter for get user
+    /// </summary>
     public class GetUserJsonConverter : JsonConverter<GetUserDTO>
     {
         public override GetUserDTO? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)

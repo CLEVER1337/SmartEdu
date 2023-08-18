@@ -2,6 +2,9 @@
 
 namespace SmartEdu.Modules.CourseModule.Core
 {
+    /// <summary>
+    /// Exercise's page
+    /// </summary>
     public class CourseExercisePage : CourseElement
     {
         public CourseExercisePage() 

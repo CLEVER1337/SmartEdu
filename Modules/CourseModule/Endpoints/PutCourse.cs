@@ -8,6 +8,11 @@ namespace SmartEdu.Modules.CourseModule.Endpoints
 {
     public static partial class CourseEndpoints
     {
+        /// <summary>
+        /// Set coords to element of exercise
+        /// </summary>
+        /// <param name="httpContext"></param>
+        /// <returns></returns>
         public async static Task SetCoords(HttpContext httpContext)
         {
             if (httpContext.Request.HasJsonContentType())
@@ -59,6 +64,11 @@ namespace SmartEdu.Modules.CourseModule.Endpoints
             }
         }
 
+        /// <summary>
+        /// Set text to text element
+        /// </summary>
+        /// <param name="httpContext"></param>
+        /// <returns></returns>
         public async static Task SetText(HttpContext httpContext)
         {
             if (httpContext.Request.HasJsonContentType())
@@ -110,6 +120,11 @@ namespace SmartEdu.Modules.CourseModule.Endpoints
             }
         }
 
+        /// <summary>
+        /// Set image's path to image element
+        /// </summary>
+        /// <param name="httpContext"></param>
+        /// <returns></returns>
         public async static Task SetImage(HttpContext httpContext)
         {
             if (httpContext.Request.HasJsonContentType())
@@ -161,6 +176,11 @@ namespace SmartEdu.Modules.CourseModule.Endpoints
             }
         }
 
+        /// <summary>
+        /// Set exercise's theme
+        /// </summary>
+        /// <param name="httpContext"></param>
+        /// <returns></returns>
         public async static Task SetTheme(HttpContext httpContext)
         {
             Results.BadRequest();
