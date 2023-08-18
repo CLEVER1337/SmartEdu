@@ -15,6 +15,12 @@ namespace SmartEdu.Modules.UserModule.Factory
             return new Tutor(login, salt, hashedPassword);
         }
 
+        /// <summary>
+        /// Return tutor from db by login
+        /// DON'T FORGET TO UPDATE DATA
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns></returns>
         public async static Task<Tutor?> GetTutor(string login)
         {
             Tutor? tutor;
@@ -27,6 +33,12 @@ namespace SmartEdu.Modules.UserModule.Factory
             return tutor;
         }
 
+        /// <summary>
+        /// Return tutor from db by id
+        /// DON'T FORGET TO UPDATE DATA
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async static Task<Tutor?> GetTutor(int id)
         {
             Tutor? tutor;

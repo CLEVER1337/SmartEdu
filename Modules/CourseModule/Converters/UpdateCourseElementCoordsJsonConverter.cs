@@ -4,9 +4,12 @@ using System.Text.Json.Serialization;
 
 namespace SmartEdu.Modules.CourseModule.Converters
 {
-    public class UpdateCoordsCourseElementJsonConverter : JsonConverter<UpdateCoordsCourseElementDTO>
+    /// <summary>
+    /// Set coords convetrer
+    /// </summary>
+    public class UpdateCourseElementCoordsJsonConverter : JsonConverter<UpdateCourseElementCoordsDTO>
     {
-        public override UpdateCoordsCourseElementDTO? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override UpdateCourseElementCoordsDTO? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             int? elementId = null;
             string? coords = null;
@@ -32,10 +35,10 @@ namespace SmartEdu.Modules.CourseModule.Converters
             if (elementId == null)
                 return null;
             else
-                return new UpdateCoordsCourseElementDTO(elementId, coords);
+                return new UpdateCourseElementCoordsDTO(elementId, coords);
         }
 
-        public override void Write(Utf8JsonWriter writer, UpdateCoordsCourseElementDTO registrationData, JsonSerializerOptions options)
+        public override void Write(Utf8JsonWriter writer, UpdateCourseElementCoordsDTO registrationData, JsonSerializerOptions options)
         {
         }
     }

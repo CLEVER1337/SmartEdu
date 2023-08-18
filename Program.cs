@@ -29,9 +29,12 @@ builder.Logging.AddFile(builder.Configuration["LoggerFileName"]!);
 ApplicationContext.connectionString = builder.Configuration["ConnectionStrings:SmartEduConnection"]!;
 
 // authentication
-var tokenOptions = new AuthenticationTokenOptions{issuer = builder.Configuration["Authentication:Issuer"],
-                                                  audience = builder.Configuration["Authentication:Audience"],
-                                                  key = builder.Configuration["Authentication:Key"] };
+var tokenOptions = new AuthenticationTokenOptions
+{
+    issuer = builder.Configuration["Authentication:Issuer"],
+    audience = builder.Configuration["Authentication:Audience"],
+    key = builder.Configuration["Authentication:Key"] 
+};
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -75,6 +78,7 @@ var options = new RewriteOptions()
             .AddRewrite("student/registration", "documents/StudentRegistration.html", false)
             .AddRewrite("tutor/authorization", "documents/TutorAuthorization.html", false)
             .AddRewrite("student/authorization", "documents/StudentAuthorization.html", false);
+            //.AddRewrite("profile", "", false);
 app.UseRewriter(options);
 
 // static files + default file
