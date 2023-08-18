@@ -1,9 +1,9 @@
-﻿namespace SmartEdu.Modules.SessionModule.Core
+﻿namespace SmartEdu.Modules.SessionModule.DTO
 {
     /// <summary>
     /// Tokens
     /// </summary>
     /// <param name="refreshToken"></param>
     /// <param name="accessToken"></param>
-    public record TokensData(string? refreshToken, string? accessToken);
+    public record CreateSessionDTO(string? refreshToken, string? accessToken);
 }

@@ -2,7 +2,7 @@
 using System.Security.Claims;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.IdentityModel.Tokens;
-using SmartEdu.Modules.SessionModule.Core;
+using SmartEdu.Modules.SessionModule.DTO;
 
 namespace SmartEdu.Modules.SessionModule.Adapters
 {
@@ -51,11 +51,22 @@ namespace SmartEdu.Modules.SessionModule.Adapters
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
+        /// <summary>
+        /// Create access JWT
+        /// </summary>
+        /// <param name="claims"></param>
+        /// <param name="deltaExpire"></param>
+        /// <returns></returns>
         public string CreateAccessToken(List<Claim> claims, TimeSpan? deltaExpire)
         {
             return CreateToken(claims, deltaExpire);
         }
 
+        /// <summary>
+        /// Create refresh JWT
+        /// </summary>
+        /// <param name="claims"></param>
+        /// <returns></returns>
         public async Task<string> CreateRefreshToken(List<Claim> claims)
         {
             var token = CreateToken(claims, null);
@@ -71,11 +82,14 @@ namespace SmartEdu.Modules.SessionModule.Adapters
         /// <param name="refreshToken"></param>
         /// <param name="accessToken"></param>
         /// <returns></returns>
-        public async Task<TokensData> RefreshTokens(string refreshToken, string accessToken)
+        public async Task<RefreshTokensDTO> RefreshTokens(string refreshToken, string accessToken)
         {
             // decode tokens
             var decodedRefreshToken = DecodeToken(refreshToken);
             var decodedAccessToken = DecodeToken(accessToken);
+
+            // invalidate old tokens
+            InvalidateTokens(refreshToken, accessToken);
 
             // set the same claims
             var refreshTokenClaims = new List<Claim>();
@@ -86,11 +100,12 @@ namespace SmartEdu.Modules.SessionModule.Adapters
             foreach (var claim in decodedAccessToken)
                 accessTokenClaims.Add(new Claim(claim.Key, claim.Value));
 
-            return new TokensData(await CreateRefreshToken(refreshTokenClaims), CreateAccessToken(accessTokenClaims, deltaExpire));
+            return new RefreshTokensDTO(await CreateRefreshToken(refreshTokenClaims), CreateAccessToken(accessTokenClaims, deltaExpire));
         }
 
         /// <summary>
         /// Check if access token is in black list
+        /// Return true if token still validate
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
@@ -103,6 +118,7 @@ namespace SmartEdu.Modules.SessionModule.Adapters
 
         /// <summary>
         /// Check if refresh token isn't in white list
+        /// Return true if token still validate
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
