@@ -38,22 +38,30 @@ body{
 }
 
 .ContainerSlides{
+    --widthcontainer: 16vw;
     z-index: 2;
     padding-top: 1vh;
-    width: 16vw;
+    width: var(--widthcontainer);
     height: 86.22vh;
     border-right: 2px solid rgb(158, 158, 158);
     border-bottom: 2px solid rgb(158, 158, 158);
+    overflow-y: scroll;
 }
 
-.Slide{
+.Wrapper{
+    display: flex;
+}
+  
+.SlidePreview{
+    z-index: 3;
     margin: 0 auto;
     box-shadow: 0px 5px 5px rgb(177, 172, 172);
     border-radius: 15px;
-    height: 12vh;
-    width: 14.4vw;
+    height: 15vh;
+    width: 13.5vw;
     background-color: rgb(255, 255, 255);
     border: 1px solid; 
+    margin-top: 15px;
 }
 
 /* убираем отступы и поля, а также list-style для "ul", 
@@ -101,29 +109,155 @@ nav ul ul li {
 }
 
 nav ul li ul li .button{
-    background: url('SlideTemplateFirst.png');
+    background: url('../images/SlideTemplateFirst.png');
     background-size: 100% 100%;
     width: 5vw;
     height: 6vh;  
 }
 
 nav ul li ul li .button2{
-    background: url('SlideTemplateSecond.png');
+    background: url('../images/SlideTemplateSecond.png');
     background-size: 100% 100%;
     width: 5vw;
     height: 6vh;  
 }
 
 nav ul li ul li .button3{
-    background: url('SlideTemplateThird.png');
+    background: url('../images/SlideTemplateThird.png');
+    background-size: 100% 100%;
+    width: 5vw;
+    height: 6vh; 
+}
+
+nav ul li ul li .button2{
+    background: url('../images/SlideTemplateSecond.png');
     background-size: 100% 100%;
     width: 5vw;
     height: 6vh;  
 }
 
-nav ul li ul li .button2{
-    background: url('SlideTemplateSecond.png');
-    background-size: 100% 100%;
-    width: 5vw;
-    height: 6vh;  
+.slide{
+    background: url(../images/SlideTemplateFirst.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+.SlideMain{
+    width: 87vw;
+    height: 87.4vh;
+}
+
+.inputfield{
+    background: transparent;
+    border: 2px dashed #535353;
+    width: 10vw;
+    height: 3vh;
+    display: flex;
+    transition: 0.25s;
+    position: absolute;
+    top: 7vw;
+    left: 49.3vw;
+}
+
+input[type=file]{
+    outline: none;
+	text-decoration: none;
+    background-color: transparent;
+    width: 10vw;
+    height: 3vh;
+    width: 20vw;
+    height: 10vh;
+    display: none;
+    transition: 0.25s;
+    position: absolute;
+    top: 7vw;
+    left: 49.3vw;
+    border-radius: 15px;
+}
+
+.inputcheckboxfield{
+    background-color: rgb(67, 175, 81);
+    border: 2px dashed #535353;
+    width: 10vw;
+    height: 3vh;
+.Image{
+    display: none;
+    transition: 0.25s;
+    position: absolute;
+    top: 7vw;
+    left: 49.3vw;
+
+}
+
+.form-control {
+    
+    font-family: system-ui, sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 1.1;
+    display: block;
+    grid-template-columns: 1em auto;
+    gap: 0.5em;
+    background-color: rgb(67, 175, 81);
+}
+
+
+.form-control--disabled {
+  color: var(--form-control-disabled);
+  cursor: not-allowed;
+  background-color: rgb(67, 175, 81);
+}
+
+input[type="checkbox"] {
+  /* Add if not using autoprefixer */
+  -webkit-appearance: none;
+  background-color: rgb(67, 175, 81);
+  /* Remove most all native input styles */
+  appearance: none;
+  /* For iOS < 15 */
+  background-color: var(--form-background);
+  /* Not removed via appearance */
+  margin: 0;
+
+  font: inherit;
+  color: currentColor;
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.15em solid currentColor;
+  border-radius: 0.15em;
+  transform: translateY(-0.075em);
+
+  display: grid; /*none:grid*/
+  place-content: center;
+}
+
+input[type="checkbox"]::before {
+    background-color: rgb(67, 175, 81);
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+    transform: scale(0);
+    transform-origin: bottom left;
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(--form-control-color);
+    /* Windows High Contrast Mode */
+}
+
+input[type="checkbox"]:checked::before {
+    background-color: rgb(67, 175, 81);
+
+    transform: scale(1);
+}
+
+input[type="checkbox"]:focus {
+    
+    
+  outline: max(2px, 0.15em) solid currentColor;
+  outline-offset: max(2px, 0.15em);
+}
+
+input[type="checkbox"]:disabled {
+    background-color: rgb(99, 255, 120);
+  --form-control-color: var(--form-control-disabled);
+  color: var(--form-control-disabled);
+  cursor: not-allowed;
 }
