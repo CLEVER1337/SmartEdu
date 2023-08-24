@@ -1,0 +1,150 @@
+html{
+    font-family: Jost;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    overflow-y: hidden;
+    display: flex;
+    justify-content:right ;
+    margin: 0;
+}
+
+
+.wrap{
+    margin: 0;
+    padding-left: 30px;
+    width: 300px; 
+    height: 100vh;
+    overflow-y: hidden;
+    border-right: 2px solid #7a7a7a;
+}
+
+ul{
+    height: 100%;
+    margin-top: 120px;
+    display: block;
+    margin-left: 0px;
+    padding-left: 0px;
+    list-style: none;
+}
+
+ul p{
+    justify-content: center;
+    font-weight: 400;
+    font-size: 40px;
+    margin-left: 45px;
+    margin-top: -90px;
+}
+
+li{
+    margin-top: 30px;
+    width:200px;
+    height: 100px;
+    transition: 0.2s; 
+}
+
+ul a {
+    
+    padding: 20px;
+    animation-timing-function: ease;
+    width:230px;
+    display: block;
+    color: #333;
+    transition: 0.2s;
+}
+
+
+ul a:hover {
+    animation-timing-function:ease;
+    transition: 0.25s;
+    border-radius: 15px;
+    background-color: #78c1fc;
+}
+
+.Wrapper{
+    display: block;
+    justify-content: center;
+    justify-items: center;
+    text-align: center;
+    align-items: center;
+    padding: auto;
+    width: 60vw;
+    height: 100vh;
+}
+
+
+.heading{
+    font-size: 2vw;
+}
+
+
+.wrapperCourse{
+    font-size: 1vw;
+    display: flex;
+    width: 40vw;
+    height: 10vh;
+    border-radius: 24px;
+    background-color: #ffffff;
+    border: 2px solid #7a7a7a;
+    margin: 0 auto;
+    margin-top: 5vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.AvatarkaWrapper{
+    border-radius: 24px;
+    font-weight: 500;
+    justify-content: center;
+    justify-self: center;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+    flex-grow: 0.5;
+}
+
+.Avatarka{
+    margin-left: 1vw;
+    width: 6vh;
+    height: 6vh;
+    border-radius: 360px;
+    background-color: #333;
+}
+
+
+
+.inputImage{
+    width: 3vw;
+    height: auto;
+}
+
+
+.div{
+    flex-grow: 1;
+}
+
+.StatisticWrap{
+    border: 2px solid #ffffff;
+    width: 20vw;
+    margin-right: 35px;
+}
+
+.Statistic{
+    height: 55vh;
+    justify-self: center;
+    margin-top: 20%;
+    width: inherit;
+    text-align: center;
+    border: 2px solid #7a7a7a;
+    border-radius: 34px;
+    font-size: 1.4vw;
+}
+
+.WrapperRight{
+    display: flex;
+
+
+}
