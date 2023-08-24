@@ -136,10 +136,6 @@ nav ul li ul li .button2{
     height: 6vh;  
 }
 
-.slide{
-    background: url(../images/SlideTemplateFirst.png);
-    background-size: contain;
-    background-repeat: no-repeat;
 .SlideMain{
     width: 87vw;
     height: 87.4vh;
@@ -148,9 +144,9 @@ nav ul li ul li .button2{
 .inputfield{
     background: transparent;
     border: 2px dashed #535353;
-    width: 10vw;
-    height: 3vh;
-    display: flex;
+    width: 20vw;
+    height: 10vh;
+    display: none;
     transition: 0.25s;
     position: absolute;
     top: 7vw;
@@ -173,11 +169,6 @@ input[type=file]{
     border-radius: 15px;
 }
 
-.inputcheckboxfield{
-    background-color: rgb(67, 175, 81);
-    border: 2px dashed #535353;
-    width: 10vw;
-    height: 3vh;
 .Image{
     display: none;
     transition: 0.25s;
