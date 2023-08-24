@@ -28,15 +28,17 @@ namespace SmartEdu
 
         public DbSet<Course> Courses { get; set; } = null!;
 
-        public DbSet<CoursePageElement> CoursePageElements { get; set; } = null!;
+        public DbSet<CourseExercise> CourseExercises { get; set; } = null!;
 
-        public DbSet<CoursePage> CoursePages { get; set; } = null!;
+        public DbSet<CourseElement> CoursePageElements { get; set; } = null!;
 
-        public DbSet<CoursePageTextElement> CoursePageTextElements { get; set; } = null!;
+        public DbSet<CourseExercisePage> CoursePages { get; set; } = null!;
 
-        public DbSet<CoursePageImageElement> CoursePageImageElements { get; set; } = null!;
+        public DbSet<CourseTextElement> CoursePageTextElements { get; set; } = null!;
 
-        public DbSet<CoursePageAnswerFieldElement> CoursePageAnswerFieldElements { get; set; } = null!;
+        public DbSet<CourseImageElement> CoursePageImageElements { get; set; } = null!;
+
+        public DbSet<CourseAnswerFieldElement> CoursePageAnswerFieldElements { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

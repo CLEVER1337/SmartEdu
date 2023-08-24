@@ -16,7 +16,8 @@ namespace SmartEdu.Modules.SessionModule
 
         public IEndpointRouteBuilder MapEndpoints(IEndpointRouteBuilder endpoints)
         {
-            endpoints.MapDelete("session/delete", 
+            endpoints.MapDelete("session/delete",
+                [Authorize]
                 (HttpContext httpContext, SessionService sessionService)
                 => SessionEndpoints.DeleteSession(httpContext, sessionService));
             endpoints.MapPost("session/create", 

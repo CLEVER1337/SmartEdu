@@ -5,5 +5,5 @@
     /// </summary>
     /// <param name="login"></param>
     /// <param name="password"></param>
-    public record RegistrationData(string? login, string? password);
+    public record RegisterUserDTO(string? login, string? password);
 }
