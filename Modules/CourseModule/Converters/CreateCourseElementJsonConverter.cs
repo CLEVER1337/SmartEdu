@@ -4,13 +4,17 @@ using System.Text.Json.Serialization;
 
 namespace SmartEdu.Modules.CourseModule.Converters
 {
+    /// <summary>
+    /// Create element converter
+    /// </summary>
     public class CreateCourseElementJsonConverter : JsonConverter<CreateCourseElementDTO>
     {
         public override CreateCourseElementDTO? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             string? discriminator = null;
+            int? exerciseId = null;
             int? courseId = null;
-            int? coursePageId = null;
+            int? pageId = null;
             string? coords = null;
 
             while (reader.Read())
@@ -22,13 +26,16 @@ namespace SmartEdu.Modules.CourseModule.Converters
                     switch (propertyName?.ToLower())
                     {
                         case "Discriminator":
-                            discriminator = reader.GetString()!;
-                            break;
-                        case "CoursePageId":
-                            coursePageId = reader.GetInt32();
+                            discriminator = reader.GetString();
                             break;
                         case "CourseId":
                             courseId = reader.GetInt32();
+                            break;
+                        case "ExercisePageId":
+                            pageId = reader.GetInt32();
+                            break;
+                        case "ExerciseId":
+                            exerciseId = reader.GetInt32();
                             break;
                         case "Coords":
                             coords = reader.GetString();
@@ -37,12 +44,18 @@ namespace SmartEdu.Modules.CourseModule.Converters
                 }
             }
 
-            if (discriminator == null 
-                && coursePageId == null 
-                && courseId == null)
-                return null;
+            if (courseId != null &&
+                exerciseId != null)
+                if (discriminator != "Page")
+                    if (pageId != null &&
+                        coords != null)
+                        return new CreateCourseElementDTO(discriminator, courseId, exerciseId, pageId, coords);
+                    else
+                        return null;
+                else
+                    return new CreateCourseElementDTO(discriminator, courseId, exerciseId, null, null);
             else
-                return new CreateCourseElementDTO(discriminator, courseId, coursePageId, coords);
+                return null;
         }
 
         public override void Write(Utf8JsonWriter writer, CreateCourseElementDTO registrationData, JsonSerializerOptions options)

@@ -11,6 +11,12 @@ namespace SmartEdu.Modules.CourseModule.Endpoints
 {
     public static partial class CourseEndpoints
     {
+        /// <summary>
+        /// Create course
+        /// </summary>
+        /// <param name="httpContext"></param>
+        /// <param name="sessionService"></param>
+        /// <returns></returns>
         public async static Task CreateCourse(HttpContext httpContext, SessionService sessionService)
         {
             if (httpContext.Request.HasJsonContentType())
@@ -20,10 +26,10 @@ namespace SmartEdu.Modules.CourseModule.Endpoints
 
                 jsonOptions.Converters.Add(new CreateCourseJsonConverter());
 
-                // Get course data
+                // Get exercise data
                 var courseData = await httpContext.Request.ReadFromJsonAsync<CreateCourseDTO>(jsonOptions);
 
-                if(courseData != null)
+                if (courseData != null)
                 {
                     var course = new Course(courseData.name!);
 
@@ -47,6 +53,49 @@ namespace SmartEdu.Modules.CourseModule.Endpoints
             }
         }
 
+        /// <summary>
+        /// Create exercise of course
+        /// </summary>
+        /// <param name="httpContext"></param>
+        /// <returns></returns>
+        public async static Task CreateExercise(HttpContext httpContext)
+        {
+            if (httpContext.Request.HasJsonContentType())
+            {
+                // Set json converter
+                var jsonOptions = new JsonSerializerOptions();
+
+                jsonOptions.Converters.Add(new CreateCourseExerciseJsonConverter());
+
+                // Get exercise data
+                var exerciseData = await httpContext.Request.ReadFromJsonAsync<CreateCourseExerciseDTO>(jsonOptions);
+
+                if (exerciseData != null)
+                {
+                    var builder = new CourseBuilder(exerciseData.courseId!.Value);
+
+                    builder.BuildExercise(exerciseData.name!);
+
+                    //var exercise = new CourseExercise(exerciseData.name!);
+
+                    //await CourseExercise.Save(exercise);
+                }
+                else
+                {
+                    await Results.UnprocessableEntity(new { message = "Request hasn't required data" }).ExecuteAsync(httpContext);
+                }
+            }
+            else
+            {
+                await Results.UnprocessableEntity().ExecuteAsync(httpContext);
+            }
+        }
+
+        /// <summary>
+        /// Create element or page in exercise of course
+        /// </summary>
+        /// <param name="httpContext"></param>
+        /// <returns></returns>
         public async static Task CreateElement(HttpContext httpContext)
         {
             if (httpContext.Request.HasJsonContentType())
@@ -56,26 +105,32 @@ namespace SmartEdu.Modules.CourseModule.Endpoints
 
                 jsonOptions.Converters.Add(new CreateCourseElementJsonConverter());
 
-                // Get course element data
-                var courseElementData = await httpContext.Request.ReadFromJsonAsync<CreateCourseElementDTO>(jsonOptions);
+                // Get exercise element data
+                var exerciseElementData = await httpContext.Request.ReadFromJsonAsync<CreateCourseElementDTO>(jsonOptions);
 
-                if (courseElementData != null)
+                if (exerciseElementData != null)
                 {
-                    var courseBuilder = new CourseBuilder(courseElementData.courseId!.Value);
+                    var courseBuilder = new CourseBuilder(exerciseElementData.courseId!.Value);
 
-                    switch (courseElementData.discriminator)
+                    switch (exerciseElementData.discriminator)
                     {
-                        case "CoursePage":
-                            courseBuilder.BuildPage(); 
+                        case "Page":
+                            courseBuilder.BuildPage(exerciseElementData.courseExerciseId!.Value); 
                             break;
-                        case "CoursePageTextElement":
-                            courseBuilder.BuildElement<CoursePageTextElement>(courseElementData.coursePageId!.Value, new Coord(courseElementData.coords!));
+                        case "Text":
+                            courseBuilder.BuildElement<CourseTextElement>(exerciseElementData.courseExerciseId!.Value, 
+                                                                                        exerciseElementData.exercisePageId!.Value, 
+                                                                                        new Coord(exerciseElementData.coords!));
                             break;
-                        case "CoursePageImageElement":
-                            courseBuilder.BuildElement<CoursePageImageElement>(courseElementData.coursePageId!.Value, new Coord(courseElementData.coords!));
+                        case "Image":
+                            courseBuilder.BuildElement<CourseImageElement>(exerciseElementData.courseExerciseId!.Value, 
+                                                                                        exerciseElementData.exercisePageId!.Value, 
+                                                                                        new Coord(exerciseElementData.coords!));
                             break;
-                        case "CoursePageAnswerFieldElement":
-                            courseBuilder.BuildElement<CoursePageAnswerFieldElement>(courseElementData.coursePageId!.Value, new Coord(courseElementData.coords!));
+                        case "AnswerField":
+                            courseBuilder.BuildElement<CourseAnswerFieldElement>(exerciseElementData.courseExerciseId!.Value, 
+                                                                                        exerciseElementData.exercisePageId!.Value, 
+                                                                                        new Coord(exerciseElementData.coords!));
                             break;
                     }
                 }

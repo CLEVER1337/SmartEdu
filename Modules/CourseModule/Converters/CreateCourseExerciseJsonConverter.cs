@@ -5,13 +5,14 @@ using System.Text.Json.Serialization;
 namespace SmartEdu.Modules.CourseModule.Converters
 {
     /// <summary>
-    /// Create course converter
+    /// Create exercise converter
     /// </summary>
-    public class CreateCourseJsonConverter : JsonConverter<CreateCourseDTO>
+    public class CreateCourseExerciseJsonConverter : JsonConverter<CreateCourseExerciseDTO>
     {
-        public override CreateCourseDTO? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override CreateCourseExerciseDTO? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             string? name = null;
+            int? courseId = null;
 
             while (reader.Read())
             {
@@ -24,6 +25,9 @@ namespace SmartEdu.Modules.CourseModule.Converters
                         case "Name":
                             name = reader.GetString()!;
                             break;
+                        case "CourseId":
+                            courseId = reader.GetInt32();
+                            break;
                     }
                 }
             }
@@ -31,10 +35,10 @@ namespace SmartEdu.Modules.CourseModule.Converters
             if (name == null)
                 return null;
             else
-                return new CreateCourseDTO(name);
+                return new CreateCourseExerciseDTO(name, courseId);
         }
 
-        public override void Write(Utf8JsonWriter writer, CreateCourseDTO registrationData, JsonSerializerOptions options)
+        public override void Write(Utf8JsonWriter writer, CreateCourseExerciseDTO registrationData, JsonSerializerOptions options)
         {
         }
     }
