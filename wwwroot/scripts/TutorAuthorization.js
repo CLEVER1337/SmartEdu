@@ -8,7 +8,7 @@ const Form = document.getElementById("Form")
 async function sendDataToServer(data){
     //e.preventDefault()
 
-    return await fetch( "../session/create",{
+    var response = await fetch( "../session/create",{
         method: "POST",
         headers: {"Accept": "application/json", "Content-Type":"application/json"},
         body: JSON.stringify({
@@ -17,16 +17,14 @@ async function sendDataToServer(data){
         })
     })
 
-    if (response.status == 404)
-    alert("404")
-
     if (response.ok){
         const data = await response.json()
-        sessionStorage.setItem("accessToken", data.access_token)
+        sessionStorage.setItem("AccessToken", data.AccessToken)
+        sessionStorage.setItem("RefreshToken", data.RefreshToken)
         window.location.pathname ='/profile'
     }
     else{
-        console.log("Status: ", response.status)
+        window.location.pathname ='/error/' + response.status
     }
 
 

@@ -1,3 +1,5 @@
+import * as tokenModule from "CheckTokenValidation.js"
+
 // document.getElementById('slideMain').onclick = async function(e) {
 //     var rect = e.target.getBoundingClientRect();
 //     var x = e.clientX - rect.left;
