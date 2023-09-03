@@ -77,8 +77,8 @@ var options = new RewriteOptions()
             .AddRewrite("tutor/registration", "documents/TutorRegistration.html", false)
             .AddRewrite("student/registration", "documents/StudentRegistration.html", false)
             .AddRewrite("tutor/authorization", "documents/TutorAuthorization.html", false)
-            .AddRewrite("student/authorization", "documents/StudentAuthorization.html", false);
-            //.AddRewrite("profile", "", false);
+            .AddRewrite("student/authorization", "documents/StudentAuthorization.html", false)
+            .AddRewrite("profile", "documents/PersonalAccountTutor.html", false);
 app.UseRewriter(options);
 
 // static files + default file

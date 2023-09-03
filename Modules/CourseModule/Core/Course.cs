@@ -1,4 +1,5 @@
-﻿using SmartEdu.Modules.UserModule.Core;
+﻿using Microsoft.Identity.Client;
+using SmartEdu.Modules.UserModule.Core;
 
 namespace SmartEdu.Modules.CourseModule.Core
 {
@@ -18,6 +19,12 @@ namespace SmartEdu.Modules.CourseModule.Core
         public int AuthorId { get; set; }
 
         public string Name { get; set; }
+
+        public int Rating { get; set; }
+
+        public int Cost { get; set; }
+
+        public int Difficulty { get; set; }
 
         /// <summary>
         /// Save course in db

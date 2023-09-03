@@ -1,5 +1,6 @@
 ﻿using SmartEdu.Modules.SessionModule.Adapters;
 using SmartEdu.Modules.UserModule.Converters;
+using SmartEdu.Modules.UserModule.Core;
 using SmartEdu.Modules.UserModule.DTO;
 using SmartEdu.Modules.UserModule.Factory;
 using System.Text.Json;
@@ -26,11 +27,25 @@ namespace SmartEdu.Modules.UserModule.Endpoints
                 // Set json converter
                 var jsonOptions = new JsonSerializerOptions();
 
-                jsonOptions.Converters.Add(new GetUserJsonConverter());
+                if (token["discriminator"] == "Tutor")
+                {
+                    var tutor = await TutorCreator.GetTutor(Convert.ToInt32(token["userId"]));
 
-                var userData = new GetUserDTO(user.UserData.Login);
+                    var coursesPreviews = new GetTutorDTOCoursePreview[tutor!.OwnedCourses.Count];
 
-                await httpContext.Response.WriteAsJsonAsync<GetUserDTO>(userData, jsonOptions);
+                    jsonOptions.Converters.Add(new GetTutorJsonConverter());
+
+                    foreach (var course in tutor!.OwnedCourses)
+                    {
+                        coursesPreviews.Append(new GetTutorDTOCoursePreview(course.Cost, course.Rating, course.Difficulty));
+                    }
+
+                    await httpContext.Response.WriteAsJsonAsync(new GetTutorDTO(user.UserData.Login, coursesPreviews), jsonOptions);
+                }
+                else if(token["discriminator"] == "Student")
+                {
+
+                }
             }
             else
             {
