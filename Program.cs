@@ -79,7 +79,6 @@ var options = new RewriteOptions()
             .AddRewrite("student/registration", "documents/StudentRegistration.html", false)
             .AddRewrite("tutor/authorization", "documents/TutorAuthorization.html", false)
             .AddRewrite("student/authorization", "documents/StudentAuthorization.html", false)
-            //.AddRewrite("profile", "documents/PersonalAccountTutor.html", false)
             .AddRewrite("course/constructor", "documents/CoursesConstructor.html", false);
 app.UseRewriter(options);
 
