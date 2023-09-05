@@ -1,4 +1,4 @@
-import * as tokenModule from "CheckTokenValidation.js"
+// import * as tokenModule from "CheckTokenValidation.js"
 
 // document.getElementById('slideMain').onclick = async function(e) {
 //     var rect = e.target.getBoundingClientRect();
@@ -21,15 +21,17 @@ import * as tokenModule from "CheckTokenValidation.js"
 
 var form = document.querySelector("form")
 
-var discriminators = ["skip",1,"CoursePageAnswerFieldElement","CoursePageImageElement",4,"CoursePageTextElement"]
+// var discriminators = ["skip",1,"CoursePageAnswerFieldElement","CoursePageImageElement",4,"CoursePageTextElement"]
 
-var selectedDisc = ""
+// var selectedDisc = ""
 
 var backGrounds = ["skip","../images/SlideTemplateFirst.png","../images/SlideTemplateSecond.png","../images/SlideTemplateThird.png"]
 
 var checkMouseHold = false
 
 var checkMouseHolding = false
+
+var clicked = false
 
 var newID = 0
 
@@ -44,13 +46,26 @@ var selectedBackG = ""
 var slidesID = 2
 
 form.addEventListener("click", function(e) {
-    if(e.target.id < 6) {
+    // if(e.target.id < 6) {
 
-        selectedDisc = discriminators[e.target.id]
+    //     selectedDisc = discriminators[e.target.id]
 
-    } 
+    // } 
     
     if (e.target.id == 5) {
+
+        document.getElementById("5").onclick = async function() {
+
+            var accessToken = sessionStorage.getItem("AccessToken")
+            var refreshToken = sessionStorage.getItem("RefreshToken")
+
+            if(tokenModule.checkToken(accessToken)== false) {
+                var updatedTokens = tokenModule.refreshTokens(refreshToken,accessToken)
+
+                sessionStorage.setItem("AccessToken", updatedTokens.AccessToken)
+                sessionStorage.setItem("RefreshToken", updatedTokens.RefreshToken)
+            }
+        }
 
         var copy = document.getElementById("textfield").cloneNode(true)
         var copyField = document.getElementById("inputfield").cloneNode(true)
@@ -66,10 +81,17 @@ form.addEventListener("click", function(e) {
 
         document.getElementById("textfield").after(copy)
 
-        document.getElementById(copy.id).onmousedown = function() {
-            checkMouseHold = true
-            let id = "" + copy.id
-            currentId = id.split(".")[1]
+        if(!clicked) {
+            document.getElementById(copy.id).onclick = function() {
+                clicked = true
+                checkMouseHold = true
+                let id = "" + copy.id
+                currentId = id.split(".")[1]
+            }
+        }
+
+        document.getElementById(copy.id).onchange = function() {
+            console.log(1)
         }
 
         newID += 1
@@ -77,6 +99,30 @@ form.addEventListener("click", function(e) {
     } 
     
     if (e.target.id == 1) {
+
+        // document.getElementById("1").onclick = async function() {
+
+        //     var accessToken = sessionStorage.getItem("AccessToken")
+        //     var refreshToken = sessionStorage.getItem("RefreshToken")
+
+        //     if(tokenModule.checkToken(accessToken)== false) {
+        //         var updatedTokens = tokenModule.refreshTokens(refreshToken,accessToken)
+
+        //         sessionStorage.setItem("AccessToken", updatedTokens.AccessToken)
+        //         sessionStorage.setItem("RefreshToken", updatedTokens.RefreshToken)
+        //     }
+
+        //     await fetch("../course/element/create", {
+        //         method: "POST",
+        //         headers: {"Accept": "application/json", "Content-Type": "application/json"},
+        //         body: JSON.stringify({
+        //             Discriminator: selectedDisc,
+        //             CoursePageId: 0,
+        //             CourseId: 0,
+                    
+        //         })
+        //     })
+        // }
 
         var parent = document.querySelector("#containerSlides")
         var div = document.createElement("div")
@@ -92,6 +138,32 @@ form.addEventListener("click", function(e) {
     } 
     
     if (e.target.id >= 6) {
+
+        // document.getElementById(e.target.id).onclick = async function() {
+
+        //     var accessToken = sessionStorage.getItem("AccessToken")
+        //     var refreshToken = sessionStorage.getItem("RefreshToken")
+        //     var pictures = backGrounds[e.target.id-5]
+
+        //     if(tokenModule.checkToken(accessToken)== false) {
+        //         var updatedTokens = tokenModule.refreshTokens(refreshToken,accessToken)
+
+        //         sessionStorage.setItem("AccessToken", updatedTokens.AccessToken)
+        //         sessionStorage.setItem("RefreshToken", updatedTokens.RefreshToken)
+        //     }
+
+        //     await fetch("../course/element/create", {
+        //         method: "POST",
+        //         headers: {"Accept": "application/json", "Content-Type": "application/json"},
+        //         body: JSON.stringify({
+        //             Discriminator: selectedDisc,
+        //             CoursePageId: 0,
+        //             CourseId: 0,
+                    
+        //         })
+        //     })
+        // }
+
         e.preventDefault()
         document.getElementById("slideMain").style.cssText = "background: url(" + backGrounds[e.target.id-5] + "); background-size: 100% 100%"
         document.getElementById("slidePreview1").style.cssText = "background: url(" + backGrounds[e.target.id-5] + "); background-size: 100% 100%"
@@ -106,6 +178,30 @@ form.addEventListener("click", function(e) {
     }
 
     if (e.target.id == 3) {
+
+        // document.getElementById("3").onclick = async function() {
+
+        //     var accessToken = sessionStorage.getItem("AccessToken")
+        //     var refreshToken = sessionStorage.getItem("RefreshToken")
+
+        //     if(tokenModule.checkToken(accessToken)== false) {
+        //         var updatedTokens = tokenModule.refreshTokens(refreshToken,accessToken)
+
+        //         sessionStorage.setItem("AccessToken", updatedTokens.AccessToken)
+        //         sessionStorage.setItem("RefreshToken", updatedTokens.RefreshToken)
+        //     }
+
+        //     await fetch("../course/element/create", {
+        //         method: "POST",
+        //         headers: {"Accept": "application/json", "Content-Type": "application/json"},
+        //         body: JSON.stringify({
+        //             Discriminator: selectedDisc,
+        //             CoursePageId: 0,
+        //             CourseId: 0,
+                    
+        //         })
+        //     })
+        // }
 
         var copyImg = document.getElementById("imagefield").cloneNode(true)
         var copyImgField = document.getElementById("image").cloneNode(true)
@@ -132,7 +228,7 @@ form.addEventListener("click", function(e) {
 })
 
 document.getElementById("slideMain").onmousemove = function(e) {
-    if (checkMouseHold) {
+    if (clicked) {
         if (e.pageX <= 1489 && e.pageY <= 857) {
             document.getElementById("inputfield." + currentId).style.cssText = "display: block; left: " + e.pageX + "px; top: " + e.pageY + "px;"
             document.getElementById("textfield." + currentId).style.cssText = "display: block; left: " + e.pageX + "px; top: " + e.pageY + "px;"
@@ -179,10 +275,22 @@ document.getElementById("slideMain").onmousemove = function(e) {
     }
 }
 
-window.onmouseup = function() {
-    checkMouseHold = false
-    checkMouseHolding = false
-}
+
+
+    window.onclick = function() {
+        if(clicked) {
+            checkMouseHold = false
+            checkMouseHolding = false
+            console.log(clicked)
+            clicked = false
+            console.log(clicked)
+        }
+        
+    }
+    
+
+
+
 
 
 
