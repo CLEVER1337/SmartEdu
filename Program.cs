@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Rewrite;
 using SmartEdu;
@@ -78,7 +79,8 @@ var options = new RewriteOptions()
             .AddRewrite("student/registration", "documents/StudentRegistration.html", false)
             .AddRewrite("tutor/authorization", "documents/TutorAuthorization.html", false)
             .AddRewrite("student/authorization", "documents/StudentAuthorization.html", false)
-            .AddRewrite("profile", "documents/PersonalAccountTutor.html", false);
+            //.AddRewrite("profile", "documents/PersonalAccountTutor.html", false)
+            .AddRewrite("course/constructor", "documents/CoursesConstructor.html", false);
 app.UseRewriter(options);
 
 // static files + default file

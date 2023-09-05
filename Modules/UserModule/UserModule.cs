@@ -26,6 +26,27 @@ namespace SmartEdu.Modules.UserModule
                 => UserEndpoints.RegisterUser(httpContext, registrationService, hashService, userType));
             //endpoints.MapPost("/login", () => UserEndpoints.RegisterUser());
             //endpoints.MapPut();
+
+            // different profiles for different user types
+            endpoints.Map("profile",
+            async (HttpContext httpContext, SessionService sessionService) =>
+            {
+                if (httpContext.Request.Cookies["jwtBearer"] != null)
+                {
+                    // get user with JWT's id
+                    var token = sessionService.DecodeToken(httpContext.Request.Cookies["jwtBearer"]!);
+
+                    if (token["discriminator"] == "Tutor")
+                        await httpContext.Response.SendFileAsync("wwwroot/documents/PersonalAccountTutor.html");
+                    else if (token["discriminator"] == "Student")
+                        await httpContext.Response.SendFileAsync("documents/PersonalAccountStudent.html");
+                }
+                else
+                {
+                    await Results.Unauthorized().ExecuteAsync(httpContext);
+                }
+            });
+
             return endpoints;
         }
     }
