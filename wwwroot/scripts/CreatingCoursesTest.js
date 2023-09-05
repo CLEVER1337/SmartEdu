@@ -1,3 +1,5 @@
+import * as tokenModule from "CheckTokenValidation.js"
+
 // document.getElementById('slideMain').onclick = async function(e) {
 //     var rect = e.target.getBoundingClientRect();
 //     var x = e.clientX - rect.left;
@@ -27,9 +29,15 @@ var backGrounds = ["skip","../images/SlideTemplateFirst.png","../images/SlideTem
 
 var checkMouseHold = false
 
+var checkMouseHolding = false
+
 var newID = 0
 
+var newIDimg = 0
+
 var currentId = "-1"
+
+var currentIdImg = "-1"
 
 var selectedBackG = ""
 
@@ -99,27 +107,27 @@ form.addEventListener("click", function(e) {
 
     if (e.target.id == 3) {
 
-        var copyImg = document.getElementById("textfield").cloneNode(true)
-        var copyField = document.getElementById("inputfield").cloneNode(true)
+        var copyImg = document.getElementById("imagefield").cloneNode(true)
+        var copyImgField = document.getElementById("image").cloneNode(true)
 
-        copy.id = "textfield." + newID
-        copyField.id = "inputfield." + newID
+        copyImg.id = "imagefield." + newIDimg
+        copyImgField.id = "image." + newIDimg
 
 
-        copy.style.cssText = "display: block;"
-        copyField.style.cssText = "display: block;"
+        copyImg.style.cssText = "display: block;"
+        copyImgField.style.cssText = "display: block;"
         
-        copy.appendChild(copyField)
+        copyImg.appendChild(copyImgField)
 
-        document.getElementById("textfield").after(copy)
+        document.getElementById("imagefield").after(copyImg)
 
-        document.getElementById(copy.id).onmousedown = function() {
-            checkMouseHold = true
-            let id = "" + copy.id
-            currentId = id.split(".")[1]
+        document.getElementById(copyImg.id).onmousedown = function() {
+            checkMouseHolding = true
+            let id = "" + copyImg.id
+            currentIdImg = id.split(".")[1]
         }
 
-        newID += 1
+        newIDimg += 1
     }
 })
 
@@ -145,11 +153,38 @@ document.getElementById("slideMain").onmousemove = function(e) {
             document.getElementById("textfield." + currentId).style.cssText = "display: block; left: " + e.pageX + "px; top: 857px;"
         }
     }
+
+
+
+    if (checkMouseHolding) {
+        if (e.pageX <= 1489 && e.pageY <= 857) {
+            document.getElementById("image." + currentIdImg).style.cssText = "display: block; left: " + e.pageX + "px; top: " + e.pageY + "px;"
+            document.getElementById("imagefield." + currentIdImg).style.cssText = "display: block; left: " + e.pageX + "px; top: " + e.pageY + "px;"
+        }
+
+        else if (e.pageX > 1489 && e.pageY > 857) {
+            document.getElementById("image." + currentIdImg).style.cssText = "display: block; left: 1489px; top: 857px;"
+            document.getElementById("imagefield." + currentIdImg).style.cssText = "display: block; left: 1489px; top: 857px;"
+        }
+
+        else if (e.pageX > 1489) {
+            document.getElementById("image." + currentIdImg).style.cssText = "display: block; left: 1489px; top: " + e.pageY + "px;"
+            document.getElementById("imagefield." + currentIdImg).style.cssText = "display: block; left: 1489px; top: " + e.pageY + "px;"
+        }
+
+        else if (e.pageY > 857) {
+            document.getElementById("image." + currentIdImg).style.cssText = "display: block; left: " + e.pageX + "px; top: 857px;"
+            document.getElementById("imagefield." + currentIdImg).style.cssText = "display: block; left: " + e.pageX + "px; top: 857px;"
+        }
+    }
 }
 
 window.onmouseup = function() {
     checkMouseHold = false
+    checkMouseHolding = false
 }
+
+
 
 // document.getElementById("containerSlides").onclick = function(e) {
 //     if (Number(e.target.id.substr(-1,1)) > 0) {
