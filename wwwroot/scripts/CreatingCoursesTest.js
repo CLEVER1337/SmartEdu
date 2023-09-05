@@ -81,12 +81,17 @@ form.addEventListener("click", function(e) {
 
         document.getElementById("textfield").after(copy)
 
-        if(!clicked) {
-            document.getElementById(copy.id).onclick = function() {
+        document.getElementById(copy.id).onclick = function() {
+            if(!clicked){
                 clicked = true
                 checkMouseHold = true
                 let id = "" + copy.id
                 currentId = id.split(".")[1]
+            }
+            else{
+                checkMouseHold = false
+                checkMouseHolding = false
+                clicked = false
             }
         }
 
@@ -277,16 +282,6 @@ document.getElementById("slideMain").onmousemove = function(e) {
 
 
 
-    window.onclick = function() {
-        if(clicked) {
-            checkMouseHold = false
-            checkMouseHolding = false
-            console.log(clicked)
-            clicked = false
-            console.log(clicked)
-        }
-        
-    }
     
 
 
