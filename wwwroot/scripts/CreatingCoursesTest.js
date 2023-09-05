@@ -233,25 +233,51 @@ form.addEventListener("click", function(e) {
 })
 
 document.getElementById("slideMain").onmousemove = function(e) {
+    console.log(e.pageX + "       " + e.pageY)
     if (clicked) {
-        if (e.pageX <= 1489 && e.pageY <= 857) {
-            document.getElementById("inputfield." + currentId).style.cssText = "display: block; left: " + e.pageX + "px; top: " + e.pageY + "px;"
-            document.getElementById("textfield." + currentId).style.cssText = "display: block; left: " + e.pageX + "px; top: " + e.pageY + "px;"
+        if (e.pageX <= 1675 && e.pageY <= 907 && e.pageX >= 481 && e.pageY >= 172) {
+            document.getElementById("inputfield." + currentId).style.cssText = "display: block; left: " + (e.pageX - 188) + "px; top: " + (e.pageY - 50) + "px;"
+            document.getElementById("textfield." + currentId).style.cssText = "display: block; left: " + (e.pageX - 188) + "px; top: " + (e.pageY - 50) + "px;"
         }
 
-        else if (e.pageX > 1489 && e.pageY > 857) {
-            document.getElementById("inputfield." + currentId).style.cssText = "display: block; left: 1489px; top: 857px;"
-            document.getElementById("textfield." + currentId).style.cssText = "display: block; left: 1489px; top: 857px;"
+        else if (e.pageX > 1675 && e.pageY > 907) {
+            // document.getElementById("inputfield." + currentId).style.cssText = "display: block; left: 1489px; top: 857px;"
+            // document.getElementById("textfield." + currentId).style.cssText = "display: block; left: 1489px; top: 857px;"
         }
 
-        else if (e.pageX > 1489) {
-            document.getElementById("inputfield." + currentId).style.cssText = "display: block; left: 1489px; top: " + e.pageY + "px;"
-            document.getElementById("textfield." + currentId).style.cssText = "display: block; left: 1489px; top: " + e.pageY + "px;"
+        else if (e.pageX < 481 && e.pageY < 172) {
+            // document.getElementById("inputfield." + currentId).style.cssText = "display: block; left: 293px; top: 122px;"
+            // document.getElementById("textfield." + currentId).style.cssText = "display: block; left: 293px; top: 122px;"
         }
 
-        else if (e.pageY > 857) {
-            document.getElementById("inputfield." + currentId).style.cssText = "display: block; left: " + e.pageX + "px; top: 857px;"
-            document.getElementById("textfield." + currentId).style.cssText = "display: block; left: " + e.pageX + "px; top: 857px;"
+        else if (e.pageX > 1675) {
+            document.getElementById("inputfield." + currentId).style.cssText = "display: block; left: 1489px; top: " + (e.pageY - 50) + "px;"
+            document.getElementById("textfield." + currentId).style.cssText = "display: block; left: 1489px; top: " + (e.pageY - 50) + "px;"
+        }
+
+        else if (e.pageY > 907) {
+            document.getElementById("inputfield." + currentId).style.cssText = "display: block; left: " + (e.pageX - 188) + "px; top: 857px;"
+            document.getElementById("textfield." + currentId).style.cssText = "display: block; left: " + (e.pageX - 188) + "px; top: 857px;"
+        }
+
+        else if (e.pageX < 481) {
+            document.getElementById("inputfield." + currentId).style.cssText = "display: block; left: 293px; top: " + (e.pageY - 50) + "px;"
+            document.getElementById("textfield." + currentId).style.cssText = "display: block; left: 293px; top: " + (e.pageY - 50) + "px;"
+        }
+
+        else if (e.pageY < 172) {
+            document.getElementById("inputfield." + currentId).style.cssText = "display: block; left: " + (e.pageX - 188) + "px; top: 122px;"
+            document.getElementById("textfield." + currentId).style.cssText = "display: block; left: " + (e.pageX - 188) + "px; top: 122px;"
+        }
+
+        else if (e.pageX > 1675 && e.pageY < 172) {
+            // document.getElementById("inputfield." + currentId).style.cssText = "display: block; left: 1489px; top: 122px;"
+            // document.getElementById("textfield." + currentId).style.cssText = "display: block; left: 1489px; top: 122px;"
+        }
+
+        else if (e.pageX < 481 && e.pageY > 907) {
+            // document.getElementById("inputfield." + currentId).style.cssText = "display: block; left: 293px; top: 857px;"
+            // document.getElementById("textfield." + currentId).style.cssText = "display: block; left: 293px; top: 857px;"
         }
     }
 
