@@ -232,24 +232,26 @@ form.addEventListener("click", function(e) {
     }
 })
 
-document.getElementById("slideMain").onmousemove = function(e) {
-
+document.onmousemove = function(e) {
     var clientRect = document.getElementById("slideMain").getBoundingClientRect()
-    var X = e.clientX - clientRect.left
-    var Y = e.clientY - clientRect.top
 
-    var Xvw = X/18.72
-    var Yvh = Y/9.64
+    var X = e.clientX //- clientRect.left
+    var Y = e.clientY //- clientRect.top
 
-    console.log(Xvw + "       " + Yvh)
+//console.log(document.getElementById("inputfield." + currentId).offsetWidth + "           " + document.getElementById("inputfield." + currentId).offsetHeight)
 
     if (clicked) {
-
-        if(Xvw > 10.2 && Xvw < 73.5 && Yvh > 5.3 && Yvh < 81.7) {
-            document.getElementById("inputfield." + currentId).style.cssText = "display: block; left: " + (X-188) + "px; top: " + (Y-50) + "px;"
-            document.getElementById("textfield." + currentId).style.cssText = "display: block; left: " + (X-188) + "px; top: " + (Y-50) + "px;"
+        let width = document.getElementById("inputfield." + currentId).offsetWidth
+        let height = document.getElementById("inputfield." + currentId).offsetHeight
+        if(X < clientRect.right - (width/2) && X > clientRect.left + (width/2)) {
+            document.getElementById("inputfield." + currentId).style.cssText = document.getElementById("inputfield." + currentId).style.cssText + "display: block; left: " + (X - clientRect.left - (width/2)) + "px;"
+            document.getElementById("textfield." + currentId).style.cssText = document.getElementById("inputfield." + currentId).style.cssText + "display: block; left: " + (X - clientRect.left - (width/2)) + "px;"
         }
-
+        if(Y < clientRect.bottom - (height/2) && Y > clientRect.top + (height/2)){
+            document.getElementById("inputfield." + currentId).style.cssText = document.getElementById("inputfield." + currentId).style.cssText + "display: block; top: " + (Y - clientRect.top - (height/2)) + "px;"
+            document.getElementById("textfield." + currentId).style.cssText = document.getElementById("inputfield." + currentId).style.cssText + "display: block; top: " + (Y - clientRect.top - (height/2)) + "px;"
+        }
+        //}
     //     else if(Xvw <= 10.2 || Xvw >= 73.5 && Yvh > 5.3 && Yvh < 81.7) {
     //         if(Xvw <= 10.2) {
     //             document.getElementById("inputfield." + currentId).style.cssText = "display: block; left: 0.2vw; top: " + (Y-50) + "px;"
