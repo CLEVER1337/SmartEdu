@@ -137,8 +137,10 @@ nav ul li ul li .button2{
 }
 
 .SlideMain{
-    width: 87vw;
+    width: 83.8vw;
     height: 87.4vh;
+    left: 16.052vw;
+    position: absolute;
 }
 
 .inputfield{

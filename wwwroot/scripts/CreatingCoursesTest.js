@@ -233,52 +233,66 @@ form.addEventListener("click", function(e) {
 })
 
 document.getElementById("slideMain").onmousemove = function(e) {
-    console.log(e.pageX + "       " + e.pageY)
+
+    var clientRect = document.getElementById("slideMain").getBoundingClientRect()
+    var X = e.clientX - clientRect.left
+    var Y = e.clientY - clientRect.top
+
+    var Xvw = X/18.72
+    var Yvh = Y/9.64
+
+    console.log(Xvw + "       " + Yvh)
+
     if (clicked) {
-        if (e.pageX <= 1675 && e.pageY <= 907 && e.pageX >= 481 && e.pageY >= 172) {
-            document.getElementById("inputfield." + currentId).style.cssText = "display: block; left: " + (e.pageX - 188) + "px; top: " + (e.pageY - 50) + "px;"
-            document.getElementById("textfield." + currentId).style.cssText = "display: block; left: " + (e.pageX - 188) + "px; top: " + (e.pageY - 50) + "px;"
+
+        if(Xvw > 10.2 && Xvw < 73.5 && Yvh > 5.3 && Yvh < 81.7) {
+            document.getElementById("inputfield." + currentId).style.cssText = "display: block; left: " + (X-188) + "px; top: " + (Y-50) + "px;"
+            document.getElementById("textfield." + currentId).style.cssText = "display: block; left: " + (X-188) + "px; top: " + (Y-50) + "px;"
         }
 
-        else if (e.pageX > 1675 && e.pageY > 907) {
-            // document.getElementById("inputfield." + currentId).style.cssText = "display: block; left: 1489px; top: 857px;"
-            // document.getElementById("textfield." + currentId).style.cssText = "display: block; left: 1489px; top: 857px;"
-        }
+    //     else if(Xvw <= 10.2 || Xvw >= 73.5 && Yvh > 5.3 && Yvh < 81.7) {
+    //         if(Xvw <= 10.2) {
+    //             document.getElementById("inputfield." + currentId).style.cssText = "display: block; left: 0.2vw; top: " + (Y-50) + "px;"
+    //             document.getElementById("textfield." + currentId).style.cssText = "display: block; left: 0.2vw; top: " + (Y-50) + "px;"
+    //         }
 
-        else if (e.pageX < 481 && e.pageY < 172) {
-            // document.getElementById("inputfield." + currentId).style.cssText = "display: block; left: 293px; top: 122px;"
-            // document.getElementById("textfield." + currentId).style.cssText = "display: block; left: 293px; top: 122px;"
-        }
+    //         else if(Xvw >= 73.5) {
+    //             document.getElementById("inputfield." + currentId).style.cssText = "display: block; left: 63.4vw; top: " + (Y-50) + "px;"
+    //             document.getElementById("textfield." + currentId).style.cssText = "display: block; left: 63.4vw; top: " + (Y-50) + "px;"
+    //         }
+    //     }
 
-        else if (e.pageX > 1675) {
-            document.getElementById("inputfield." + currentId).style.cssText = "display: block; left: 1489px; top: " + (e.pageY - 50) + "px;"
-            document.getElementById("textfield." + currentId).style.cssText = "display: block; left: 1489px; top: " + (e.pageY - 50) + "px;"
-        }
+    //     else if(Yvh <= 5.3 || Yvh >= 81.7 && Xvw > 10.2 && Xvw < 73.5) {
+    //         if(Yvh <= 5.3) {
+    //             document.getElementById("inputfield." + currentId).style.cssText = "display: block; left: " + (X-188) + "px; top: 0.3vh;"
+    //             document.getElementById("textfield." + currentId).style.cssText = "display: block; left: " + (X-188) + "px; top: 0.3vh;"
+    //         }
 
-        else if (e.pageY > 907) {
-            document.getElementById("inputfield." + currentId).style.cssText = "display: block; left: " + (e.pageX - 188) + "px; top: 857px;"
-            document.getElementById("textfield." + currentId).style.cssText = "display: block; left: " + (e.pageX - 188) + "px; top: 857px;"
-        }
+    //         else if(Yvh >= 81.7) {
+    //             document.getElementById("inputfield." + currentId).style.cssText = "display: block; left: " + (X-188) + "px; top: 76.7vh;"
+    //             document.getElementById("textfield." + currentId).style.cssText = "display: block; left: " + (X-188) + "px; top: 76.7vh;"
+    //         }
+    //     }
 
-        else if (e.pageX < 481) {
-            document.getElementById("inputfield." + currentId).style.cssText = "display: block; left: 293px; top: " + (e.pageY - 50) + "px;"
-            document.getElementById("textfield." + currentId).style.cssText = "display: block; left: 293px; top: " + (e.pageY - 50) + "px;"
-        }
+    //     else if(Xvw <= 10.2  && Yvh <= 5.3) {
+    //         document.getElementById("inputfield." + currentId).style.cssText = "display: block; left: 0.2vw; top: 0.3vh;"
+    //         document.getElementById("textfield." + currentId).style.cssText = "display: block; left: 0.2vw; top: 0.3vh;"
+    //     }   
 
-        else if (e.pageY < 172) {
-            document.getElementById("inputfield." + currentId).style.cssText = "display: block; left: " + (e.pageX - 188) + "px; top: 122px;"
-            document.getElementById("textfield." + currentId).style.cssText = "display: block; left: " + (e.pageX - 188) + "px; top: 122px;"
-        }
+    //     else if(Xvw <= 10.2  && Yvh <= 81.7) {
+    //         document.getElementById("inputfield." + currentId).style.cssText = "display: block; left: 0.2vw; top: 76.7vh;"
+    //         document.getElementById("textfield." + currentId).style.cssText = "display: block; left: 0.2vw; top: 76.7vh;"
+    //     }
 
-        else if (e.pageX > 1675 && e.pageY < 172) {
-            // document.getElementById("inputfield." + currentId).style.cssText = "display: block; left: 1489px; top: 122px;"
-            // document.getElementById("textfield." + currentId).style.cssText = "display: block; left: 1489px; top: 122px;"
-        }
+    //     else if(Xvw >= 73.5  && Yvh <= 5.3) {
+    //         document.getElementById("inputfield." + currentId).style.cssText = "display: block; left: 63.4vw; top: 0.3vh;"
+    //         document.getElementById("textfield." + currentId).style.cssText = "display: block; left: 63.4vw; top: 0.3vh;"
+    //     }
 
-        else if (e.pageX < 481 && e.pageY > 907) {
-            // document.getElementById("inputfield." + currentId).style.cssText = "display: block; left: 293px; top: 857px;"
-            // document.getElementById("textfield." + currentId).style.cssText = "display: block; left: 293px; top: 857px;"
-        }
+    //     else if(Xvw >= 73.5  && Yvh <= 81.7) {
+    //         document.getElementById("inputfield." + currentId).style.cssText = "display: block; left: 63.4vw; top: 76.7vh;"
+    //         document.getElementById("textfield." + currentId).style.cssText = "display: block; left: 63.4vw; top: 76.7vh;"
+    //     }
     }
 
 
