@@ -92,47 +92,132 @@ namespace SmartEdu.Modules.CourseModule.Endpoints
         }
 
         /// <summary>
-        /// Create element or page in exercise of course
+        /// Create exercise's page
         /// </summary>
         /// <param name="httpContext"></param>
         /// <returns></returns>
-        public async static Task CreateElement(HttpContext httpContext)
+        public async static Task CreatePage(HttpContext httpContext)
         {
             if (httpContext.Request.HasJsonContentType())
             {
                 // Set json converter
                 var jsonOptions = new JsonSerializerOptions();
 
-                jsonOptions.Converters.Add(new CreateCourseElementJsonConverter());
+                jsonOptions.Converters.Add(new CreatePageJsonConverter());
 
                 // Get exercise element data
-                var exerciseElementData = await httpContext.Request.ReadFromJsonAsync<CreateCourseElementDTO>(jsonOptions);
+                var exerciseElementData = await httpContext.Request.ReadFromJsonAsync<CreatePageDTO>(jsonOptions);
 
                 if (exerciseElementData != null)
                 {
                     var courseBuilder = new CourseBuilder(exerciseElementData.courseId!.Value);
 
-                    switch (exerciseElementData.discriminator)
-                    {
-                        case "Page":
-                            courseBuilder.BuildPage(exerciseElementData.courseExerciseId!.Value); 
-                            break;
-                        case "Text":
-                            courseBuilder.BuildElement<CourseTextElement>(exerciseElementData.courseExerciseId!.Value, 
-                                                                                        exerciseElementData.exercisePageId!.Value, 
-                                                                                        new Coord(exerciseElementData.coords!));
-                            break;
-                        case "Image":
-                            courseBuilder.BuildElement<CourseImageElement>(exerciseElementData.courseExerciseId!.Value, 
-                                                                                        exerciseElementData.exercisePageId!.Value, 
-                                                                                        new Coord(exerciseElementData.coords!));
-                            break;
-                        case "AnswerField":
-                            courseBuilder.BuildElement<CourseAnswerFieldElement>(exerciseElementData.courseExerciseId!.Value, 
-                                                                                        exerciseElementData.exercisePageId!.Value, 
-                                                                                        new Coord(exerciseElementData.coords!));
-                            break;
-                    }
+                    courseBuilder.BuildPage(exerciseElementData.courseExerciseId!.Value);
+                }
+                else
+                {
+                    await Results.UnprocessableEntity(new { message = "Request hasn't required data" }).ExecuteAsync(httpContext);
+                }
+            }
+            else
+            {
+                await Results.UnprocessableEntity().ExecuteAsync(httpContext);
+            }
+        }
+
+        /// <summary>
+        /// Create text element
+        /// </summary>
+        /// <param name="httpContext"></param>
+        /// <returns></returns>
+        public async static Task CreateTextElement(HttpContext httpContext)
+        {
+            if (httpContext.Request.HasJsonContentType())
+            {
+                // Set json converter
+                var jsonOptions = new JsonSerializerOptions();
+
+                jsonOptions.Converters.Add(new CreateTextElementJsonConverter());
+
+                // Get exercise element data
+                var exerciseElementData = await httpContext.Request.ReadFromJsonAsync<CreateTextElementDTO>(jsonOptions);
+
+                if (exerciseElementData != null)
+                {
+                    var courseBuilder = new CourseBuilder(exerciseElementData.courseId!.Value);
+
+                    courseBuilder.BuildElement<CourseTextElement>(exerciseElementData.courseExerciseId!.Value,
+                        exerciseElementData.exercisePageId!.Value, new Coord(exerciseElementData.coords!));
+                }
+                else
+                {
+                    await Results.UnprocessableEntity(new { message = "Request hasn't required data" }).ExecuteAsync(httpContext);
+                }
+            }
+            else
+            {
+                await Results.UnprocessableEntity().ExecuteAsync(httpContext);
+            }
+        }
+
+        /// <summary>
+        /// Create Image
+        /// </summary>
+        /// <param name="httpContext"></param>
+        /// <returns></returns>
+        public async static Task CreateImageElement(HttpContext httpContext)
+        {
+            if (httpContext.Request.HasJsonContentType())
+            {
+                // Set json converter
+                var jsonOptions = new JsonSerializerOptions();
+
+                jsonOptions.Converters.Add(new CreateImageElementJsonConverter());
+
+                // Get exercise element data
+                var exerciseElementData = await httpContext.Request.ReadFromJsonAsync<CreateImageElementDTO>(jsonOptions);
+
+                if (exerciseElementData != null)
+                {
+                    var courseBuilder = new CourseBuilder(exerciseElementData.courseId!.Value);
+
+                    courseBuilder.BuildElement<CourseImageElement>(exerciseElementData.courseExerciseId!.Value,
+                        exerciseElementData.exercisePageId!.Value, new Coord(exerciseElementData.coords!));
+                }
+                else
+                {
+                    await Results.UnprocessableEntity(new { message = "Request hasn't required data" }).ExecuteAsync(httpContext);
+                }
+            }
+            else
+            {
+                await Results.UnprocessableEntity().ExecuteAsync(httpContext);
+            }
+        }
+
+        /// <summary>
+        /// Create answer field
+        /// </summary>
+        /// <param name="httpContext"></param>
+        /// <returns></returns>
+        public async static Task CreateAnswerFieldElement(HttpContext httpContext)
+        {
+            if (httpContext.Request.HasJsonContentType())
+            {
+                // Set json converter
+                var jsonOptions = new JsonSerializerOptions();
+
+                jsonOptions.Converters.Add(new CreateAnswerFieldElementJsonConverter());
+
+                // Get exercise element data
+                var exerciseElementData = await httpContext.Request.ReadFromJsonAsync<CreateAnswerFieldDTO>(jsonOptions);
+
+                if (exerciseElementData != null)
+                {
+                    var courseBuilder = new CourseBuilder(exerciseElementData.courseId!.Value);
+
+                    courseBuilder.BuildElement<CourseAnswerFieldElement>(exerciseElementData.courseExerciseId!.Value,
+                        exerciseElementData.exercisePageId!.Value, new Coord(exerciseElementData.coords!));
                 }
                 else
                 {

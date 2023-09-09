@@ -48,7 +48,11 @@ namespace SmartEdu.Modules.CourseModule.Builder
             {
                 context.Courses.Update(_result!);
 
-                _result?.Exercises[courseExereciseId].Pages[exercisePageId].Elements.Add(new T());
+                var element = new T();
+
+                element.Coords = coords.GetCoords();
+
+                _result?.Exercises[courseExereciseId].Pages[exercisePageId].Elements.Add(element);
 
                 await context.SaveChangesAsync();
             }

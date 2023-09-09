@@ -4,14 +4,10 @@ using System.Text.Json.Serialization;
 
 namespace SmartEdu.Modules.CourseModule.Converters
 {
-    /// <summary>
-    /// Create element converter
-    /// </summary>
-    public class CreateCourseElementJsonConverter : JsonConverter<CreateCourseElementDTO>
+    public class CreateAnswerFieldElementJsonConverter : JsonConverter<CreateAnswerFieldDTO>
     {
-        public override CreateCourseElementDTO? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override CreateAnswerFieldDTO? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            string? discriminator = null;
             int? exerciseId = null;
             int? courseId = null;
             int? pageId = null;
@@ -25,9 +21,6 @@ namespace SmartEdu.Modules.CourseModule.Converters
                     reader.Read();
                     switch (propertyName?.ToLower())
                     {
-                        case "Discriminator":
-                            discriminator = reader.GetString();
-                            break;
                         case "CourseId":
                             courseId = reader.GetInt32();
                             break;
@@ -44,21 +37,16 @@ namespace SmartEdu.Modules.CourseModule.Converters
                 }
             }
 
-            if (courseId != null &&
-                exerciseId != null)
-                if (discriminator != "Page")
-                    if (pageId != null &&
-                        coords != null)
-                        return new CreateCourseElementDTO(discriminator, courseId, exerciseId, pageId, coords);
-                    else
-                        return null;
-                else
-                    return new CreateCourseElementDTO(discriminator, courseId, exerciseId, null, null);
+            if (exerciseId != null &&
+                courseId != null &&
+                pageId != null &&
+                coords != null)
+                return new CreateAnswerFieldDTO(courseId, exerciseId, pageId, coords);
             else
                 return null;
         }
 
-        public override void Write(Utf8JsonWriter writer, CreateCourseElementDTO registrationData, JsonSerializerOptions options)
+        public override void Write(Utf8JsonWriter writer, CreateAnswerFieldDTO registrationData, JsonSerializerOptions options)
         {
         }
     }

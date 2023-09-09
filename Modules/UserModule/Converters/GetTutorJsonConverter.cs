@@ -20,8 +20,6 @@ namespace SmartEdu.Modules.UserModule.Converters
 
             writer.WriteString("Login", registrationData.login);
             
-            writer.WriteEndObject();
-
             writer.WriteStartArray("CoursePreviews");
 
             foreach(var coursePreview in registrationData.CoursePreviews)
@@ -36,6 +34,8 @@ namespace SmartEdu.Modules.UserModule.Converters
             }
 
             writer.WriteEndArray();
+
+            writer.WriteEndObject();
         }
     }
 }

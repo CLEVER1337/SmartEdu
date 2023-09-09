@@ -44,7 +44,7 @@ async function sendDataToServer(data){
         sessionStorage.setItem("RefreshToken", data.RefreshToken)
 
         setCookie("jwtBearer", data.AccessToken, 1);
-
+        
         window.location.pathname ='/profile'
     }
     else{
@@ -56,7 +56,5 @@ async function sendDataToServer(data){
 
 Form.onsubmit = async (e) => {
     e.preventDefault()
-    var a = await sendDataToServer(Form)
-    var text = await a.json()
-    console.log(text)
+    await sendDataToServer(Form)
   }
