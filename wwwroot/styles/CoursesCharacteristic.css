@@ -1,0 +1,233 @@
+html{
+    font-family: Jost;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    transition: 0.5s ease;
+}
+
+
+body{
+    overflow-y: hidden;
+    display: flex;
+    justify-content:right ;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+
+li{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+}
+
+.wrapperCourse img{
+    margin-right: 1vw;
+    /* margin-left: vw; */
+    flex-grow: 0.001;
+    width: 1.5vw;
+}
+
+header{
+    
+    margin-right: 1vw;
+    margin-top: 1vh;
+    justify-content: end;
+    align-items: end;
+    order: 1;
+}
+
+.delete{
+    display: none;
+    border: 2px solid #575757;
+    width: 4vw;
+    height: 5vh;
+    background-color: #f8f8f8; 
+    border-radius: 24px;
+    color: red;
+    font-weight: 400;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 0 auto;
+    transition: 0.5s ease;
+}
+
+.delete-wrapper{
+    display: hidden;
+    transition: 0.5s ease;
+}
+
+.LeftSide{
+    flex-grow: 5;
+    padding-left: 3vw;
+    display: block;
+}
+
+.Statistic{
+    align-items: center;
+    justify-content: center;
+    height: 75vh;
+    justify-self: center;
+    margin-top: 20%;
+    width: 30vw;
+    text-align: center;
+    border: 2px solid #7a7a7a;
+    border-radius: 34px;
+    font-size: 1.4vw;
+
+    
+}
+
+.List{
+    list-style: none;
+}
+
+.Wrapper{
+    margin-top: 15%;
+    margin-left: 1vw;
+    height: 70vh;
+    width: 60vw;
+    
+
+}
+
+.Picture img{
+    width: 12vw;
+    height: auto;
+}
+
+.Statistic p{
+    padding-left: 2vw;
+    text-align: left;
+}
+
+.wrapperCourse{
+    align-self: center;
+    font-size: 1vw;
+    display: flex;
+    width: 40vw;
+    height: 10vh;
+    border-radius: 24px;
+    background-color: #ffffff;
+    border: 2px solid #7a7a7a;
+    margin: 0 auto;
+    margin-left: 1vw;
+    overflow: hidden;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+.div{
+    padding: 1vw;
+}
+
+input[type = "file"]::file-selector-button{
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 24px;
+    transition: 0.25s ease-in;
+}
+
+input[type = "file"]::file-selector-button:hover{
+    border: 1px solid #575757;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 24px;
+    transition: 0.25s ease-in;
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 24px;
+    transition: 0.25s ease-in;
+}
+
+.custom-file-upload:hover {
+    border: 1px solid #575757;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 24px;
+    transition: 0.25s ease-in;
+}
+
+/* .real-checkbox{
+}
+
+.real-checkbox:focus + .custom-checkbox{
+    box-shadow: 0 0 0 1px #38577a, 0 0 10px #7e9bbd;
+} */
+
+.RightSide{
+    display: block;
+}
+
+.custom-checkbox{
+    position: relative;
+    width: 1.2vw;
+    height: 2.5vh;
+    background-color: #ffffff;
+    border: 2px solid #7a7a7a;
+    border-radius: 24px;
+}
+
+.custom-checkbox::before{
+    content: '';   
+    width: 1.2vw;
+    height: 2.5vh;
+    position: absolute;
+    background-image: url("CoursesCharacteristicIconAccept.png");
+    background-size: 85%;
+    background-repeat: no-repeat;
+    transform: translate(-50%, -50%) scale(0);
+    left: 55%;
+    top: 55%;
+    margin-top: 1px;
+    transition: 0.25s ease-in
+}
+
+.real-checkbox:checked + .custom-checkbox::before{
+    transform: translate(-50%, -50%) scale(1);
+
+}
+
+div a{
+    list-style: none;
+    color: black;
+    text-decoration: none;
+}
+
+.Tasks{
+    text-align: center;
+    flex-grow: 3;
+}
+
+.flex{
+    vertical-align: sub;
+}
+
+.delete-course-button{
+    border: 2px solid #575757;
+    width: 6vw;
+    height: 5vh;
+    background-color: #f8f8f8; 
+    border-radius: 24px;
+    color: red;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 0 auto;
+    transition: 0.5s ease;
+}
