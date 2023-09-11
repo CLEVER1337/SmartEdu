@@ -1,0 +1,49 @@
+html{
+    font-family: Jost;
+    display: flex;
+    font-size: 1vw;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    width: 100%;
+    display: block;
+    height: auto;
+    margin: 0;
+    background: url("ErrorScreenBackground.png");
+    background-size: cover;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    
+}
+
+.FatalError{
+    
+    color: black;
+    display: block;
+    margin: 0 auto;
+    margin-top: 10%;
+    transform: translateY(+5%);
+    width: 30vw;
+    height: 50vh;
+    border-radius: 24px;
+    background-color: #EDEDED;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    position: relative;
+}
+
+.img{
+    width: 10vw;
+    height: auto;
+}
+
+a{
+    text-decoration: none;
+    color:  black;
+}
