@@ -137,8 +137,10 @@ nav ul li ul li .button2{
 }
 
 .SlideMain{
-    width: 87vw;
+    width: 83.8vw;
     height: 87.4vh;
+    left: 16.052vw;
+    position: absolute;
 }
 
 .inputfield{
@@ -165,7 +167,7 @@ input[type=file]{
     transition: 0.25s;
     position: absolute;
     top: 7vw;
-    left: 49.3vw;
+    left: 24.5vw;
     border-radius: 15px;
 }
 
